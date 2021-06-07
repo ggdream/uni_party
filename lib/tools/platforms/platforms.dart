@@ -15,4 +15,24 @@ class Platforms {
   static final bool isWeb = kIsWeb;
 
   static bool get _isWeb => isWeb == true;
+
+  static String get name {
+    if (isWeb) {
+      return "Web";
+    } else if (isAndroid) {
+      return "Android";
+    } else if (isIOS) {
+      return "IOS";
+    } else if (isFuchsia) {
+      return "Fuchsia";
+    } else if (isWindows) {
+      return "Windows";
+    } else if (isMacOS) {
+      return "MacOS";
+    } else if (isLinux) {
+      return "Linux";
+    } else {
+      return "Unknown";
+    }
+  }
 }
