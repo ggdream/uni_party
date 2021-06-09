@@ -48,5 +48,19 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: BalooTammudu2
+      fonts:
+        - asset: assets/fonts/BalooTammudu2/BalooTammudu2-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/BalooTammudu2/BalooTammudu2-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/BalooTammudu2/BalooTammudu2-Regular.ttf
+          weight: 400
+    - family: SourceHanSansCN
+      fonts:
+        - asset: assets/fonts/SourceHanSansCN/SourceHanSansCN-Normal.otf
+          weight: 400
+
   assets:
     - assets/images/
