@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:suit/suit.dart';
+
+import 'compose.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,37 +11,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIdx = Compose.startIdx;
+
   @override
   Widget build(BuildContext context) {
+    Adapter.initialize(context);
+
     return Scaffold(
-      appBar: AppBar(
-        leading: Container(
-          width: 24,
-          height: 24,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage('assets/images/avatar.jpg'),
-            ),
-          ),
-        ),
+      body: IndexedStack(
+        index: _currentIdx,
+        children: Compose.pages,
       ),
-      body: RefreshIndicator(
-        onRefresh: () async {},
-        child: ListView(
-          children: [
-            Text('data'),
-            Text('data'),
-            Text('data'),
-            Text('data'),
-            Text('data'),
-            Text('data'),
-            Text('data'),
-            Text('data'),
-            Text('data'),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIdx,
+        items: Compose.navItems,
+        type: BottomNavigationBarType.fixed,
+        onTap: (int index) {
+          setState(() {
+            _currentIdx = index;
+          });
+        },
       ),
     );
   }

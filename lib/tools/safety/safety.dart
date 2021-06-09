@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'encrypt.dart';
 import 'hash.dart';
-import 'signature.dart';
 
 class Safety {
   final EncRSA _rsa;
