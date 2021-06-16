@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class BackBtn extends StatelessWidget {
-  const BackBtn({Key? key}) : super(key: key);
+  const BackBtn({
+    Key? key,
+    this.color,
+  }) : super(key: key);
+
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -9,6 +14,7 @@ class BackBtn extends StatelessWidget {
       onPressed: () => Navigator.of(context).pop(),
       icon: Icon(
         Icons.arrow_back_ios_new_rounded,
+        color: color,
       ),
     );
   }
