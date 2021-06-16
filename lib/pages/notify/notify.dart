@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:uni_party/components/rounded/rounded.dart';
 import 'package:uni_party/components/sheet/sheet.dart';
 import 'package:uni_party/mock/mock.dart';
+import 'package:uni_party/router/routes.dart';
 
 import 'card.dart';
 import 'publish.dart';
@@ -58,9 +60,12 @@ class _NotifyPageState extends State<NotifyPage> {
 
   AppBar appBar() {
     return AppBar(
-      leading: RoundedAvatar.asset(
-        'assets/images/avatar.jpg',
-        margin: const EdgeInsets.all(8),
+      leading: GestureDetector(
+        onTap: () => Get.toNamed(RouteNames.HelpersQrCode),
+        child: RoundedAvatar.asset(
+          'assets/images/avatar.jpg',
+          margin: const EdgeInsets.all(8),
+        ),
       ),
       actions: [
         IconButton(
