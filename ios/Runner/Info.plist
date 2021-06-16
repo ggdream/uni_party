@@ -30,6 +30,14 @@
             <key>NSAllowsArbitraryLoads</key>
             <true/>
         </dict>
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>https</string>
+            <string>http</string>
+            <string>mailto</string>
+            <string>tel</string>
+            <string>sms</string>
+        </array>
 
         <key>CFBundleDevelopmentRegion</key>
         <string>$(DEVELOPMENT_LANGUAGE)</string>
