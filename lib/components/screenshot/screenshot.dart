@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:uni_party/tools/platforms/platforms.dart';
+import 'package:uni_party/tools/device/device.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/rendering.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -51,7 +51,7 @@ class ShotController {
   Future<String> _save2Gallery(Uint8List data, String name) async {
     String location = '';
 
-    if (Platforms.isMobile) {
+    if (DeviceType.isMobile) {
       var result = (await ImageGallerySaver.saveImage(data, name: name));
       if (result.isSuccess as bool) {
         location = result.filePath;

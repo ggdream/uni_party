@@ -1,7 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 
-class Platforms {
+class DeviceType {
   static final bool isWindows = _isWeb ? false : Platform.isWindows;
   static final bool isLinux = _isWeb ? false : Platform.isLinux;
   static final bool isMacOS = _isWeb ? false : Platform.isMacOS;

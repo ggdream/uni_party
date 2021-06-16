@@ -1,8 +1,8 @@
-import 'package:device_preview/device_preview.dart';
+import 'package:device_preview/device_preview.dart' hide DeviceType;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:uni_party/tools/platforms/platforms.dart';
+import 'package:uni_party/tools/device/device.dart';
 
 class Preview extends StatelessWidget {
   const Preview({
@@ -18,7 +18,7 @@ class Preview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DevicePreview(
-        enabled: Platforms.isDesktop && !kReleaseMode,
+        enabled: DeviceType.isDesktop && !kReleaseMode,
         builder: (context) => child,
     );
   }

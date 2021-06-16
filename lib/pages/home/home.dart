@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:suit/suit.dart';
+import 'package:uni_party/tools/permissions/permissions.dart';
 
 import 'compose.dart';
 
@@ -12,6 +15,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIdx = Compose.startIdx;
+
+  @override
+  void initState() {
+    super.initState();
+    Permissions.request().then((allowed) {
+      if (!allowed) exit(0);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

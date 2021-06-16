@@ -1,7 +1,7 @@
 import 'package:convert/convert.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:uni_party/tools/device/device.dart';
 
-import 'package:uni_party/tools/platforms/platforms.dart';
 import 'encrypt.dart';
 import 'hash.dart';
 
@@ -63,9 +63,9 @@ class Signature {
   }
 
   static Future<String> sign(String data) async {
-    if (Platforms.isAndroid) {
+    if (DeviceType.isAndroid) {
       return await getAndroidSign(data);
-    } else if (Platforms.isIOS) {
+    } else if (DeviceType.isIOS) {
       return await getIOSSign(data);
     } else {
       return "";

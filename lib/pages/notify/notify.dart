@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:uni_party/components/card/card.dart';
 import 'package:uni_party/components/rounded/rounded.dart';
+import 'package:uni_party/components/sheet/sheet.dart';
 import 'package:uni_party/mock/mock.dart';
+
+import 'card.dart';
+import 'publish.dart';
 
 class NotifyPage extends StatefulWidget {
   const NotifyPage({Key? key}) : super(key: key);
@@ -23,7 +26,11 @@ class _NotifyPageState extends State<NotifyPage> {
 
   Widget floatBtn() {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () async {
+        var res = await showTypeBottomSheet(context, PublishTypeSelected());
+        if (res == null) return; // click blank area, so exit bottomSheet
+        print(res);
+      },
       child: Icon(Icons.add),
     );
   }

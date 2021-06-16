@@ -22,6 +22,7 @@ dependencies:
   event_bus: ^2.0.0
   ffi: ^1.1.2
   file_picker: ^3.0.2+2
+  fijkplayer: ^0.9.0
   flutter_svg: ^0.22.0
   get: ^4.1.4
   images_picker: ^1.2.4
@@ -33,7 +34,6 @@ dependencies:
   shared_preferences: ^2.0.6
   share_plus: ^2.1.2
   suit: 1.0.0
-  video_player: ^2.1.5
   web_socket_channel: ^2.1.0
 
 
@@ -64,3 +64,5 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/icons/events/
+    # - assets/icons/tools/

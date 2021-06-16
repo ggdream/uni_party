@@ -1,8 +1,8 @@
-import 'package:uni_party/tools/platforms/platforms.dart';
+import 'package:uni_party/tools/device/device.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class Permissions {
-  static bool get _isMobile => Platforms.isMobile;
+  static bool get _isMobile => DeviceType.isMobile;
 
   static List<Permission> _requestList = [
     Permission.storage,

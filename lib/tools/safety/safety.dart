@@ -3,6 +3,11 @@ import 'dart:math';
 import 'encrypt.dart';
 import 'hash.dart';
 
+export 'codec.dart';
+export 'encrypt.dart';
+export 'hash.dart';
+
+/// 安全工具函数
 class Safety {
   final EncRSA _rsa;
   final String _iv;
@@ -30,7 +35,6 @@ class Safety {
       'encSecKey': _rsa.encrypt(key).base64
     };
   }
-
 
   static hashData(String data) => Hasher.toSha256(data);
   static hashFile(String filename) => Hasher.fileToSha256(filename);
