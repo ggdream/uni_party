@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'video.dart';
+import 'video_player.dart';
 
-class WorldPage extends StatefulWidget {
-  const WorldPage({Key? key}) : super(key: key);
+class VideoPage extends StatefulWidget {
+  const VideoPage({Key? key}) : super(key: key);
 
   @override
-  _WorldPageState createState() => _WorldPageState();
+  _VideoPageState createState() => _VideoPageState();
 }
 
-class _WorldPageState extends State<WorldPage> {
+class _VideoPageState extends State<VideoPage> {
   dynamic data;
   int _currentIndex = 0;
 

@@ -9,14 +9,14 @@ import 'package:uni_party/router/routes.dart';
 import 'card.dart';
 import 'publish.dart';
 
-class NotifyPage extends StatefulWidget {
-  const NotifyPage({Key? key}) : super(key: key);
+class EventPage extends StatefulWidget {
+  const EventPage({Key? key}) : super(key: key);
 
   @override
-  _NotifyPageState createState() => _NotifyPageState();
+  _EventPageState createState() => _EventPageState();
 }
 
-class _NotifyPageState extends State<NotifyPage> {
+class _EventPageState extends State<EventPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +61,7 @@ class _NotifyPageState extends State<NotifyPage> {
   AppBar appBar() {
     return AppBar(
       leading: GestureDetector(
-        onTap: () => Get.toNamed(RouteNames.HelpersQrCode),
+        onTap: () => Get.toNamed(RouteNames.HelperQrCode),
         child: RoundedAvatar.asset(
           'assets/images/avatar.jpg',
           margin: const EdgeInsets.all(8),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:uni_party/pages/chat/chat.dart';
-import 'package:uni_party/pages/notify/notify.dart';
+import 'package:uni_party/pages/event/event.dart';
 import 'package:uni_party/pages/profile/profile.dart';
-import 'package:uni_party/pages/world/world.dart';
+import 'package:uni_party/pages/video/video.dart';
 
 class Compose {
   static const startIdx = 0;
 
   static final List<Widget> pages = [
-    NotifyPage(),
-    WorldPage(),
+    EventPage(),
+    VideoPage(),
     ChatPage(),
     ProfilePage(),
   ];

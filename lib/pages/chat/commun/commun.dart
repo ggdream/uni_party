@@ -4,14 +4,14 @@ import 'package:uni_party/components/button/button.dart';
 
 import 'bubble.dart';
 
-class CommunicatePage extends StatefulWidget {
-  const CommunicatePage({Key? key}) : super(key: key);
+class ChatCommunPage extends StatefulWidget {
+  const ChatCommunPage({Key? key}) : super(key: key);
 
   @override
-  _CommunicatePageState createState() => _CommunicatePageState();
+  _ChatCommunPageState createState() => _ChatCommunPageState();
 }
 
-class _CommunicatePageState extends State<CommunicatePage> {
+class _ChatCommunPageState extends State<ChatCommunPage> {
   final ScrollController _controller = ScrollController();
 
   @override

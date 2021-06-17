@@ -1,10 +1,5 @@
-import 'package:flutter/material.dart';
+export 'page.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
+export 'event/event.dart';
+export 'info/info.dart';
+export 'video/video.dart';

@@ -66,4 +66,5 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/events/
+    - assets/icons/logo/
     # - assets/icons/tools/
