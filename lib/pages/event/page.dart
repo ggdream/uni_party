@@ -29,9 +29,10 @@ class _EventPageState extends State<EventPage> {
   Widget floatBtn() {
     return FloatingActionButton(
       onPressed: () async {
-        var res = await showTypeBottomSheet(context, PublishTypeSelected());
-        if (res == null) return; // click blank area, so exit bottomSheet
-        print(res);
+        // var res = await showTypeBottomSheet(context, PublishTypeSelected());
+        // if (res == null) return; // click blank area, so exit bottomSheet
+        // print(res);
+        await Get.toNamed(RouteNames.TextEdit);
       },
       child: Icon(Icons.add),
     );

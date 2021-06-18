@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:uni_party/components/button/button.dart';
 import 'package:uni_party/components/sheet/sheet.dart';
-import 'package:uni_party/model/model.dart';
+import 'package:uni_party/models/models.dart';
 import 'package:uni_party/styles/styles.dart';
 
 import 'bubble.dart';

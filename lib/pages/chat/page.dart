@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uni_party/components/rounded/avatar.dart';
-import 'package:uni_party/model/model.dart';
+import 'package:uni_party/models/models.dart';
 import 'package:uni_party/router/routes.dart';
 
 class ChatPage extends StatefulWidget {

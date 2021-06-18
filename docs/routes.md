@@ -5,6 +5,8 @@
 /chat: ChatPage
 /profile: ProfilePage
 
+/text/edit: 文本编辑页
+
 /event/search: 消息搜索页
 /event/submit: 消息提交页
 /event/publish/notify: 发布通知消息页
@@ -43,9 +45,8 @@
 /helpers/protocols/service: 服务协议页
 /helpers/qr/code: 个人二维码页
 /helpers/qr/scan: 二维码扫描页
-/helpers/settings: 应用设置页
 /helpers/settings/theme: 主题设置页
 /helpers/settings/push: 邮件推送页
-/helpers/settings/password: 设置密码页
+/helpers/settings/safety: 安全设置页
 ~~~
 

@@ -559,7 +559,7 @@ packages:
       path: "lib/plugins/preset_images"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "1.0.0"
   process:
     dependency: transitive
     description:
