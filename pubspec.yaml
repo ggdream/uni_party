@@ -43,6 +43,10 @@ dependencies:
   url_launcher: ^6.0.6
   web_socket_channel: ^2.1.0
   webview_flutter: ^2.0.8
+  flutter_filereader:
+    path: lib/plugins/flutter_filereader
+  preset_images:
+    path: lib/plugins/preset_images
 
 
 dev_dependencies:
