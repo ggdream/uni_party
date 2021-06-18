@@ -60,13 +60,9 @@ class _EventPageState extends State<EventPage> {
 
   AppBar appBar() {
     return AppBar(
-      leading: GestureDetector(
-        onTap: () => Get.toNamed(RouteNames.HelperQrCode),
-        child: RoundedAvatar.asset(
-          'assets/images/avatar.jpg',
-          margin: const EdgeInsets.all(8),
-        ),
-      ),
+      leading: _circleAvatar(),
+      centerTitle: true,
+      title: Text('消息'),
       actions: [
         IconButton(
           onPressed: () {},
@@ -77,6 +73,19 @@ class _EventPageState extends State<EventPage> {
           icon: Icon(Icons.sort_rounded),
         ),
       ],
+    );
+  }
+
+  Widget _circleAvatar() {
+    return GestureDetector(
+      onTap: () => Get.toNamed(RouteNames.HelperQrCode),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: RoundedAvatar.asset(
+          'assets/images/avatar.jpg',
+          margin: const EdgeInsets.all(8),
+        ),
+      ),
     );
   }
 }

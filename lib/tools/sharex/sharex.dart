@@ -1,6 +1,8 @@
 import 'package:share_plus/share_plus.dart';
 
 class ShareX {
+  ShareX._();
+
   static Future<void> text(String data, {String? subject}) async {
     await Share.share(data, subject: subject);
   }

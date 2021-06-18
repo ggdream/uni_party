@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'colors.dart';
+import 'color.dart';
 
 class ThemesX {
   static final _floatingActionButtonTheme = FloatingActionButtonThemeData(

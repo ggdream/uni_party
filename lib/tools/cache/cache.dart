@@ -2,6 +2,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// 本地存储策略
 class CacheX {
+  CacheX._();
+
   /// 泛型式储存
   static Future<void> setx<T>(String key, T value) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();

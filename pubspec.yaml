@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.2
   amap_flutter_location: ^2.0.0
   cached_network_image: ^3.0.0
@@ -20,22 +22,27 @@ dependencies:
   dio: ^4.0.0
   encrypt: ^5.0.0
   event_bus: ^2.0.0
+  excel: any
   ffi: ^1.1.2
   file_picker: ^3.0.2+2
   fijkplayer: ^0.9.0
+  flutter_local_notifications: ^6.0.0
   flutter_svg: ^0.22.0
   get: ^4.1.4
   images_picker: ^1.2.4
   image_gallery_saver: ^1.6.9
   path_provider: ^2.0.2
   permission_handler: ^8.0.1
+  photo_view: ^0.11.1
   qr_flutter: ^4.0.0
   scan: ^1.4.3
   shared_preferences: ^2.0.6
   share_plus: ^2.1.2
+  sqflite: ^2.0.0+3
   suit: 1.0.0
   url_launcher: ^6.0.6
   web_socket_channel: ^2.1.0
+  webview_flutter: ^2.0.8
 
 
 dev_dependencies:
@@ -67,4 +74,4 @@ flutter:
     - assets/images/
     - assets/icons/events/
     - assets/icons/logo/
-    # - assets/icons/tools/
+    - assets/icons/tools/

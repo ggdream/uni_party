@@ -10,7 +10,7 @@ final List<GetPage> routes = [
   GetPage(name: RouteNames.ChatCommunicate, page: () => ChatCommunPage()),
   GetPage(name: RouteNames.HelperQrCode, page: () => QrCodePage()),
   GetPage(name: RouteNames.HelperQrScan, page: () => QrScanPage()),
-  GetPage(name: RouteNames.ShowStartPage, page: () => StartPage()),
+  GetPage(name: RouteNames.StartLogoPage, page: () => StartLogoPage()),
 ];
 
 class RouteNames {
@@ -33,5 +33,5 @@ class RouteNames {
   static const HelperQrScan = '/helper/qr/scan';
 
   /// 启动页
-  static const ShowStartPage = '/show/start';
+  static const StartLogoPage = '/start/logo';
 }

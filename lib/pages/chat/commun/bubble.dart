@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:suit/suit.dart';
+
 import 'package:uni_party/components/rounded/avatar.dart';
 
 class ChatBubbleWidget extends StatelessWidget {
@@ -17,7 +19,7 @@ class ChatBubbleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(
-        horizontal: 8,
+        horizontal: 12,
         vertical: 12,
       ),
       child: Row(
@@ -29,15 +31,16 @@ class ChatBubbleWidget extends StatelessWidget {
             size: 40,
           ),
           SizedBox(width: 12),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Text(text),
+          Container(
+            padding: const EdgeInsets.all(8),
+            constraints: BoxConstraints(
+              maxWidth: 100.vw - 12 * 2 - 12 - 40,
             ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: SelectableText(text),
           ),
         ],
       ),

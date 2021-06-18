@@ -23,10 +23,17 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!--android 9.0上使用前台服务，需要添加权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- 8.0安装apk权限，需要允许安装未知应用 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
-    <application android:label="uni_party" android:icon="@mipmap/ic_launcher">
+
+
+    <application android:label="uni_party" android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="true">
         <!-- 配置定位Service -->
         <service android:name="com.amap.api.location.APSService"/>
         <meta-data android:name="flutterEmbedding" android:value="2" />
-    </application>
-</manifest>
+        <activity android:showWhenLocked="true" android:turnScreenOn="true">
+        </application>
+    </manifest>

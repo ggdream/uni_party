@@ -10,5 +10,6 @@ class ColorsX {
   static const pink = Color(0xffd3778e);
   static const purple = Color(0xff8559a1);
   static const yellow = Color(0xfffff59d);
+  static const grey = Color(0xff9e9e9e);
   static const skin = Color(0xfff5dbd0);
 }

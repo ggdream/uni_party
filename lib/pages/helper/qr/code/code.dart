@@ -3,8 +3,9 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:suit/suit.dart';
 
 import 'package:uni_party/components/button/button.dart';
-import 'package:uni_party/components/rounded/avatar.dart';
+import 'package:uni_party/components/rounded/rounded.dart';
 import 'package:uni_party/components/screenshot/screenshot.dart';
+import 'package:uni_party/styles/color.dart';
 import 'package:uni_party/tools/sharex/sharex.dart';
 
 /// 个人二维码页
@@ -86,6 +87,7 @@ class QrCodePage extends StatelessWidget {
                 data: 'hello',
                 embeddedImage: NetworkImage(
                   'http://127.0.0.1:9999/952.jpg',
+                  scale: 16,
                 ),
               ),
             ],
@@ -95,7 +97,7 @@ class QrCodePage extends StatelessWidget {
     );
   }
 
-  Row userInfoView() {
+  Widget userInfoView() {
     return Row(
       children: [
         RoundedAvatar.network(

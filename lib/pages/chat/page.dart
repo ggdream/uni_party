@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uni_party/components/rounded/avatar.dart';
+import 'package:uni_party/model/model.dart';
 import 'package:uni_party/router/routes.dart';
 
 class ChatPage extends StatefulWidget {
@@ -46,6 +47,8 @@ class _ChatPageState extends State<ChatPage> {
   // 搜索 和 清空列表
   AppBar appBar() {
     return AppBar(
+      centerTitle: true,
+      title: Text('聊天'),
       actions: [
         IconButton(
           onPressed: () {},
@@ -84,26 +87,34 @@ class ChatWindowCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () => Get.toNamed(RouteNames.ChatCommunicate),
-      child: Container(
-        width: double.infinity,
-        height: 72,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 8,
-          vertical: 10,
+      onTap: () => Get.toNamed(
+        RouteNames.ChatCommunicate,
+        arguments: Chat2Commun(
+          uname: uname,
         ),
-        child: Row(
-          children: [
-            RoundedAvatar.network(
-              avatar,
-              size: 54,
-            ),
-            SizedBox(
-              width: 8,
-            ),
-            textView(context),
-            metaView(),
-          ],
+      ),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: Container(
+          width: double.infinity,
+          height: 72,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8,
+            vertical: 10,
+          ),
+          child: Row(
+            children: [
+              RoundedAvatar.network(
+                avatar,
+                size: 54,
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              textView(context),
+              metaView(),
+            ],
+          ),
         ),
       ),
     );
