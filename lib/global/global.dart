@@ -1,5 +1,2 @@
 export 'meta.dart';
-
-Future<void> initialize() async {
-
-}
+export 'network.dart';
