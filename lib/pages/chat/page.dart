@@ -89,7 +89,7 @@ class ChatWindowCard extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: () => Get.toNamed(
         RouteNames.ChatCommunicate,
-        arguments: Chat2Commun(
+        arguments: Chat2CommunRouteModel(
           uname: uname,
         ),
       ),

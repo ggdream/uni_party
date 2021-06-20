@@ -1,7 +1,7 @@
-class Chat2Commun {
+class Chat2CommunRouteModel {
   final String uname;
 
-  Chat2Commun({
+  Chat2CommunRouteModel({
     required this.uname,
   });
 }

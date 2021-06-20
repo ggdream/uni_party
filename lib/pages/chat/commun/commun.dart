@@ -20,7 +20,7 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _editingController = TextEditingController();
 
-  final Chat2Commun _args = Get.arguments as Chat2Commun;
+  final _args = Get.arguments as Chat2CommunRouteModel;
 
   final List<ChatBubbleWidget> _chatMsgs = [];
 
