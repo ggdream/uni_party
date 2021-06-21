@@ -1,16 +1,16 @@
 /// 获取用户发布的消息：请求
-class UserPublicationsEventGetReqModel {
+class UserEventPublicationsGetReqModel {
   final String uid;
   final int offset;
   final int number;
 
-  UserPublicationsEventGetReqModel({
+  UserEventPublicationsGetReqModel({
     required this.uid,
     required this.offset,
     required this.number,
   });
 
-  UserPublicationsEventGetReqModel.fromJson(Map<String, dynamic> json)
+  UserEventPublicationsGetReqModel.fromJson(Map<String, dynamic> json)
       : uid = json['uid'],
         offset = json['offset'],
         number = json['number'];
@@ -25,16 +25,16 @@ class UserPublicationsEventGetReqModel {
 }
 
 /// 获取用户发布的消息：响应
-class UserPublicationsEventGetResModel {
+class UserEventPublicationsGetResModel {
   late final int total;
   late final List<_Event> events;
 
-  UserPublicationsEventGetResModel({
+  UserEventPublicationsGetResModel({
     required this.total,
     required this.events,
   });
 
-  UserPublicationsEventGetResModel.fromJson(Map<String, dynamic> json) {
+  UserEventPublicationsGetResModel.fromJson(Map<String, dynamic> json) {
     total = json['total'];
     events = [];
     json['events'].forEach((v) {
@@ -51,18 +51,18 @@ class UserPublicationsEventGetResModel {
 }
 
 /// 获取用户收藏的消息：请求
-class UserCollectionsEventGetReqModel {
+class UserEventCollectionsGetReqModel {
   final String uid;
   final int offset;
   final int number;
 
-  UserCollectionsEventGetReqModel({
+  UserEventCollectionsGetReqModel({
     required this.uid,
     required this.offset,
     required this.number,
   });
 
-  UserCollectionsEventGetReqModel.fromJson(Map<String, dynamic> json)
+  UserEventCollectionsGetReqModel.fromJson(Map<String, dynamic> json)
       : uid = json['uid'],
         offset = json['offset'],
         number = json['number'];
@@ -77,16 +77,16 @@ class UserCollectionsEventGetReqModel {
 }
 
 /// 获取用户收藏的消息：请求
-class UserCollectionsEventGetResModel {
+class UserEventCollectionsGetResModel {
   late final int total;
   late final List<_Result> events;
 
-  UserCollectionsEventGetResModel({
+  UserEventCollectionsGetResModel({
     required this.total,
     required this.events,
   });
 
-  UserCollectionsEventGetResModel.fromJson(Map<String, dynamic> json) {
+  UserEventCollectionsGetResModel.fromJson(Map<String, dynamic> json) {
     total = json['total'];
     if (json['events'] != null) {
       events = [];

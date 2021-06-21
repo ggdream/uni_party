@@ -99,7 +99,7 @@ users: Array
 ### 4.添加用户关注
 
 ~~~yaml
-POST /users/following
+POST /users/following/act
 
 # req
 uid: String
@@ -276,7 +276,7 @@ motto: String
 ### 12.获取主题色
 
 ~~~yaml
-GET /users/settings/theme
+GET /users/settings/theme/get
 
 # res
 color: String
@@ -285,7 +285,7 @@ color: String
 ### 13.设置主题色
 
 ~~~yaml
-POST /users/settings/theme
+POST /users/settings/theme/
 
 # req
 color: String

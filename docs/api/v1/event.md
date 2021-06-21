@@ -6,10 +6,10 @@
 /events/delete	# 删除消息
 /events/detail	# 获取详情
 
-/events/notice/{create,update}
-/events/vote/{create,update}
-/events/sortition/{create,update}
-/events/participation/{create,update}
+/events/notice/{publish,repair}
+/events/vote/{publish,repair}
+/events/sortition/{publish,repair}
+/events/participation/{publish,repair}
 # 新建消息、修改消息
 
 /events/search		# 搜索消息
@@ -51,8 +51,8 @@ events:
 	  	sex: String
 	  	type: Int	# 用户类别
 	  	org_name: String
-	  create_time: String
-	  update_time: String
+	  publish_time: String
+	  repair_time: String
 	  get_counter: Int
 	  watch_counter: Int
 	  comment_counter: Int
@@ -86,8 +86,8 @@ title: String
 content: String
 type: Int		# 消息类别
 tags: Array<String>
-create_time: String
-update_time: String
+publish_time: String
+repair_time: String
 get_counter: Int
 watch_counter: Int
 comment_counter: Int
@@ -144,7 +144,7 @@ result: [0]					# 动态，根据具体情况而定。长度等于required_numbe
 ### 4.发布通知类消息
 
 ~~~yaml
-POST /events/notice/create
+POST /events/notice/publish
 
 # req
 title: String
@@ -160,7 +160,7 @@ type: Int
 ### 5.修改通知类消息
 
 ~~~yaml
-POST /events/notice/update
+POST /events/notice/repair
 
 # req
 eid: String
@@ -177,7 +177,7 @@ frequency: Int	# 看做 第几次修改 或者一共修改了几次
 ### 6.发布投票类消息
 
 ~~~yaml
-POST /events/vote/create
+POST /events/vote/publish
 
 # req
 title: String
@@ -195,7 +195,7 @@ type: Int
 ### 7.修改投票类消息
 
 ~~~yaml
-POST /events/vote/update
+POST /events/vote/repair
 
 # req
 eid: String
@@ -214,7 +214,7 @@ frequency: Int	# 看做 第几次修改 或者一共修改了几次
 ### 8.发布随机类消息
 
 ~~~yaml
-POST /events/sortition/create
+POST /events/sortition/publish
 
 # req
 title: String
@@ -232,7 +232,7 @@ type: Int
 ### 9.修改随机类消息
 
 ~~~yaml
-POST /events/sortition/update
+POST /events/sortition/repair
 
 # req
 eid: String
@@ -251,7 +251,7 @@ frequency: Int	# 看做 第几次修改 或者一共修改了几次
 ### 10.发布报名类消息
 
 ~~~yaml
-POST /events/participation/create
+POST /events/participation/publish
 
 # req
 title: String
@@ -269,7 +269,7 @@ type: Int
 ### 11.修改报名类消息
 
 ~~~yaml
-POST /events/participation/update
+POST /events/participation/repair
 
 # req
 eid: String
@@ -342,7 +342,7 @@ id: String
 	  star_counter: Int
 	  comment_counter: Int
 	  create_time: String
-	  update_time: String
+	  repair_time: String
 	  is_get: Boolean
 	  is_collect: Boolean
 ~~~

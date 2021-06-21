@@ -85,3 +85,77 @@ class AuthLoginByCodeResModel {
     return data;
   }
 }
+
+/// 发送手机验证码：请求
+class AuthLoginSendPhoneCodeReqModel {
+  final String phone;
+
+  AuthLoginSendPhoneCodeReqModel({
+    required this.phone,
+  });
+
+  AuthLoginSendPhoneCodeReqModel.fromJson(Map<String, dynamic> json)
+      : phone = json['phone'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['phone'] = this.phone;
+    return data;
+  }
+}
+
+/// 发送手机验证码：响应
+class AuthLoginSendPhoneCodeResModel {
+  final String deviceCode;
+
+  AuthLoginSendPhoneCodeResModel({
+    required this.deviceCode,
+  });
+
+  AuthLoginSendPhoneCodeResModel.fromJson(Map<String, dynamic> json)
+      : deviceCode = json['device_code'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['device_code'] = this.deviceCode;
+    return data;
+  }
+}
+
+
+
+/// 发送邮箱验证码：请求
+class AuthLoginSendEMailCodeReqModel {
+  final String email;
+
+  AuthLoginSendEMailCodeReqModel({
+    required this.email,
+  });
+
+  AuthLoginSendEMailCodeReqModel.fromJson(Map<String, dynamic> json)
+      : email = json['email'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['email'] = this.email;
+    return data;
+  }
+}
+
+/// 发送邮箱验证码：响应
+class AuthLoginSendEMailCodeResModel {
+  final String deviceCode;
+
+  AuthLoginSendEMailCodeResModel({
+    required this.deviceCode,
+  });
+
+  AuthLoginSendEMailCodeResModel.fromJson(Map<String, dynamic> json)
+      : deviceCode = json['device_code'];
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['device_code'] = this.deviceCode;
+    return data;
+  }
+}
