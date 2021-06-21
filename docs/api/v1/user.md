@@ -49,6 +49,7 @@ followers: Int
 following: Int
 event_counter: Int	# 发表数
 video_counter: Int	# 发表数
+is_following: Boolean
 ~~~
 
 ### 2.获取粉丝信息
@@ -69,7 +70,7 @@ users: Array
 	  avatar: String
 	  sex: String
 	  motto: String
-	  type: String
+	  type: Int
 	  org_name: String
 ~~~
 
@@ -91,7 +92,7 @@ users: Array
 	  avatar: String
 	  sex: String
 	  motto: String
-	  type: String
+	  type: Int
 	  org_name: String
 ~~~
 
@@ -127,6 +128,8 @@ events:
 	  comment_counter: Int
 	  create_time: String
 	  update_time: String
+	  is_get: Boolean
+	  is_collect: Boolean
 ~~~
 
 ### 6.获取发布视频
@@ -141,7 +144,7 @@ number: Int
 
 # res
 total: Int	# 用户一共发布数
-videos:
+result:
 	- vid: String
 	  title: String
 	  cover: String		# 封面图地址
@@ -151,6 +154,8 @@ videos:
 	  comment_counter: Int
 	  create_time: String
 	  update_time: String
+	  is_get: Boolean
+	  is_collect: Boolean
 ~~~
 
 ### 7.获取收藏消息
@@ -182,8 +187,10 @@ events:
 	  watch_counter: Int
 	  comment_counter: Int
 	  collect_time: String
-	  event_create_time: String
-	  event_update_time: String
+	  create_time: String
+	  update_time: String
+	  is_get: Boolean
+	  is_collect: Boolean
 ~~~
 
 ### 8.获取收藏视频
@@ -198,9 +205,9 @@ number: Int
 
 # res
 total: Int	# 用户一共收藏数
-videos:
+result:
 	- vid: String
-	  user_info:
+	  userinfo:
 	  	uid: String
 	  	uname: String
 	  	avatar: String
@@ -215,8 +222,10 @@ videos:
 	  star_counter: Int
 	  comment_counter: Int
 	  collect_time: String
-	  video_create_time: String
-	  video_update_time: String
+	  create_time: String
+	  update_time: String
+	  	is_get: Boolean
+	  is_collect: Boolean
 ~~~
 
 ### 9.搜索用户

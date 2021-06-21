@@ -2,7 +2,7 @@ export 'collect.dart';
 export 'collections.dart';
 export 'delete.dart';
 export 'detail.dart';
-export 'get.dart';
+export 'subscribe.dart';
 export 'publications.dart';
 export 'publish.dart';
 export 'repair.dart';

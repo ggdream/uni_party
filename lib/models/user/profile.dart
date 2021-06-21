@@ -31,6 +31,7 @@ class UserInfoGetResModel {
   final int following;
   final int eventCounter;
   final int videoCounter;
+  final bool isFollowing;
 
   UserInfoGetResModel({
     required this.uid,
@@ -47,6 +48,7 @@ class UserInfoGetResModel {
     required this.following,
     required this.eventCounter,
     required this.videoCounter,
+    required this.isFollowing,
   });
 
   UserInfoGetResModel.fromJson(Map<String, dynamic> json)
@@ -63,7 +65,8 @@ class UserInfoGetResModel {
         followers = json['followers'],
         following = json['following'],
         eventCounter = json['event_counter'],
-        videoCounter = json['video_counter'];
+        videoCounter = json['video_counter'],
+        isFollowing = json['is_following'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -81,6 +84,7 @@ class UserInfoGetResModel {
     data['following'] = this.following;
     data['event_counter'] = this.eventCounter;
     data['video_counter'] = this.videoCounter;
+    data['is_following'] = this.isFollowing;
     return data;
   }
 }

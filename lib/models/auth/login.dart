@@ -22,21 +22,21 @@ class AuthLoginByCipherReqModel {
 
 /// 用户以密码方式登录：响应
 class AuthLoginByCipherResModel {
-  final String requireCaptcha;
+  final String needCaptcha;
   final String token;
 
   AuthLoginByCipherResModel({
-    required this.requireCaptcha,
+    required this.needCaptcha,
     required this.token,
   });
 
   AuthLoginByCipherResModel.fromJson(Map<String, dynamic> json)
-      : requireCaptcha = json['require_captcha'],
+      : needCaptcha = json['need_captcha'],
         token = json['token'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['require_captcha'] = this.requireCaptcha;
+    data['need_captcha'] = this.needCaptcha;
     data['token'] = this.token;
     return data;
   }
@@ -66,21 +66,21 @@ class AuthLoginByCodeReqModel {
 
 /// 用户以验证码方式登录：响应
 class AuthLoginByCodeResModel {
-  final String requireCaptcha;
+  final String needCaptcha;
   final String token;
 
   AuthLoginByCodeResModel({
-    required this.requireCaptcha,
+    required this.needCaptcha,
     required this.token,
   });
 
   AuthLoginByCodeResModel.fromJson(Map<String, dynamic> json)
-      : requireCaptcha = json['require_captcha'],
+      : needCaptcha = json['need_captcha'],
         token = json['token'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['require_captcha'] = this.requireCaptcha;
+    data['need_captcha'] = this.needCaptcha;
     data['token'] = this.token;
     return data;
   }

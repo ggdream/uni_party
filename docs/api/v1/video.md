@@ -22,7 +22,6 @@
 GET /videos/get
 
 # req
-offset: Int
 number: Int
 pointer?: String
 
@@ -46,8 +45,10 @@ result:
 	  star_counter: Int
 	  comment_counter: Int
 	  collect_time: String
-	  video_create_time: String
-	  video_update_time: String
+	  create_time: String
+	  update_time: String
+	  is_get: Boolean
+	  is_collect: Boolean
 ~~~
 
 ### 2.上传视频
@@ -104,8 +105,10 @@ result:
 	  star_counter: Int
 	  comment_counter: Int
 	  collect_time: String
-	  video_create_time: String
-	  video_update_time: String
+	  create_time: String
+	  update_time: String
+	  is_get: Boolean
+	  is_collect: Boolean
 ~~~
 
 ### 5.获取发布视频

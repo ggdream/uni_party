@@ -1,23 +1,19 @@
 /// 获取推送视频：请求
 class VideoGetReqModel {
-  final int offset;
   final int number;
   final String? pointer;
 
   VideoGetReqModel({
-    required this.offset,
     required this.number,
     this.pointer,
   });
 
   VideoGetReqModel.fromJson(Map<String, dynamic> json)
-      : offset = json['offset'],
-        number = json['number'],
+      : number = json['number'],
         pointer = json['pointer'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['offset'] = this.offset;
     data['number'] = this.number;
     if (this.pointer != null) data['pointer'] = this.pointer;
     return data;
@@ -27,7 +23,7 @@ class VideoGetReqModel {
 /// 获取推送视频：响应
 class VideoGetResModel {
   late String pointer;
-  late String captcha;
+  late bool captcha;
   late List<_Result> result;
 
   VideoGetResModel({
@@ -55,17 +51,19 @@ class VideoGetResModel {
 }
 
 class _Result {
-  late final String vid;
-  late final _Userinfo userinfo;
-  late final String title;
-  late final String cover;
-  late final List<String> tags;
-  late final String watchCounter;
-  late final String starCounter;
-  late final String commentCounter;
-  late final String collectTime;
-  late final String videoCreateTime;
-  late final String videoUpdateTime;
+  final String vid;
+  final _Userinfo userinfo;
+  final String title;
+  final String cover;
+  final List<String> tags;
+  final String watchCounter;
+  final String starCounter;
+  final String commentCounter;
+  final String collectTime;
+  final String createTime;
+  final String updateTime;
+  final bool isGet;
+  final bool isCollect;
 
   _Result({
     required this.vid,
@@ -77,23 +75,26 @@ class _Result {
     required this.starCounter,
     required this.commentCounter,
     required this.collectTime,
-    required this.videoCreateTime,
-    required this.videoUpdateTime,
+    required this.createTime,
+    required this.updateTime,
+    required this.isGet,
+    required this.isCollect,
   });
 
-  _Result.fromJson(Map<String, dynamic> json) {
-    vid = json['vid'];
-    userinfo = new _Userinfo.fromJson(json['userinfo']);
-    title = json['title'];
-    cover = json['cover'];
-    tags = List<String>.from(json['tags']);
-    watchCounter = json['watch_counter'];
-    starCounter = json['star_counter'];
-    commentCounter = json['comment_counter'];
-    collectTime = json['collect_time'];
-    videoCreateTime = json['video_create_time'];
-    videoUpdateTime = json['video_update_time'];
-  }
+  _Result.fromJson(Map<String, dynamic> json)
+      : vid = json['vid'],
+        userinfo = new _Userinfo.fromJson(json['userinfo']),
+        title = json['title'],
+        cover = json['cover'],
+        tags = List<String>.from(json['tags']),
+        watchCounter = json['watch_counter'],
+        starCounter = json['star_counter'],
+        commentCounter = json['comment_counter'],
+        collectTime = json['collect_time'],
+        createTime = json['create_time'],
+        updateTime = json['update_time'],
+        isGet = json['is_get'],
+        isCollect = json['is_collect'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -106,8 +107,10 @@ class _Result {
     data['star_counter'] = this.starCounter;
     data['comment_counter'] = this.commentCounter;
     data['collect_time'] = this.collectTime;
-    data['video_create_time'] = this.videoCreateTime;
-    data['video_update_time'] = this.videoUpdateTime;
+    data['create_time'] = this.createTime;
+    data['update_time'] = this.updateTime;
+    data['is_get'] = this.isGet;
+    data['is_collect'] = this.isCollect;
     return data;
   }
 }
@@ -118,7 +121,7 @@ class _Userinfo {
   final String avatar;
   final String motto;
   final String sex;
-  final String type;
+  final int type;
   final String orgName;
 
   _Userinfo({

@@ -27,7 +27,7 @@ class VideoCollectionsGetReqModel {
 /// 获取用户收藏视频：响应
 class VideoCollectionsGetResModel {
   late final int total;
-  late final List<_Result> result;
+  late final List<_CollectResult> result;
 
   VideoCollectionsGetResModel({
     required this.total,
@@ -38,7 +38,7 @@ class VideoCollectionsGetResModel {
     total = json['total'];
     result = [];
     json['result'].forEach((v) {
-      result.add(new _Result.fromJson(v));
+      result.add(new _CollectResult.fromJson(v));
     });
   }
 
@@ -50,20 +50,22 @@ class VideoCollectionsGetResModel {
   }
 }
 
-class _Result {
-  late final String vid;
-  late final _Userinfo userinfo;
-  late final String title;
-  late final String cover;
-  late final List<String> tags;
-  late final int watchCounter;
-  late final int starCounter;
-  late final int commentCounter;
-  late final String collectTime;
-  late final String videoCreateTime;
-  late final String videoUpdateTime;
+class _CollectResult {
+  final String vid;
+  final _Userinfo userinfo;
+  final String title;
+  final String cover;
+  final List<String> tags;
+  final int watchCounter;
+  final int starCounter;
+  final int commentCounter;
+  final String collectTime;
+  final String createTime;
+  final String updateTime;
+  final bool isGet;
+  final bool isCollect;
 
-  _Result({
+  _CollectResult({
     required this.vid,
     required this.userinfo,
     required this.title,
@@ -73,23 +75,26 @@ class _Result {
     required this.starCounter,
     required this.commentCounter,
     required this.collectTime,
-    required this.videoCreateTime,
-    required this.videoUpdateTime,
+    required this.createTime,
+    required this.updateTime,
+    required this.isGet,
+    required this.isCollect,
   });
 
-  _Result.fromJson(Map<String, dynamic> json) {
-    vid = json['vid'];
-    userinfo = new _Userinfo.fromJson(json['userinfo']);
-    title = json['title'];
-    cover = json['cover'];
-    tags = json['tags'].cast<String>();
-    watchCounter = json['watch_counter'];
-    starCounter = json['star_counter'];
-    commentCounter = json['comment_counter'];
-    collectTime = json['collect_time'];
-    videoCreateTime = json['video_create_time'];
-    videoUpdateTime = json['video_update_time'];
-  }
+  _CollectResult.fromJson(Map<String, dynamic> json)
+      : vid = json['vid'],
+        userinfo = new _Userinfo.fromJson(json['userinfo']),
+        title = json['title'],
+        cover = json['cover'],
+        tags = json['tags'].cast<String>(),
+        watchCounter = json['watch_counter'],
+        starCounter = json['star_counter'],
+        commentCounter = json['comment_counter'],
+        collectTime = json['collect_time'],
+        createTime = json['create_time'],
+        updateTime = json['update_time'],
+        isGet = json['is_get'],
+        isCollect = json['is_collect'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -102,8 +107,10 @@ class _Result {
     data['star_counter'] = this.starCounter;
     data['comment_counter'] = this.commentCounter;
     data['collect_time'] = this.collectTime;
-    data['video_create_time'] = this.videoCreateTime;
-    data['video_update_time'] = this.videoUpdateTime;
+    data['create_time'] = this.createTime;
+    data['update_time'] = this.updateTime;
+    data['is_get'] = this.isGet;
+    data['is_collect'] = this.isCollect;
     return data;
   }
 }

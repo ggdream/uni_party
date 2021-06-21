@@ -28,7 +28,7 @@ account: String
 password: String
 
 # res
-require_captcha: Boolean
+need_captcha: Boolean
 token: String
 ~~~
 
@@ -42,7 +42,7 @@ device_code: String
 sms_code: String
 
 # res
-require_captcha: Boolean
+nee_captcha: Boolean
 token: String
 ~~~
 

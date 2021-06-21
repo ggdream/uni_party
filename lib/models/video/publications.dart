@@ -60,6 +60,8 @@ class _Result {
   final int commentCounter;
   final String createTime;
   final String updateTime;
+  final bool isGet;
+  final bool isCollect;
 
   _Result({
     required this.vid,
@@ -71,6 +73,8 @@ class _Result {
     required this.commentCounter,
     required this.createTime,
     required this.updateTime,
+    required this.isGet,
+    required this.isCollect,
   });
 
   _Result.fromJson(Map<String, dynamic> json)
@@ -82,7 +86,9 @@ class _Result {
         starCounter = json['star_counter'],
         commentCounter = json['comment_counter'],
         createTime = json['create_time'],
-        updateTime = json['update_time'];
+        updateTime = json['update_time'],
+        isGet = json['is_get'],
+        isCollect = json['is_collect'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -95,6 +101,8 @@ class _Result {
     data['comment_counter'] = this.commentCounter;
     data['create_time'] = this.createTime;
     data['update_time'] = this.updateTime;
+    data['is_get'] = this.isGet;
+    data['is_collect'] = this.isCollect;
     return data;
   }
 }

@@ -56,7 +56,7 @@ class _Users {
   final String avatar;
   final String sex;
   final String motto;
-  final String type;
+  final int type;
   final String orgName;
 
   _Users({

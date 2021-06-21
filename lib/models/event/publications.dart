@@ -51,50 +51,54 @@ class EventPublicationsGetResModel {
 }
 
 class _Result {
-  final String vid;
+  final String eid;
   final String title;
-  final String cover;
   final List<String> tags;
   final int watchCounter;
   final int starCounter;
   final int commentCounter;
   final String createTime;
   final String updateTime;
+  final bool isGet;
+  final bool isCollect;
 
   _Result({
-    required this.vid,
+    required this.eid,
     required this.title,
-    required this.cover,
     required this.tags,
     required this.watchCounter,
     required this.starCounter,
     required this.commentCounter,
     required this.createTime,
     required this.updateTime,
+    required this.isGet,
+    required this.isCollect,
   });
 
   _Result.fromJson(Map<String, dynamic> json)
-      : vid = json['vid'],
+      : eid = json['eid'],
         title = json['title'],
-        cover = json['cover'],
         tags = List<String>.from(json['tags']),
         watchCounter = json['watch_counter'],
         starCounter = json['star_counter'],
         commentCounter = json['comment_counter'],
         createTime = json['create_time'],
-        updateTime = json['update_time'];
+        updateTime = json['update_time'],
+        isGet = json['is_get'],
+        isCollect = json['is_collect'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['vid'] = this.vid;
+    data['eid'] = this.eid;
     data['title'] = this.title;
-    data['cover'] = this.cover;
     data['tags'] = this.tags;
     data['watch_counter'] = this.watchCounter;
     data['star_counter'] = this.starCounter;
     data['comment_counter'] = this.commentCounter;
     data['create_time'] = this.createTime;
     data['update_time'] = this.updateTime;
+    data['is_get'] = this.isGet;
+    data['is_collect'] = this.isCollect;
     return data;
   }
 }

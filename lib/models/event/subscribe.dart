@@ -22,7 +22,7 @@ class EventSubGetReqModel {
 
 /// 获取订阅消息：响应
 class EventSubGetResModel {
-  late final String unread;
+  late final int unread;
   late final List<_Events> events;
 
   EventSubGetResModel({
@@ -47,16 +47,18 @@ class EventSubGetResModel {
 }
 
 class _Events {
-  late final String eid;
-  late final String title;
-  late final int type;
-  late final List<String> tags;
-  late final _UserInfo userInfo;
-  late final String createTime;
-  late final String updateTime;
-  late final int getCounter;
-  late final int watchCounter;
-  late final int commentCounter;
+  final String eid;
+  final String title;
+  final int type;
+  final List<String> tags;
+  final _UserInfo userInfo;
+  final String createTime;
+  final String updateTime;
+  final int getCounter;
+  final int watchCounter;
+  final int commentCounter;
+  final bool isGet;
+  final bool isCollect;
 
   _Events({
     required this.eid,
@@ -69,20 +71,23 @@ class _Events {
     required this.getCounter,
     required this.watchCounter,
     required this.commentCounter,
+    required this.isGet,
+    required this.isCollect,
   });
 
-  _Events.fromJson(Map<String, dynamic> json) {
-    eid = json['eid'];
-    title = json['title'];
-    type = json['type'];
-    tags = List<String>.from(json['tags']);
-    userInfo = new _UserInfo.fromJson(json['userinfo']);
-    createTime = json['create_time'];
-    updateTime = json['update_time'];
-    getCounter = json['get_counter'];
-    watchCounter = json['watch_counter'];
-    commentCounter = json['comment_counter'];
-  }
+  _Events.fromJson(Map<String, dynamic> json)
+      : eid = json['eid'],
+        title = json['title'],
+        type = json['type'],
+        tags = List<String>.from(json['tags']),
+        userInfo = new _UserInfo.fromJson(json['userinfo']),
+        createTime = json['create_time'],
+        updateTime = json['update_time'],
+        getCounter = json['get_counter'],
+        watchCounter = json['watch_counter'],
+        commentCounter = json['comment_counter'],
+        isGet = json['is_get'],
+        isCollect = json['is_collect'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -96,6 +101,8 @@ class _Events {
     data['get_counter'] = this.getCounter;
     data['watch_counter'] = this.watchCounter;
     data['comment_counter'] = this.commentCounter;
+    data['is_get'] = this.isGet;
+    data['is_collect'] = this.isCollect;
     return data;
   }
 }

@@ -37,7 +37,7 @@ offset: Int
 number: Int
 
 # res
-unread: String		# 总未读消息数
+unread: Int		# 总未读消息数
 events:
 	- eid: String
 	  title: String
@@ -56,6 +56,8 @@ events:
 	  get_counter: Int
 	  watch_counter: Int
 	  comment_counter: Int
+	  is_get: Boolean
+	  is_collect: Boolean
 ~~~
 
 ### 2.删除消息
@@ -90,6 +92,7 @@ get_counter: Int
 watch_counter: Int
 comment_counter: Int
 is_get: Boolean
+is_collect: Boolean
 event_detail:
 	********************
 userinfo:
@@ -300,7 +303,7 @@ match:
 	  title: String
 	  type: Int		# 消息类别
 	  tags: Array<String>
-	  user_info:
+	  userinfo:
 	  	uid: String
 	  	uname: String
 	  	avatar_url: String
@@ -313,6 +316,8 @@ match:
 	  get_counter: Int
 	  watch_counter: Int
 	  comment_counter: Int
+	  is_get: Boolean
+	  is_collect: Boolean
 ~~~
 
 ### 13.获取发布消息
@@ -321,22 +326,25 @@ match:
 GET /events/users/publications
 
 # req
-uid: String
+uid: Int
 offset: Int
 number: Int
 
 # res
 total: Int	# 用户一共发布数
 result:
-	- vid: String
+	- e
+id: String
 	  title: String
-	  cover: String		# 封面图地址
+	  type: Int
 	  tags: Array<String>
 	  watch_counter: Int
 	  star_counter: Int
 	  comment_counter: Int
 	  create_time: String
 	  update_time: String
+	  is_get: Boolean
+	  is_collect: Boolean
 ~~~
 
 ### 14.获取收藏消息
@@ -368,8 +376,10 @@ result:
 	  watch_counter: Int
 	  comment_counter: Int
 	  collect_time: String
-	  event_create_time: String
-	  event_update_time: String
+	  create_time: String
+	  update_time: String
+	  is_get: Boolean
+	  is_collect: Boolean
 ~~~
 
 ### 15.点赞
@@ -399,7 +409,7 @@ message: String
 # res
 rid: String
 message: String
-datetime: Strin
+datetime: String
 need_captcha: Boolean
 ~~~
 
@@ -429,4 +439,3 @@ type: Int
 status: Boolean
 ~~~
 
-### 

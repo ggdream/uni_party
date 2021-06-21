@@ -64,7 +64,7 @@ number: Int
 total: Int	# 一共返回消息的数量
 result:
 	- from_uid: Int
-	 datetime: String
+	  datetime: String
 	  did: String	  # 消息的id号
 	  message: String
 ~~~

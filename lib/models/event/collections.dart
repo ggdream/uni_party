@@ -60,8 +60,10 @@ class _Result {
   final int watchCounter;
   final int commentCounter;
   final String collectTime;
-  final String eventCreateTime;
-  final String eventUpdateTime;
+  final String createTime;
+  final String updateTime;
+  final bool isGet;
+  final bool isCollect;
 
   _Result({
     required this.eid,
@@ -73,8 +75,10 @@ class _Result {
     required this.watchCounter,
     required this.commentCounter,
     required this.collectTime,
-    required this.eventCreateTime,
-    required this.eventUpdateTime,
+    required this.createTime,
+    required this.updateTime,
+    required this.isGet,
+    required this.isCollect,
   });
 
   _Result.fromJson(Map<String, dynamic> json)
@@ -87,8 +91,10 @@ class _Result {
         watchCounter = json['watch_counter'],
         commentCounter = json['comment_counter'],
         collectTime = json['collect_time'],
-        eventCreateTime = json['event_create_time'],
-        eventUpdateTime = json['event_update_time'];
+        createTime = json['create_time'],
+        updateTime = json['update_time'],
+        isGet = json['is_get'],
+        isCollect = json['is_collect'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -101,8 +107,10 @@ class _Result {
     data['watch_counter'] = this.watchCounter;
     data['comment_counter'] = this.commentCounter;
     data['collect_time'] = this.collectTime;
-    data['event_create_time'] = this.eventCreateTime;
-    data['event_update_time'] = this.eventUpdateTime;
+    data['create_time'] = this.createTime;
+    data['update_time'] = this.updateTime;
+    data['is_get'] = this.isGet;
+    data['is_collect'] = this.isCollect;
     return data;
   }
 }

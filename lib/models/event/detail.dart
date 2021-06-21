@@ -33,6 +33,7 @@ class EventDetailGetNoticeResModel {
   final int watchCounter;
   final int commentCounter;
   final bool isGet;
+  final bool isCollect;
   final _NoticeEventDetail eventDetail;
   final _Userinfo userinfo;
 
@@ -48,24 +49,26 @@ class EventDetailGetNoticeResModel {
     required this.watchCounter,
     required this.commentCounter,
     required this.isGet,
+    required this.isCollect,
     required this.eventDetail,
     required this.userinfo,
   });
 
-  EventDetailGetNoticeResModel.fromJson(Map<String, dynamic> json) :
-    eid = json['eid'],
-    title = json['title'],
-    content = json['content'],
-    type = json['type'],
-    tags = json['tags'].cast<String>(),
-    createTime = json['create_time'],
-    updateTime = json['update_time'],
-    getCounter = json['get_counter'],
-    watchCounter = json['watch_counter'],
-    commentCounter = json['comment_counter'],
-    isGet = json['is_get'],
-    eventDetail = new _NoticeEventDetail.fromJson(json['event_detail']),
-    userinfo = new _Userinfo.fromJson(json['userinfo']);
+  EventDetailGetNoticeResModel.fromJson(Map<String, dynamic> json)
+      : eid = json['eid'],
+        title = json['title'],
+        content = json['content'],
+        type = json['type'],
+        tags = json['tags'].cast<String>(),
+        createTime = json['create_time'],
+        updateTime = json['update_time'],
+        getCounter = json['get_counter'],
+        watchCounter = json['watch_counter'],
+        commentCounter = json['comment_counter'],
+        isGet = json['is_get'],
+        isCollect = json['is_collect'],
+        eventDetail = new _NoticeEventDetail.fromJson(json['event_detail']),
+        userinfo = new _Userinfo.fromJson(json['userinfo']);
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -80,6 +83,7 @@ class EventDetailGetNoticeResModel {
     data['watch_counter'] = this.watchCounter;
     data['comment_counter'] = this.commentCounter;
     data['is_get'] = this.isGet;
+    data['is_collect'] = this.isCollect;
     data['event_detail'] = this.eventDetail.toJson();
     data['userinfo'] = this.userinfo.toJson();
     return data;
@@ -247,7 +251,6 @@ class _VoteEventDetail {
   }
 }
 
-
 /// 获取消息详情（随机）：响应
 class EventDetailGetSortitionResModel {
   final String eid;
@@ -359,7 +362,6 @@ class _SortitionEventDetail {
   }
 }
 
-
 /// 获取消息详情（报名）：响应
 class EventDetailGetParticipationResModel {
   final String eid;
@@ -404,7 +406,8 @@ class EventDetailGetParticipationResModel {
         watchCounter = json['watch_counter'],
         commentCounter = json['comment_counter'],
         isGet = json['is_get'],
-        eventDetail = new _ParticipationEventDetail.fromJson(json['event_detail']),
+        eventDetail =
+            new _ParticipationEventDetail.fromJson(json['event_detail']),
         userinfo = new _Userinfo.fromJson(json['userinfo']);
 
   Map<String, dynamic> toJson() {
@@ -467,17 +470,14 @@ class _ParticipationEventDetail {
   }
 }
 
-
-
-
 class _Userinfo {
-  String uid;
-  String uname;
-  String avatarUrl;
-  String motto;
-  String sex;
-  int type;
-  String orgName;
+  final String uid;
+  final String uname;
+  final String avatarUrl;
+  final String motto;
+  final String sex;
+  final int type;
+  final String orgName;
 
   _Userinfo({
     required this.uid,
