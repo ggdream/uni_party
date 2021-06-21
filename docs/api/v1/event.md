@@ -16,6 +16,11 @@
 
 /events/users/:/publications	# 获取发布消息
 /events/users/:uid/collections	# 获取收藏消息
+
+/events/archive/star		# 点赞（短视频业务）
+/events/archive/reply/add	# 添加评论（短视频业务）
+/events/archive/reply/del	# 删除评论（短视频业务）
+/events/archive/collect		# 收藏（短视频业务）
 ~~~
 
 
@@ -367,3 +372,61 @@ result:
 	  event_update_time: String
 ~~~
 
+### 15.点赞
+
+~~~yaml
+POST /events/archive/star
+
+# req
+vid: String
+type: Int
+
+# res
+status: Boolean
+~~~
+
+### 16.添加评论
+
+~~~yaml
+POST /events/archive/reply/add
+
+# req
+vid: String
+root?: String
+parent?: String
+message: String
+
+# res
+rid: String
+message: String
+datetime: Strin
+need_captcha: Boolean
+~~~
+
+### 17.删除评论
+
+~~~yaml
+POST /events/archive/reply/del
+
+# req
+vid: String
+rid: String
+
+# res
+need_captcha: Boolean
+~~~
+
+### 18.收藏
+
+~~~yaml
+POST /events/archive/collect
+
+# req
+vid: String
+type: Int
+
+# res
+status: Boolean
+~~~
+
+### 

@@ -4,8 +4,8 @@
 /helpers/protocols/user		# 用户协议
 /helpers/protocols/service	# 服务协议
 
-/helpers/app				# 最新更新
-/helpers/app/version		# 历史版本
+/helpers/version			# 最新更新
+/helpers/versions			# 历史版本
 
 /helpers/about/us			# 关于我们
 /helpers/contact			# 联系方式
