@@ -9,4 +9,9 @@ class BorderX {
       color: ColorsX.grey,
     ),
   );
+
+    static final OutlineInputBorder outlineLoginInputBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(10),
+    borderSide: BorderSide.none,
+  );
 }

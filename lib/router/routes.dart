@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import 'package:uni_party/pages/auth/auth.dart';
 import 'package:uni_party/pages/chat/chat.dart';
 import 'package:uni_party/pages/event/event.dart';
 import 'package:uni_party/pages/home/home.dart';
@@ -13,6 +14,9 @@ final List<GetPage> routes = [
   GetPage(name: RouteNames.HelperQrScan, page: () => QrScanPage()),
   GetPage(name: RouteNames.StartLogoPage, page: () => StartLogoPage()),
   GetPage(name: RouteNames.TextEdit, page: () => EditorPage()),
+  GetPage(
+      name: RouteNames.AuthLoginByCipher, page: () => AuthLoginByCipherPage()),
+  GetPage(name: RouteNames.AuthLoginByCode, page: () => AuthLoginByCodePage()),
 ];
 
 class RouteNames {
@@ -24,8 +28,10 @@ class RouteNames {
 
   // 聊天对话页
   static const ChatCommunicate = '/chat/communicate';
+
   // 用户搜索页
   static const ChatSearchPerson = '/chat/search/person';
+
   // 好友搜索页
   static const ChatSearchFriend = '/chat/search/friend';
 
@@ -49,4 +55,13 @@ class RouteNames {
 
   /// 文本编辑页
   static const TextEdit = '/text/edit';
+
+  /// 密码登录页
+  static const AuthLoginByCipher = '/auth/login/cipher';
+
+  /// 验证码登录页
+  static const AuthLoginByCode = '/auth/login/code';
+
+  /// 找回密码
+  static const AuthLoginFoundPassword = '/auth/login/found/password';
 }
