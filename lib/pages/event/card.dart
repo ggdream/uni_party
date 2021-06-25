@@ -154,7 +154,7 @@ class _NotifyCardState extends State<NotifyCard> {
           ],
         ),
         Spacer(),
-        MoreOperatesBtn(
+        _MoreOperatesBtn(
           onSelected: (value) {
             print(value);
           },
@@ -164,32 +164,32 @@ class _NotifyCardState extends State<NotifyCard> {
   }
 }
 
-enum MoreOperate {
+enum _MoreOperate {
   share,
   report,
 }
 
-class MoreOperatesBtn extends StatelessWidget {
-  const MoreOperatesBtn({
+class _MoreOperatesBtn extends StatelessWidget {
+  const _MoreOperatesBtn({
     Key? key,
     this.onSelected,
   }) : super(key: key);
 
-  final void Function(MoreOperate)? onSelected;
+  final void Function(_MoreOperate)? onSelected;
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<MoreOperate>(
+    return PopupMenuButton<_MoreOperate>(
       onSelected: onSelected,
       itemBuilder: (context) {
-        return <PopupMenuEntry<MoreOperate>>[
+        return <PopupMenuEntry<_MoreOperate>>[
           PopupMenuItem(
             child: Text('分享'),
-            value: MoreOperate.share,
+            value: _MoreOperate.share,
           ),
           PopupMenuItem(
             child: Text('举报'),
-            value: MoreOperate.report,
+            value: _MoreOperate.report,
           ),
         ];
       },

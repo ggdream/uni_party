@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uni_party/global/global.dart';
 
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
@@ -23,6 +24,7 @@ class Core extends StatelessWidget {
       getPages: RouterX.routes,
       initialRoute: RouterX.InitRoute,
       theme: ThemesX.global,
+      title: AppMeta.name,
     );
   }
 }

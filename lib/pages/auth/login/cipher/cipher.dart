@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uni_party/router/router.dart';
 
+import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
+
+import '../common/common.dart';
 
 class AuthLoginByCipherPage extends StatefulWidget {
   const AuthLoginByCipherPage({Key? key}) : super(key: key);
@@ -55,6 +57,8 @@ class _AuthLoginByCipherPageState extends State<AuthLoginByCipherPage> {
             /// 发送网络请求，提交信息
             submitBtn(),
             Spacer(flex: 8),
+
+            LabelUserServiceProtocolWidget(),
           ],
         ),
       ),
@@ -69,7 +73,7 @@ class _AuthLoginByCipherPageState extends State<AuthLoginByCipherPage> {
         child: Text('登录'),
         style: ElevatedButton.styleFrom(
           primary: Theme.of(context).primaryColor,
-          onPrimary: Colors.black,
+          onPrimary: Colors.white,
           textStyle: TextStyle(
             fontSize: 20,
           ),
@@ -112,7 +116,7 @@ class _AuthLoginByCipherPageState extends State<AuthLoginByCipherPage> {
           disabledBorder: BorderX.outlineLoginInputBorder,
           focusedErrorBorder: BorderX.outlineLoginInputBorder,
           contentPadding: const EdgeInsets.all(24),
-          hintText: '账号',
+          hintText: '手机号或邮箱',
         ),
       ),
     );
@@ -197,7 +201,7 @@ class _ForgetPwdView extends StatelessWidget {
       children: [
         Text('忘记密码？'),
         GestureDetector(
-          onTap: () => Get.toNamed(RouteNames.AuthLoginFoundPassword),
+          onTap: () => Get.offAndToNamed(RouteNames.AuthLoginFoundPassword),
           child: MouseRegion(
             child: Text(
               '找回密码',
@@ -224,16 +228,17 @@ class _JoinUsView extends StatelessWidget {
       children: [
         Text('第一次来到这里？'),
         GestureDetector(
-    onTap: () => Get.toNamed(RouteNames.AuthLoginByCode),
-    child: MouseRegion(
-          child: Text(
-            '加入我们',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
+          onTap: () => Get.offAndToNamed(RouteNames.AuthLoginByCode),
+          child: MouseRegion(
+            child: Text(
+              '加入我们',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
+            cursor: SystemMouseCursors.click,
           ),
-          cursor: SystemMouseCursors.click,
-        ),),
+        ),
       ],
     );
   }
