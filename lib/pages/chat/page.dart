@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uni_party/components/rounded/avatar.dart';
+
+import 'package:uni_party/components/rounded/rounded.dart';
 import 'package:uni_party/models/models.dart';
-import 'package:uni_party/router/routes.dart';
+import 'package:uni_party/router/router.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -41,8 +42,17 @@ class _ChatPageState extends State<ChatPage> {
           ),
         ],
       ),
+      // floatingActionButton: floatingBtn(),
     );
   }
+
+  // Widget floatingBtn() {
+  //   return FloatingActionButton(
+  //     heroTag: 'chat',
+  //     child: Icon(Icons.search_rounded),
+  //     onPressed: () => Get.toNamed(RouteNames.ChatSearchFriend),
+  //   );
+  // }
 
   // 搜索 和 清空列表
   AppBar appBar() {
@@ -51,12 +61,14 @@ class _ChatPageState extends State<ChatPage> {
       title: Text('聊天'),
       actions: [
         IconButton(
-          onPressed: () {},
+          tooltip: '全网搜索',
+          onPressed: () => Get.toNamed(RouteNames.ChatSearchFriend),
           icon: Icon(
             Icons.search_rounded,
           ),
         ),
         IconButton(
+          tooltip: '清空列表',
           onPressed: () {},
           icon: Icon(
             Icons.clear_rounded,

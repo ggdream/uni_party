@@ -3,7 +3,8 @@
 ~~~sh
 /users				# 获取用户信息
 /users/followers	# 获取粉丝信息
-/users/following	# 关注(get为获取，post为action)
+/users/following	# 获取关注信息
+/users/following/act	# 关注用户
 /users/events/publications	# 获取发布的消息
 /users/videos/publications	# 获取发布的视频
 /users/events/collections	# 收藏的消息
@@ -14,7 +15,8 @@
 /users/profile/avatar	# 上传头像
 /users/profile/update	# 更新个人信息
 
-/users/settings/theme			# 获取修改主题色（GET为获取，POST为修改）
+/users/settings/theme/get		# 获取当前主题色
+/users/settings/theme/set		# 设置当前主题色
 /users/settings/push			# 获取推送选择项
 /users/settings/push/event		# 是否推送消息
 /users/settings/push/video		# 是否推送视频

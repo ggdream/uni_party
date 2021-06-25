@@ -16,6 +16,8 @@ final List<GetPage> routes = [
   GetPage(name: RouteNames.StartLogoPage, page: () => StartLogoPage()),
   GetPage(name: RouteNames.TextEdit, page: () => EditorPage()),
   GetPage(
+      name: RouteNames.ChatSearchFriend, page: () => ChatSearchFriendPage()),
+  GetPage(
       name: RouteNames.AuthLoginByCipher, page: () => AuthLoginByCipherPage()),
   GetPage(name: RouteNames.AuthLoginByCode, page: () => AuthLoginByCodePage()),
   GetPage(

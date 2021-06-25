@@ -28,6 +28,7 @@ class _EventPageState extends State<EventPage> {
 
   Widget floatBtn() {
     return FloatingActionButton(
+      heroTag: 'event',
       onPressed: () async {
         // var res = await showTypeBottomSheet(context, PublishTypeSelected());
         // if (res == null) return; // click blank area, so exit bottomSheet
