@@ -1,7 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:uni_party/styles/color.dart';
+
+import 'package:uni_party/components/rounded/rounded.dart';
+import 'package:uni_party/styles/styles.dart';
+
+import 'nav_card.dart';
 
 class ProfileInfoBrowsePage extends StatefulWidget {
   const ProfileInfoBrowsePage({Key? key}) : super(key: key);
@@ -20,38 +22,125 @@ class _ProfileInfoBrowsePageState extends State<ProfileInfoBrowsePage> {
 
   Widget bodyView() {
     return SafeArea(
-      child: Column(
-        children: [
-          /// 顶部操作按钮
-          topActionsView(),
-
-          /// 用户头像显示
-          Container(
-            
-          ),
-
-          /// 关注数、粉丝数
-          userDataView(),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            topView(),
+            bottomView(),
+          ],
+        ),
       ),
     );
   }
 
-  Row userDataView() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+  Widget topView() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        _ShowDataWidget(
-          counter: 62,
-          label: '粉丝',
+        /// 顶部操作按钮
+        topActionsView(),
+
+        /// 用户头像显示
+        avatarView(),
+
+        /// 关注数、粉丝数
+        userDataView(),
+      ],
+    );
+  }
+
+  Widget bottomView() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          '她的发布\u{1f447}',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        _ShowDataWidget(
-          counter: 62,
-          label: '关注',
+        SizedBox(height: 12),
+
+        /// 他的发布
+        userPublishView(),
+        SizedBox(height: 4),
+      ],
+    );
+  }
+
+  Widget userPublishView() {
+    return Row(
+      children: [
+        UserPublishNavCardWidget(
+          iconLocation: 'assets/icons/events/notice.png',
+          label: '消息',
+          counter: 256,
+          to: '',
+          color: ColorsX.green,
         ),
-        _ShowDataWidget(
-          counter: 62,
-          label: '浏览',
+        UserPublishNavCardWidget(
+          iconLocation: 'assets/icons/events/notice.png',
+          label: '视频',
+          counter: 20,
+          to: '',
+          color: ColorsX.orange,
+        ),
+      ],
+    );
+  }
+
+  Widget avatarView() {
+    return Container(
+      width: double.infinity,
+      height: 160,
+      color: Colors.black,
+      alignment: Alignment.bottomCenter,
+      child: RoundedAvatar.network(
+        'http://127.0.0.1:9999/546.jpg',
+        size: 96,
+        margin: const EdgeInsets.only(bottom: 8),
+      ),
+    );
+  }
+
+  Widget userDataView() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          '魔咔啦咔',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text('啦法律AV兰考南'),
+        SizedBox(height: 2),
+        RawChip(
+          label: Text('四川师范大学 工学院'),
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
+        SizedBox(height: 12),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _ShowDataWidget(
+              counter: 62,
+              label: '粉丝',
+            ),
+            _ShowDataWidget(
+              counter: 62,
+              label: '关注',
+            ),
+            _ShowDataWidget(
+              counter: 62,
+              label: '浏览',
+            ),
+          ],
         ),
       ],
     );

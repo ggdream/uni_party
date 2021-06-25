@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:suit/suit.dart';
 
 import 'package:uni_party/components/rounded/rounded.dart';
 import 'package:uni_party/components/toast/toast.dart';
+import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 
 class NotifyCard extends StatefulWidget {
@@ -130,7 +132,7 @@ class _NotifyCardState extends State<NotifyCard> {
       children: [
         GestureDetector(
           onTap: () {
-            print('avatar is clicked');
+            Get.toNamed(RouteNames.ProfileInfoBrowse);
           },
           child: RoundedAvatar.network(
             widget.avatarURL,
