@@ -109,7 +109,7 @@ class ChatWindowCard extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: Container(
           width: double.infinity,
-          height: 72,
+          height: 96,
           padding: const EdgeInsets.symmetric(
             horizontal: 8,
             vertical: 10,
@@ -136,10 +136,13 @@ class ChatWindowCard extends StatelessWidget {
     return SizedBox(
       width: 80,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(dtime),
+          SizedBox(
+            height: 4,
+          ),
           counter <= 0 ? Text('') : Chip(label: Text(counter.toString())),
         ],
       ),
@@ -153,7 +156,13 @@ class ChatWindowCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(uname),
+          Text(
+            uname,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
           Text(
             message,
             maxLines: 1,

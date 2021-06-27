@@ -7,4 +7,7 @@ class NetworkConfig {
   static const sendTimeout = 5000;
 
   static const receiveTimeout = 5000;
+
+  static String userAgent = '';
+  static String webViewUserAgent = '';
 }

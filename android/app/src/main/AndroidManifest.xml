@@ -13,9 +13,10 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
-
-    <application android:label="uni_party" android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="true">
+    <application android:label="大学聚" android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="true">
         <!-- 配置定位Service -->
         <service android:name="com.amap.api.location.APSService"/>
         <meta-data android:name="flutterEmbedding" android:value="2" />

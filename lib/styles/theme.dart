@@ -15,5 +15,8 @@ class ThemesX {
     primaryColor: ColorsX.primary,
     floatingActionButtonTheme: _floatingActionButtonTheme,
     bottomNavigationBarTheme: _bottomNavigationBarTheme,
+    iconTheme: IconThemeData(
+      color: ColorsX.grey,
+    ),
   );
 }

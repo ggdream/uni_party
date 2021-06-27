@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dia/dia.dart';
 import 'package:dia_body/dia_body.dart';
+import 'package:dia_cors/dia_cors.dart';
 import 'package:dia_router/dia_router.dart';
 import 'package:dia_static/dia_static.dart';
 
@@ -12,6 +13,7 @@ class ContextWithRoutingBody extends Context with Routing, ParsedBody {
 void main() {
   final app = App((request) => ContextWithRoutingBody(request));
 
+  app.use(cors());
   app.use(body());
   app.use(serve('H:/code/images', prefix: '/static'));
   app.use(genRouter().middleware);

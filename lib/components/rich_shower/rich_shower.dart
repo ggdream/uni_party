@@ -1,0 +1,161 @@
+import 'dart:io';
+import 'dart:ui';
+
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:uni_party/router/router.dart';
+import 'package:uni_party/tools/device/device.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// 富文本显示组件
+class RichShower extends StatelessWidget {
+  const RichShower({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        style: _textStyle(),
+        children: _RichTextParser(text).parse(),
+      ),
+    );
+  }
+
+  TextStyle _textStyle() {
+    return TextStyle(
+      color: Colors.black,
+      fontSize: 18,
+    );
+  }
+}
+
+// 把编写的文本解析为InlineSpan
+class _RichTextParser {
+  _RichTextParser(this.text);
+
+  String text;
+
+  List<RegExpMatch>? _urls;
+  List<RegExpMatch>? _images;
+
+  _translate2Url() {
+    _urls = RegExp(r"\[[^\n\[\]]*\]\(.+?\)").allMatches(text).toList();
+    text = text.replaceAllMapped(RegExp(r"\[[^\n\[\]]*\]\(.+?\)"),
+        (match) => '\n\u{1FFF1}\u{1FFF1}\u{1FFF1}\n');
+  }
+
+  _translate2Image() {
+    _images = RegExp(r"!\[[^\n\[\]]*\]\(.+?\)").allMatches(text).toList();
+    text = text.replaceAllMapped(RegExp(r"!\[[^\n\[\]]*\]\(.+?\)"),
+        (match) => '\n\u{1FFF2}\u{1FFF2}\u{1FFF2}\n');
+  }
+
+  List<InlineSpan> _parse() {
+    int _urlPointer = 0;
+    int _imagePointer = 0;
+    List<InlineSpan> res = [];
+
+    for (var v in text.split('\n')) {
+      InlineSpan span = TextSpan();
+      if (v.startsWith('\u{1FFF1}\u{1FFF1}\u{1FFF1}')) {
+        final text = _urls![_urlPointer].group(0)!;
+        final idx = text.lastIndexOf('(');
+        final url = text.substring(idx + 1, text.length - 1);
+        final showText = text.substring(1, idx - 1);
+
+        span = TextSpan(
+          text: showText,
+          style: TextStyle(
+            decoration: TextDecoration.underline,
+            color: Colors.red[200],
+          ),
+          recognizer: TapGestureRecognizer()
+            ..onTap = () async {
+              if (DeviceType.isMobile) {
+                await Get.toNamed(RouteNames.WebViewThirdParty, arguments: url);
+              } else {
+                await canLaunch(url)
+                    ? await launch(url)
+                    : Get.snackbar('打开失败', url);
+              }
+            },
+        );
+        _urlPointer++;
+      } else if (v.startsWith('\u{1FFF2}\u{1FFF2}\u{1FFF2}')) {
+        final text = _images![_imagePointer].group(0)!;
+        final idx = text.lastIndexOf('(');
+        final url = text.substring(idx + 1, text.length - 1);
+        final showText = text.substring(2, idx - 1);
+
+        span = WidgetSpan(
+          child: url.startsWith('http')
+              ? Image.network(
+                  url,
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    return Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(showText),
+                          const Text(
+                            '图片不小心走丢了😢',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                )
+              : Image.file(
+                  File(url),
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    return Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(showText),
+                          const Text(
+                            '图片不小心走丢了😢',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+        );
+        _imagePointer++;
+      } else if (v.isEmpty) {
+        span = TextSpan(text: '\n');
+      } else {
+        span = TextSpan(text: v);
+      }
+
+      res.add(span);
+    }
+
+    return res;
+  }
+
+  List<InlineSpan> parse() {
+    _translate2Image();
+    _translate2Url();
+
+    return _parse();
+  }
+}

@@ -27,23 +27,13 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
   @override
   void initState() {
     super.initState();
-    this._initPosition();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    });
   }
-
-  Future<void> _initPosition() => Future.delayed(Duration(milliseconds: 40))
-          .then((_) => _scrollController
-              .jumpTo(_scrollController.position.maxScrollExtent))
-          .catchError(
-        (e) {
-          print(e);
-        },
-      );
 
   @override
   Widget build(BuildContext context) {
-    if (_scrollController.hasClients)
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent + 64);
-
     return Scaffold(
       appBar: appBar(),
       body: bodyView(),
@@ -115,7 +105,7 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
     setState(() {
       _chatMsgs.add(msgWidget);
     });
-
+    _scrollController.jumpTo(_scrollController.position.maxScrollExtent + 64);
     _editingController.clear();
   }
 
@@ -129,7 +119,7 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
   }
 
   Future<void> _selectEmoji() async {
-    String? emoji = await showTypeBottomSheet(context, SelectEmojiWidget());
+    String? emoji = await showBottomSheetX(context, SelectEmojiWidget());
     if (emoji == null) return;
 
     _editingController.text += emoji;

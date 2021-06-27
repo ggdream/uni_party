@@ -30,7 +30,7 @@ class _EventPageState extends State<EventPage> {
     return FloatingActionButton(
       heroTag: 'event',
       onPressed: () async {
-        // var res = await showTypeBottomSheet(context, PublishTypeSelected());
+        // var res = await showBottomSheetX(context, PublishTypeSelected());
         // if (res == null) return; // click blank area, so exit bottomSheet
         // print(res);
         await Get.toNamed(RouteNames.TextEdit);

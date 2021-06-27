@@ -7,6 +7,8 @@ import 'package:uni_party/pages/home/home.dart';
 import 'package:uni_party/pages/helper/helper.dart';
 import 'package:uni_party/pages/profile/profile.dart';
 import 'package:uni_party/pages/start/start.dart';
+import 'package:uni_party/pages/video/video.dart';
+import 'package:uni_party/pages/webview/webview.dart';
 
 final List<GetPage> routes = [
   GetPage(name: RouteNames.Home, page: () => HomePage()),
@@ -14,19 +16,40 @@ final List<GetPage> routes = [
   GetPage(name: RouteNames.HelperQrCode, page: () => QrCodePage()),
   GetPage(name: RouteNames.HelperQrScan, page: () => QrScanPage()),
   GetPage(name: RouteNames.StartLogoPage, page: () => StartLogoPage()),
-  GetPage(name: RouteNames.TextEdit, page: () => EditorPage()),
   GetPage(
-      name: RouteNames.ChatSearchFriend, page: () => ChatSearchFriendPage()),
+      name: RouteNames.WebViewThirdParty, page: () => WebViewThridPartyPage()),
+  GetPage(name: RouteNames.TextEdit, page: () => RichEditor()),
   GetPage(
-      name: RouteNames.AuthLoginByCipher, page: () => AuthLoginByCipherPage()),
-  GetPage(name: RouteNames.AuthLoginByCode, page: () => AuthLoginByCodePage()),
+    name: RouteNames.ChatSearchFriend,
+    page: () => ChatSearchFriendPage(),
+  ),
   GetPage(
-      name: RouteNames.AuthLoginFoundPassword,
-      page: () => AuthLoginFoundPasswordPage()),
+    name: RouteNames.EventSubscribeNotify,
+    page: () => EventSubscribeNotifyPage(),
+  ),
   GetPage(
-      name: RouteNames.ProfileInfoBrowse, page: () => ProfileInfoBrowsePage()),
+    name: RouteNames.AuthLoginByCipher,
+    page: () => AuthLoginByCipherPage(),
+  ),
+  GetPage(
+    name: RouteNames.AuthLoginByCode,
+    page: () => AuthLoginByCodePage(),
+  ),
+  GetPage(
+    name: RouteNames.AuthLoginFoundPassword,
+    page: () => AuthLoginFoundPasswordPage(),
+  ),
+  GetPage(
+    name: RouteNames.ProfileInfoBrowse,
+    page: () => ProfileInfoBrowsePage(),
+  ),
+    GetPage(
+    name: RouteNames.VideoUpload,
+    page: () => VideoUploadPage(),
+  ),
 ];
 
+/// 路由名称集合
 class RouteNames {
   static const Home = '/';
   static const Event = '/event';
@@ -34,14 +57,29 @@ class RouteNames {
   static const Chat = '/chat';
   static const Profile = '/profile';
 
-  // 聊天对话页
+  /// 视频上传页
+  static const VideoUpload = '/video/upload';
+
+  /// 聊天对话页
   static const ChatCommunicate = '/chat/communicate';
 
-  // 用户搜索页
+  /// 用户搜索页
   static const ChatSearchPerson = '/chat/search/person';
 
-  // 好友搜索页
+  /// 好友搜索页
   static const ChatSearchFriend = '/chat/search/friend';
+
+  /// 订阅通知消息页
+  static const EventSubscribeNotify = '/event/subscribe/notify';
+
+  /// 订阅投票消息页
+  static const EventSubscribeVote = '/event/subscribe/vote';
+
+  /// 订阅随机消息页
+  static const EventSubscribeRandom = '/event/subscribe/random';
+
+  /// 订阅报名消息页
+  static const EventSubscribeApply = '/event/subscribe/apply';
 
   /// 个人二维码页
   static const HelperQrCode = '/helper/qr/code';
@@ -63,6 +101,9 @@ class RouteNames {
 
   /// 启动页
   static const StartLogoPage = '/start/logo';
+
+  /// 浏览第三方网页页
+  static const WebViewThirdParty = '/webview/third';
 
   /// 文本编辑页
   static const TextEdit = '/text/edit';
