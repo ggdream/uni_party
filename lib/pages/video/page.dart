@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:images_picker/images_picker.dart';
 
 import 'package:uni_party/components/rounded/rounded.dart';
 
@@ -198,7 +199,7 @@ class _VideoPageState extends State<VideoPage> {
           ),
           IconButton(
             tooltip: '上传',
-            onPressed: () {},
+            onPressed: _selectVideo,
             icon: Icon(
               Icons.cloud_upload_rounded,
               color: Colors.white,
@@ -207,5 +208,11 @@ class _VideoPageState extends State<VideoPage> {
         ],
       ),
     );
+  }
+
+    Future<void> _selectVideo() async {
+    List<Media>? video = await ImagesPicker.pick(pickType: PickType.video);
+    if (video == null) return;
+    print(video[0].path);
   }
 }

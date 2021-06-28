@@ -15,6 +15,7 @@ final List<GetPage> routes = [
   GetPage(name: RouteNames.ChatCommunicate, page: () => ChatCommunPage()),
   GetPage(name: RouteNames.HelperQrCode, page: () => QrCodePage()),
   GetPage(name: RouteNames.HelperQrScan, page: () => QrScanPage()),
+  GetPage(name: RouteNames.HelperShowText, page: () => HelperShowTextPage()),
   GetPage(name: RouteNames.StartLogoPage, page: () => StartLogoPage()),
   GetPage(
       name: RouteNames.WebViewThirdParty, page: () => WebViewThridPartyPage()),
@@ -43,7 +44,7 @@ final List<GetPage> routes = [
     name: RouteNames.ProfileInfoBrowse,
     page: () => ProfileInfoBrowsePage(),
   ),
-    GetPage(
+  GetPage(
     name: RouteNames.VideoUpload,
     page: () => VideoUploadPage(),
   ),
@@ -86,6 +87,9 @@ class RouteNames {
 
   /// 二维码扫描页
   static const HelperQrScan = '/helper/qr/scan';
+
+  /// 二维码扫描页
+  static const HelperShowText = '/helper/qr/scan/text';
 
   /// 主题设置页
   static const HelperSettingsTheme = '/helpers/settings/theme';

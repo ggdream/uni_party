@@ -18,5 +18,20 @@ class ThemesX {
     iconTheme: IconThemeData(
       color: ColorsX.grey,
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        primary: Colors.black,
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        primary: ColorsX.primary,
+        textStyle: TextStyle(
+          fontSize: 18,
+        ),
+      ),
+    ),
   );
 }

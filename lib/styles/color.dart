@@ -5,7 +5,6 @@ class ColorsX {
   ColorsX._();
 
   static const primary = green;
-  // static const primary = Color(0xff009688);
 
   static const blueLight = Color(0xffb8bedd);
   static const green = Color(0xff8acac0);
@@ -17,6 +16,8 @@ class ColorsX {
   static const skin = Color(0xfff5dbd0);
   static const orange = Color(0xfffdce84);
   static const greyLight = Color(0xfff5f5f5);
+  static const greyHeight = Color(0xff252836);
+
 
   static const text = Colors.black;
 }
