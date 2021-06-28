@@ -5,8 +5,9 @@ class ColorsX {
   ColorsX._();
 
   static const primary = green;
-
   static const blueLight = Color(0xffb8bedd);
+  static const blueLight2 = Color(0xffbbdefb);
+
   static const green = Color(0xff8acac0);
   static const blue = Color(0xff5646ab);
   static const pink = Color(0xffd3778e);

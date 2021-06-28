@@ -1,4 +1,6 @@
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
+import 'package:images_picker/images_picker.dart';
 
 class VideoUploadPage extends StatefulWidget {
   const VideoUploadPage({Key? key}) : super(key: key);
@@ -9,6 +11,21 @@ class VideoUploadPage extends StatefulWidget {
 
 class _VideoUploadPageState extends State<VideoUploadPage> {
   bool dropBGM = false;
+  late final FijkPlayer player;
+
+  @override
+  void initState() {
+    super.initState();
+    player = FijkPlayer()
+      ..setDataSource('/storage/emulated/0/Download/下载.mp4', autoPlay: true)..setLoop(0);
+      // player.
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +41,7 @@ class _VideoUploadPageState extends State<VideoUploadPage> {
                   color: Colors.black,
                   child: Column(
                     children: [
-                      AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: Text('sss'),
-                      ),
+                      FijkView(player: player, width: double.infinity, height: 360,),
                       // Container(
                       //   margin: const EdgeInsets.symmetric(horizontal: 36),
                       //   width: double.infinity,

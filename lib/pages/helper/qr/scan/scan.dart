@@ -4,6 +4,7 @@ import 'package:images_picker/images_picker.dart';
 import 'package:scan/scan.dart';
 
 import 'package:uni_party/router/router.dart';
+import 'package:uni_party/styles/styles.dart';
 
 export 'text.dart';
 
@@ -16,22 +17,21 @@ class QrScanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsX.greyHeight,
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Row(
-              children: [
-                BackButton(),
-              ],
+            ScanView(
+              controller: _controller,
+              scanAreaScale: .6,
+              scanLineColor: Theme.of(context).primaryColor,
+              onCapture: _onCapture,
             ),
-            Container(
-              width: 250,
-              height: 250,
-              child: ScanView(
-                controller: _controller,
-                scanAreaScale: 1,
-                scanLineColor: Theme.of(context).primaryColor,
-                onCapture: _onCapture,
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: BackButton(color: ColorsX.blueLight2),
               ),
             ),
             moreActionsView(),
@@ -42,33 +42,40 @@ class QrScanPage extends StatelessWidget {
   }
 
   Widget moreActionsView() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        /// 打开/关闭手电筒
-        InkWell(
-          onTap: () => _controller.toggleTorchMode(),
-          child: CircleAvatar(
-            child: Icon(Icons.light_outlined),
-          ),
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 64),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            /// 打开/关闭手电筒
+            GestureDetector(
+              onTap: () => _controller.toggleTorchMode(),
+              child: CircleAvatar(
+                child: Icon(Icons.light_outlined),
+              ),
+            ),
+
+            /// 从本地选择图片
+            GestureDetector(
+              onTap: () async {
+                List<Media>? image = await ImagesPicker.pick();
+                print(image);
+                if (image == null) return;
+
+                final result = await Scan.parse(image[0].path);
+                if (result == null) return;
+
+                await _onCapture(result);
+              },
+              child: CircleAvatar(
+                child: Icon(Icons.image_rounded),
+              ),
+            ),
+          ],
         ),
-
-        /// 从本地选择图片
-        InkWell(
-          onTap: () async {
-            List<Media>? image = await ImagesPicker.pick();
-            if (image == null) return;
-
-            final result = await Scan.parse(image[0].path);
-            if (result == null) return;
-
-            await _onCapture(result);
-          },
-          child: CircleAvatar(
-            child: Icon(Icons.image_rounded),
-          ),
-        ),
-      ],
+      ),
     );
   }
 

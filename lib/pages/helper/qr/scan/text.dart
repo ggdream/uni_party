@@ -14,7 +14,10 @@ class HelperShowTextPage extends StatelessWidget {
     return Scaffold(
       appBar: appBar(),
       body: Center(
-        child: SelectableText(result),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: SelectableText(result),
+        ),
       ),
     );
   }
