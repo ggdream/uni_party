@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:suit/suit.dart';
 
 import 'package:uni_party/components/rounded/rounded.dart';
+import 'package:uni_party/components/snackbar/snackbar.dart';
 import 'package:uni_party/components/toast/toast.dart';
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
@@ -86,30 +87,31 @@ class _NotifyCardState extends State<NotifyCard> {
       children: [
         IconButton(
           onPressed: () {
+            if (isLiked) return;
             setState(() {
               isLiked = !isLiked;
             });
           },
           icon: isLiked
               ? Icon(
-                  Icons.favorite_rounded,
+                  Icons.mark_email_read_rounded,
                   color: ColorsX.pink,
                 )
-              : Icon(Icons.favorite_border_rounded),
+              : Icon(Icons.mark_email_unread_rounded),
         ),
         IconButton(
           onPressed: () {
             setState(() {
               isCollected = !isCollected;
-              Toast.show(context: context, message: '收藏奥');
             });
+            SnackBarX.showRaw(context, isCollected ? '收藏成功' : '取消收藏');
           },
           icon: isCollected
               ? Icon(
-                  Icons.collections_bookmark_rounded,
+                  Icons.savings_rounded,
                   color: ColorsX.pink,
                 )
-              : Icon(Icons.collections_bookmark_outlined),
+              : Icon(Icons.savings_outlined),
         ),
         IconButton(
           onPressed: () {},

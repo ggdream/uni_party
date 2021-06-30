@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:uni_party/components/rounded/rounded.dart';
 import 'package:uni_party/components/sheet/sheet.dart';
 import 'package:uni_party/mock/mock.dart';
-import 'package:uni_party/router/routes.dart';
+import 'package:uni_party/router/router.dart';
 
 import 'card.dart';
 import 'publish.dart';
@@ -29,14 +29,16 @@ class _EventPageState extends State<EventPage> {
   Widget floatBtn() {
     return FloatingActionButton(
       heroTag: 'event',
-      onPressed: () async {
-        // var res = await showBottomSheetX(context, PublishTypeSelected());
-        // if (res == null) return; // click blank area, so exit bottomSheet
-        // print(res);
-        await Get.toNamed(RouteNames.TextEdit);
-      },
+      onPressed: _publishEventClick,
       child: Icon(Icons.add),
     );
+  }
+
+  Future<void> _publishEventClick() async {
+    var res = await showBottomSheetX(context, EventPublishTypeSelected());
+    if (res == null) return; // Click blank area, so exit
+
+    await Get.toNamed(RouteNames.TextEdit, arguments: res);
   }
 
   Widget bodyView() {
@@ -44,19 +46,21 @@ class _EventPageState extends State<EventPage> {
       onRefresh: () async {},
       color: Theme.of(context).primaryColor,
       child: ListView.builder(
-          itemCount: EventMock.data.length,
-          itemBuilder: (context, index) {
-            return NotifyCard(
-              uid: EventMock.data[index]['uid'],
-              eid: EventMock.data[index]['eid'],
-              username: EventMock.data[index]['username'],
-              avatarURL: EventMock.data[index]['avatarURL'],
-              datetime: EventMock.data[index]['time'],
-              title: EventMock.data[index]['title'],
-              isLiked: EventMock.data[index]['isLiked'],
-              isCollected: EventMock.data[index]['isCollected'],
-            );
-          }),
+        physics: const BouncingScrollPhysics(),
+        itemCount: EventMock.data.length,
+        itemBuilder: (context, index) {
+          return NotifyCard(
+            uid: EventMock.data[index]['uid'],
+            eid: EventMock.data[index]['eid'],
+            username: EventMock.data[index]['username'],
+            avatarURL: EventMock.data[index]['avatarURL'],
+            datetime: EventMock.data[index]['time'],
+            title: EventMock.data[index]['title'],
+            isLiked: EventMock.data[index]['isLiked'],
+            isCollected: EventMock.data[index]['isCollected'],
+          );
+        },
+      ),
     );
   }
 

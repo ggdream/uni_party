@@ -17,7 +17,7 @@ class QrScanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsX.greyHeight,
+      backgroundColor: ColorsX.bluePurple,
       body: SafeArea(
         child: Stack(
           children: [

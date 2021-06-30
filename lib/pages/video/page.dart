@@ -38,7 +38,7 @@ class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsX.greyHeight,
+      backgroundColor: ColorsX.bluePurple,
       body: bodyView(),
     );
   }
@@ -49,7 +49,7 @@ class _VideoPageState extends State<VideoPage> {
         children: [
           FijkView(
             player: player,
-            color: ColorsX.greyHeight,
+            color: ColorsX.bluePurple,
             cover: NetworkImage(
                 'http://qvgbcgfc6.hn-bkt.clouddn.com/image/375.jpg'),
           ),

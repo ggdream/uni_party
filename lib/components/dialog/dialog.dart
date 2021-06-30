@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 export 'shell.dart';
+export 'input.dart';
 
 Future<String?> showInputDialog(BuildContext context, String title) async {
   TextEditingController _controller = TextEditingController();

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:uni_party/pages/auth/auth.dart';
 import 'package:uni_party/pages/chat/chat.dart';
 import 'package:uni_party/pages/event/event.dart';
-import 'package:uni_party/pages/event/file_preview/file_preview.dart';
 import 'package:uni_party/pages/home/home.dart';
 import 'package:uni_party/pages/helper/helper.dart';
 import 'package:uni_party/pages/profile/profile.dart';
@@ -26,10 +25,26 @@ final List<GetPage> routes = [
     page: () => ChatSearchFriendPage(),
   ),
   GetPage(
+    name: RouteNames.EventPublishNotify,
+    page: () => EventPublishNotifyPage(),
+  ),
+  GetPage(
+    name: RouteNames.EventPublishVote,
+    page: () => EventPublishVotePage(),
+  ),
+  GetPage(
+    name: RouteNames.EventPublishRandom,
+    page: () => EventPublishRandomPage(),
+  ),
+  GetPage(
+    name: RouteNames.EventPublishApply,
+    page: () => EventPublishApplyPage(),
+  ),
+  GetPage(
     name: RouteNames.EventSubscribeNotify,
     page: () => EventSubscribeNotifyPage(),
   ),
-    GetPage(
+  GetPage(
     name: RouteNames.EventFilePreview,
     page: () => EventFilePreviewPage(),
   ),
@@ -74,6 +89,18 @@ class RouteNames {
 
   /// 好友搜索页
   static const ChatSearchFriend = '/chat/search/friend';
+
+  /// 发布通知消息页
+  static const EventPublishNotify = '/event/publish/notify';
+
+  /// 发布投票消息页
+  static const EventPublishVote = '/event/publish/vote';
+
+  /// 发布随机消息页
+  static const EventPublishRandom = '/event/publish/random';
+
+  /// 发布报名消息页
+  static const EventPublishApply = '/event/publish/apply';
 
   /// 订阅通知消息页
   static const EventSubscribeNotify = '/event/subscribe/notify';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:uni_party/logic/event/event.dart';
 
-class PublishTypeSelected extends StatelessWidget {
-  const PublishTypeSelected({Key? key}) : super(key: key);
+class EventPublishTypeSelected extends StatelessWidget {
+  const EventPublishTypeSelected({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,25 +11,25 @@ class PublishTypeSelected extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          PublishTypeSelectedItem(
+          EventPublishTypeSelectedItem(
             asset: 'assets/icons/events/notice.png',
             label: '通知',
-            value: PublishType.notice,
+            value: EventPublishType.notice,
           ),
-          PublishTypeSelectedItem(
+          EventPublishTypeSelectedItem(
             asset: 'assets/icons/events/vote.png',
             label: '投票',
-            value: PublishType.vote,
+            value: EventPublishType.vote,
           ),
-          PublishTypeSelectedItem(
+          EventPublishTypeSelectedItem(
             asset: 'assets/icons/events/sortition.png',
             label: '抽签',
-            value: PublishType.sortition,
+            value: EventPublishType.sortition,
           ),
-          PublishTypeSelectedItem(
+          EventPublishTypeSelectedItem(
             asset: 'assets/icons/events/participation.png',
             label: '报名',
-            value: PublishType.participation,
+            value: EventPublishType.participation,
           ),
         ],
       ),
@@ -36,23 +37,8 @@ class PublishTypeSelected extends StatelessWidget {
   }
 }
 
-/// type of the event that was published
-enum PublishType {
-  /// 通知
-  notice,
-
-  /// 投票
-  vote,
-
-  /// 抽选
-  sortition,
-
-  /// 报名
-  participation,
-}
-
-class PublishTypeSelectedItem extends StatelessWidget {
-  const PublishTypeSelectedItem({
+class EventPublishTypeSelectedItem extends StatelessWidget {
+  const EventPublishTypeSelectedItem({
     Key? key,
     required this.asset,
     required this.label,
@@ -61,7 +47,7 @@ class PublishTypeSelectedItem extends StatelessWidget {
 
   final String asset;
   final String label;
-  final PublishType value;
+  final EventPublishType value;
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:images_picker/images_picker.dart';
 
 import 'package:uni_party/components/rich_shower/rich_shower.dart';
 import 'package:uni_party/components/sheet/sheet.dart';
+import 'package:uni_party/components/snackbar/snackbar.dart';
+import 'package:uni_party/logic/logic.dart';
+import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 
 import 'transform.dart';
@@ -30,6 +34,8 @@ class RichEditor extends StatefulWidget {
 class _RichEditorState extends State<RichEditor> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _editingController = TextEditingController();
+
+  final EventPublishType _type = Get.arguments;
 
   @override
   void initState() {
@@ -72,12 +78,41 @@ class _RichEditorState extends State<RichEditor> {
       actions: [
         addLinkBtn(),
         selectImageBtn(),
+        SizedBox(width: 8),
         nextStepBtn(),
       ],
     );
   }
 
-  IconButton nextStepBtn() => IconButton(onPressed: () {}, icon: Icon(Icons.cloud_upload_outlined));
+  Widget nextStepBtn() {
+    return TextButton(
+      onPressed: _nextStepClick,
+      child: Text('下一步'),
+    );
+  }
+
+  Future<void> _nextStepClick() async {
+    var route = '';
+    switch (_type) {
+      case EventPublishType.notice:
+        route = RouteNames.EventPublishNotify;
+        break;
+      case EventPublishType.vote:
+        route = RouteNames.EventPublishVote;
+        break;
+      case EventPublishType.sortition:
+        route = RouteNames.EventPublishRandom;
+        break;
+      case EventPublishType.participation:
+        route = RouteNames.EventPublishApply;
+        break;
+      default:
+        SnackBarX.showRaw(context, '消息类型错误，请重新打开本页面进行编辑');
+        return;
+    }
+
+    await Get.toNamed(route, arguments: _editingController.text);
+  }
 
   Future<String?> _showInputDialog(BuildContext context) async {
     return await showDialog<String>(
@@ -211,7 +246,10 @@ class _InputDialogView extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          /// 填写显示的文本
           _showTextView(context),
+
+          /// 填写对应的网址
           _backLinkView(context),
         ],
       ),
