@@ -100,7 +100,7 @@ class _ProfileInfoBrowsePageState extends State<ProfileInfoBrowsePage> {
       color: Colors.black,
       alignment: Alignment.bottomCenter,
       child: RoundedAvatar.network(
-        'http://127.0.0.1:9999/546.jpg',
+        'http://qvgbcgfc6.hn-bkt.clouddn.com/image/546.jpg',
         size: 96,
         margin: const EdgeInsets.only(bottom: 8),
       ),

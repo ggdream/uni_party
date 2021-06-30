@@ -1,7 +1,11 @@
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:images_picker/images_picker.dart';
 
 import 'package:uni_party/components/rounded/rounded.dart';
+import 'package:uni_party/router/router.dart';
+import 'package:uni_party/styles/styles.dart';
 
 class VideoPage extends StatefulWidget {
   const VideoPage({Key? key}) : super(key: key);
@@ -14,9 +18,27 @@ class _VideoPageState extends State<VideoPage> {
   bool _isLiked = false;
   bool _isCollected = false;
 
+  final FijkPlayer player = FijkPlayer()..setLoop(0);
+
+  final res = [
+    'http://qvgbcgfc6.hn-bkt.clouddn.com/test.mp4',
+    'http://qvgbcgfc6.hn-bkt.clouddn.com/test.mp4',
+    'http://qvgbcgfc6.hn-bkt.clouddn.com/test.mp4',
+    'http://qvgbcgfc6.hn-bkt.clouddn.com/test.mp4',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      player.setDataSource(res[0], autoPlay: true);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsX.greyHeight,
       body: bodyView(),
     );
   }
@@ -25,8 +47,46 @@ class _VideoPageState extends State<VideoPage> {
     return SafeArea(
       child: Stack(
         children: [
-          Container(
-            color: Colors.black,
+          FijkView(
+            player: player,
+            color: ColorsX.greyHeight,
+            cover: NetworkImage(
+                'http://qvgbcgfc6.hn-bkt.clouddn.com/image/375.jpg'),
+          ),
+          InkWell(
+            onTap: () async {
+              if (player.state == FijkState.started) await player.pause();
+              if (player.state == FijkState.paused) await player.start();
+            },
+            child: PageView(
+              scrollDirection: Axis.vertical,
+              children: [
+                Container(
+                  color: Colors.transparent,
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
+                Container(
+                  color: Colors.transparent,
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
+                Container(
+                  color: Colors.transparent,
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
+                Container(
+                  color: Colors.transparent,
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
+              ],
+              onPageChanged: (int index) async {
+                await player.reset();
+                await player.setDataSource(res[index], autoPlay: true);
+              },
+            ),
           ),
 
           /// 搜索、分享、上传
@@ -56,7 +116,7 @@ class _VideoPageState extends State<VideoPage> {
             color: Colors.white,
           ),
         ),
-        SizedBox(height:12),
+        SizedBox(height: 12),
       ],
     );
   }
@@ -90,11 +150,11 @@ class _VideoPageState extends State<VideoPage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          RoundedAvatar.asset(
-            'assets/images/avatar.jpg',
-            size: 64,
+          RoundedAvatar.network(
+            'http://qvgbcgfc6.hn-bkt.clouddn.com/image/102.jpg',
+            size: 52,
           ),
-          SizedBox(height: 48),
+          SizedBox(height: 40),
           _starShowBtnView(),
           SizedBox(height: 12),
           _commentShowBtnView(),
@@ -210,9 +270,10 @@ class _VideoPageState extends State<VideoPage> {
     );
   }
 
-    Future<void> _selectVideo() async {
+  Future<void> _selectVideo() async {
     List<Media>? video = await ImagesPicker.pick(pickType: PickType.video);
     if (video == null) return;
-    print(video[0].path);
+
+    await Get.toNamed(RouteNames.VideoUpload, arguments: video[0].path);
   }
 }

@@ -86,7 +86,7 @@ class QrCodePage extends StatelessWidget {
               QrImage(
                 data: 'hello',
                 embeddedImage: NetworkImage(
-                  'http://127.0.0.1:9999/952.jpg',
+                  'http://qvgbcgfc6.hn-bkt.clouddn.com/image/952.jpg',
                   scale: 16,
                 ),
               ),
@@ -101,7 +101,7 @@ class QrCodePage extends StatelessWidget {
     return Row(
       children: [
         RoundedAvatar.network(
-          'http://127.0.0.1:9999/315.jpg',
+          'http://qvgbcgfc6.hn-bkt.clouddn.com/image/315.jpg',
           size: 64,
         ),
         SizedBox(

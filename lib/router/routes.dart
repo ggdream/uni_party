@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:uni_party/pages/auth/auth.dart';
 import 'package:uni_party/pages/chat/chat.dart';
 import 'package:uni_party/pages/event/event.dart';
+import 'package:uni_party/pages/event/file_preview/file_preview.dart';
 import 'package:uni_party/pages/home/home.dart';
 import 'package:uni_party/pages/helper/helper.dart';
 import 'package:uni_party/pages/profile/profile.dart';
@@ -27,6 +28,10 @@ final List<GetPage> routes = [
   GetPage(
     name: RouteNames.EventSubscribeNotify,
     page: () => EventSubscribeNotifyPage(),
+  ),
+    GetPage(
+    name: RouteNames.EventFilePreview,
+    page: () => EventFilePreviewPage(),
   ),
   GetPage(
     name: RouteNames.AuthLoginByCipher,
@@ -81,6 +86,9 @@ class RouteNames {
 
   /// 订阅报名消息页
   static const EventSubscribeApply = '/event/subscribe/apply';
+
+  /// 文件在线预览页
+  static const EventFilePreview = '/event/file/preview';
 
   /// 个人二维码页
   static const HelperQrCode = '/helper/qr/code';

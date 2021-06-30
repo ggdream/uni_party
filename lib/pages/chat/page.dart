@@ -20,21 +20,21 @@ class _ChatPageState extends State<ChatPage> {
       body: ListView(
         children: [
           ChatWindowCard(
-            avatar: 'http://127.0.0.1:9999/741.jpg',
+            avatar: 'http://qvgbcgfc6.hn-bkt.clouddn.com/image/108.jpg',
             uname: '葵葵',
             message: '你死哪儿去啦？你死哪儿去啦你死哪儿去啦你死哪儿去啦你死哪儿去啦',
             counter: 3,
             dtime: '19:40',
           ),
           ChatWindowCard(
-            avatar: 'http://127.0.0.1:9999/852.jpg',
+            avatar: 'http://qvgbcgfc6.hn-bkt.clouddn.com/image/108.jpg',
             uname: '玻璃',
             message: '今天好无聊奥，你在干嘛呢',
             counter: 3,
             dtime: '昨天 09:05',
           ),
           ChatWindowCard(
-            avatar: 'http://127.0.0.1:9999/963.jpg',
+            avatar: 'http://qvgbcgfc6.hn-bkt.clouddn.com/image/108.jpg',
             uname: '姐姐',
             message: '气死我了，都不跟我说话',
             counter: 0,

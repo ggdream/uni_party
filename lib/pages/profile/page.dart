@@ -98,7 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Row(
       children: [
         RoundedAvatar.network(
-          'http://127.0.0.1:9999/652.jpg',
+          'http://qvgbcgfc6.hn-bkt.clouddn.com/image/658.jpg',
           size: 72,
         ),
         SizedBox(width: 16),
