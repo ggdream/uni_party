@@ -279,9 +279,13 @@ class _EventPublishVotePageState extends State<EventPublishVotePage> {
           cursorColor: Theme.of(context).primaryColor,
           controller: _controllers[index],
           decoration: InputDecoration(
-            hintText: '选项 ${index+1}',
+            hintText: '选项 ${index + 1}',
             suffixIcon: IconButton(
               onPressed: () {
+                if (_controllers.length == 2) {
+                  SnackBarX.showRaw(context, '要求最少两个选项');
+                  return;
+                }
                 setState(() {
                   _controllers.removeAt(index);
                 });
