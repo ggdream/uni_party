@@ -23,7 +23,7 @@ class RichShower extends StatelessWidget {
     return RichText(
       text: TextSpan(
         style: _textStyle(),
-        children: _RichTextParser(text).parse(),
+        children: _RichTextParser(text).parse(Theme.of(context).primaryColor),
       ),
     );
   }
@@ -57,7 +57,7 @@ class _RichTextParser {
         (match) => '\n\u{1FFF2}\u{1FFF2}\u{1FFF2}\n');
   }
 
-  List<InlineSpan> _parse() {
+  List<InlineSpan> _parse(Color color) {
     int _urlPointer = 0;
     int _imagePointer = 0;
     List<InlineSpan> res = [];
@@ -74,7 +74,7 @@ class _RichTextParser {
           text: showText,
           style: TextStyle(
             decoration: TextDecoration.underline,
-            color: Colors.red[200],
+            color: color,
           ),
           recognizer: TapGestureRecognizer()
             ..onTap = () async {
@@ -152,10 +152,10 @@ class _RichTextParser {
     return res;
   }
 
-  List<InlineSpan> parse() {
+  List<InlineSpan> parse(Color color) {
     _translate2Image();
     _translate2Url();
 
-    return _parse();
+    return _parse(color);
   }
 }

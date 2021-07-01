@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:suit/suit.dart';
 
 import 'package:uni_party/components/button/button.dart';
 import 'package:uni_party/components/rounded/rounded.dart';
 import 'package:uni_party/components/screenshot/screenshot.dart';
-import 'package:uni_party/styles/color.dart';
+import 'package:uni_party/styles/styles.dart';
 import 'package:uni_party/tools/sharex/sharex.dart';
 
 /// 个人二维码页
 class QrCodePage extends StatelessWidget {
   QrCodePage({Key? key}) : super(key: key);
 
-  final Color color = Colors.white;
-
   final ShotController _controller = ShotController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff0f133a),
       body: bodyView(),
     );
   }
 
   Widget bodyView() {
     return SafeArea(
-      child: Column(
-        children: [
-          topActionsView(),
-          mainContentView(),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            topActionsView(),
+            mainContentView(),
+          ],
+        ),
       ),
     );
   }
@@ -40,24 +41,17 @@ class QrCodePage extends StatelessWidget {
       child: Container(
         child: Column(
           children: [
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 32),
-              child: Text(
-                '我的二维码',
-                style: TextStyle(
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 36,
-                ),
+            Text(
+              '我的二维码',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: ColorsX.inactive,
               ),
             ),
-            Spacer(
-              flex: 4,
-            ),
+            Spacer(),
             qrCodeCardView(),
-            Spacer(
-              flex: 3,
-            ),
+            Spacer(),
           ],
         ),
       ),
@@ -66,31 +60,29 @@ class QrCodePage extends StatelessWidget {
 
   Widget qrCodeCardView() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: ScreenShot(
-        controller: _controller,
-        child: Container(
-          width: double.infinity,
-          height: 64.vh,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24,
-          ),
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(24),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              userInfoView(),
-              QrImage(
-                data: 'hello',
-                embeddedImage: NetworkImage(
-                  'http://qvgbcgfc6.hn-bkt.clouddn.com/image/952.jpg',
-                  scale: 16,
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: PhysicalModel(
+        color: ColorsX.bluePurple,
+        elevation: 3,
+        child: ScreenShot(
+          controller: _controller,
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(48),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                userInfoView(),
+                SizedBox(height: 32),
+                QrImage(
+                  padding: const EdgeInsets.all(32),
+                  data: 'hello',
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -137,23 +129,23 @@ class QrCodePage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        BackBtn(
-          color: color,
-        ),
+        BackBtn(),
         Spacer(),
         IconButton(
-          onPressed: _shareUser,
-          icon: Icon(
-            Icons.share_rounded,
-            color: color,
+          icon: SvgPicture.asset(
+            IconImage.fenxiang,
+            width: 24,
           ),
+          onPressed: _shareUser,
+          tooltip: '分享',
         ),
         IconButton(
-          onPressed: _saveQrCode,
-          icon: Icon(
-            Icons.cloud_download_rounded,
-            color: color,
+          icon: SvgPicture.asset(
+            IconImage.xiazai,
+            width: 24,
           ),
+          onPressed: _saveQrCode,
+          tooltip: '保存',
         ),
       ],
     );

@@ -1,32 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-import 'package:uni_party/components/rounded/rounded.dart';
+import 'package:uni_party/components/link/link.dart';
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 
-import 'list_link_card.dart';
-
-class _ProfileData {
-  static final List<Widget> settingRoutes = [
-    ListLinkCardWidget(
-      label: '主题设置',
-      image: 'assets/icons/tools/theme.png',
-      to: RouteNames.HelperSettingsTheme,
-    ),
-
-    ListLinkCardWidget(
-      label: '邮件设置',
-      image: 'assets/icons/tools/email.png',
-      to: RouteNames.HelperSettingsEMail,
-    ),
-
-    ListLinkCardWidget(
-      label: '安全设置',
-      image: 'assets/icons/tools/safety.png',
-      to: RouteNames.HelperSettingsSafety,
-    ),
-  ];
-}
+import 'userinfo.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -42,76 +22,95 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SafeArea(
         child: Column(
           children: [
-            userInfoView(),
-            actionBtnView(),
-            dividerView(),
-            userSettingView(),
+            // 顶部操作栏
+            const _ActionsView(),
+            SizedBox(height: 8),
+            // 用户信息
+            const UserInfoView(),
+            SizedBox(height: 36),
+            // 视频、消息 发布-收藏 详情跳转
+            linksView(),
           ],
         ),
       ),
     );
   }
 
-  Widget userSettingView() {
+  Widget linksView() {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 32,
-          vertical: 16,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: SingleChildScrollView(
           child: Column(
-            children: _ProfileData.settingRoutes,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget dividerView() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Divider(
-        color: ColorsX.grey,
-      ),
-    );
-  }
-
-  Widget actionBtnView() {
-    return ButtonBar(
-      children: [
-        ElevatedButton(
-          onPressed: () {},
-          child: Text('消息'),
-          style: BtnStyles.elevatedStyle(context),
-        ),
-        ElevatedButton(
-          onPressed: () {},
-          child: Text('视频'),
-          style: BtnStyles.elevatedStyle(context),
-        ),
-      ],
-    );
-  }
-
-  Widget userInfoView() {
-    return Row(
-      children: [
-        RoundedAvatar.network(
-          'http://qvgbcgfc6.hn-bkt.clouddn.com/image/658.jpg',
-          size: 72,
-        ),
-        SizedBox(width: 16),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('魔咔啦咔'),
-              Text('发哦if奥佛奥佛奥佛奥普法普法皮肤啪啪法法法法分配'),
+              ListTileLinkWidget(
+                icon: IconImage.yingshi,
+                title: '视频',
+                subTitle: '我的收藏',
+                to: '',
+              ),
+              ListTileLinkWidget(
+                icon: IconImage.yingshi,
+                title: '视频',
+                subTitle: '我的发布',
+                to: '',
+              ),
+              ListTileLinkWidget(
+                icon: IconImage.xinxi,
+                title: '消息',
+                subTitle: '我的收藏',
+                to: '',
+              ),
+              ListTileLinkWidget(
+                icon: IconImage.xinxi,
+                title: '消息',
+                subTitle: '我的发布',
+                to: '',
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// 上方按钮栏：二维码扫码、应用设置
+class _ActionsView extends StatelessWidget {
+  const _ActionsView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        qrScanBtn(),
+        openSettingsBtn(),
       ],
+    );
+  }
+
+  IconButton openSettingsBtn() {
+    return IconButton(
+      icon: SvgPicture.asset(
+        IconImage.shezhi,
+        width: 32,
+      ),
+      onPressed: () => Get.toNamed(RouteNames.HelperSettings),
+      tooltip: '应用设置',
+    );
+  }
+
+  IconButton qrScanBtn() {
+    return IconButton(
+      icon: SvgPicture.asset(
+        IconImage.saomiao,
+        width: 32,
+      ),
+      onPressed: () => Get.toNamed(RouteNames.HelperQrScan),
+      tooltip: '二维码扫描',
     );
   }
 }

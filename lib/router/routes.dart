@@ -11,15 +11,54 @@ import 'package:uni_party/pages/video/video.dart';
 import 'package:uni_party/pages/webview/webview.dart';
 
 final List<GetPage> routes = [
-  GetPage(name: RouteNames.Home, page: () => HomePage()),
-  GetPage(name: RouteNames.ChatCommunicate, page: () => ChatCommunPage()),
-  GetPage(name: RouteNames.HelperQrCode, page: () => QrCodePage()),
-  GetPage(name: RouteNames.HelperQrScan, page: () => QrScanPage()),
-  GetPage(name: RouteNames.HelperShowText, page: () => HelperShowTextPage()),
-  GetPage(name: RouteNames.StartLogoPage, page: () => StartLogoPage()),
   GetPage(
-      name: RouteNames.WebViewThirdParty, page: () => WebViewThridPartyPage()),
-  GetPage(name: RouteNames.TextEdit, page: () => RichEditor()),
+    name: RouteNames.Home,
+    page: () => HomePage(),
+  ),
+  GetPage(
+    name: RouteNames.ChatCommunicate,
+    page: () => ChatCommunPage(),
+  ),
+  GetPage(
+    name: RouteNames.HelperQrCode,
+    page: () => QrCodePage(),
+  ),
+  GetPage(
+    name: RouteNames.HelperQrScan,
+    page: () => QrScanPage(),
+  ),
+  GetPage(
+    name: RouteNames.HelperShowText,
+    page: () => HelperShowTextPage(),
+  ),
+  GetPage(
+    name: RouteNames.HelperSettings,
+    page: () => HelperSettingsPage(),
+  ),
+  GetPage(
+    name: RouteNames.HelperSettingsEMail,
+    page: () => HelperSettingsPushPage(),
+  ),
+  GetPage(
+    name: RouteNames.HelperSettingsSafety,
+    page: () => HelperSettingsSafetyPage(),
+  ),
+  GetPage(
+    name: RouteNames.HelperSettingsTheme,
+    page: () => HelperSettingsThemePage(),
+  ),
+  GetPage(
+    name: RouteNames.StartLogoPage,
+    page: () => StartLogoPage(),
+  ),
+  GetPage(
+    name: RouteNames.WebViewThirdParty,
+    page: () => WebViewThridPartyPage(),
+  ),
+  GetPage(
+    name: RouteNames.TextEdit,
+    page: () => RichEditor(),
+  ),
   GetPage(
     name: RouteNames.ChatSearchFriend,
     page: () => ChatSearchFriendPage(),
@@ -125,6 +164,9 @@ class RouteNames {
 
   /// 二维码扫描页
   static const HelperShowText = '/helper/qr/scan/text';
+
+  /// 应用设置页
+  static const HelperSettings = '/helpers/settings';
 
   /// 主题设置页
   static const HelperSettingsTheme = '/helpers/settings/theme';

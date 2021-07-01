@@ -5,7 +5,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -50,7 +50,6 @@ dependencies:
   preset_images:
     path: lib/plugins/preset_images
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -70,6 +69,9 @@ flutter_icons:
 flutter:
   uses-material-design: true
   fonts:
+    - family: Iconfont
+      fonts:
+        - asset: assets/fonts/iconfont/iconfont.ttf
     - family: BalooTammudu2
       fonts:
         - asset: assets/fonts/BalooTammudu2/BalooTammudu2-Bold.ttf
@@ -85,6 +87,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/icons/common/
     - assets/icons/events/
     - assets/icons/logo/
     - assets/icons/tools/

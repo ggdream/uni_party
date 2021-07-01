@@ -10,6 +10,7 @@ class TopView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: kToolbarHeight,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
           BackButton(),

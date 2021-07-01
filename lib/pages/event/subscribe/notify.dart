@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:uni_party/components/rich_shower/rich_shower.dart';
+import 'package:uni_party/styles/styles.dart';
 import 'package:uni_party/tools/sharex/sharex.dart';
 
 import 'common.dart';
@@ -55,21 +57,26 @@ class _EventSubscribeNotifyPageState extends State<EventSubscribeNotifyPage> {
   }
 
   Widget bottomActionsView() {
-    return Container(
-      height: kBottomNavigationBarHeight,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          imGetView(),
-          SizedBox(width: 16),
-          commentCounterView(),
-          SizedBox(width: 16),
-          fileNumberView(),
-          Spacer(),
-          collectBtn(),
-          shareEventBtn(),
-        ],
+    return PhysicalModel(
+      color: Colors.white,
+      elevation: 3,
+      child: Container(
+        alignment: Alignment.center,
+        height: kBottomNavigationBarHeight * 1.6,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            imGetView(),
+            SizedBox(width: 16),
+            commentCounterView(),
+            SizedBox(width: 16),
+            fileNumberView(),
+            Spacer(),
+            collectBtn(),
+            shareEventBtn(),
+          ],
+        ),
       ),
     );
   }
@@ -78,9 +85,15 @@ class _EventSubscribeNotifyPageState extends State<EventSubscribeNotifyPage> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
-          Icons.file_copy_outlined,
-          size: 30,
+        InkWell(
+          onTap: () {},
+          child: Tooltip(
+            message: '附件',
+            child: SvgPicture.asset(
+              IconImage.fujian,
+              width: 32,
+            ),
+          ),
         ),
         Text(commentCounter.toString()),
       ],
@@ -91,9 +104,15 @@ class _EventSubscribeNotifyPageState extends State<EventSubscribeNotifyPage> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
-          Icons.mode_comment_outlined,
-          size: 30,
+        InkWell(
+          onTap: () {},
+          child: Tooltip(
+            message: '评论',
+            child: SvgPicture.asset(
+              IconImage.xinxi,
+              width: 32,
+            ),
+          ),
         ),
         Text(files.toString()),
       ],
@@ -102,23 +121,26 @@ class _EventSubscribeNotifyPageState extends State<EventSubscribeNotifyPage> {
 
   Widget shareEventBtn() {
     return IconButton(
+      icon: SvgPicture.asset(
+        IconImage.fenxiang,
+        width: 32,
+      ),
       onPressed: () async {
         await ShareX.text('data');
       },
-      icon: Icon(Icons.share_rounded),
+      tooltip: '分享',
     );
   }
 
   Widget collectBtn() {
     return IconButton(
-      icon: Icon(
-        isCollect
-            ? Icons.collections_bookmark_rounded
-            : Icons.collections_bookmark_outlined,
-        size: 30,
-        color: isCollect ? Colors.red[300] : null,
+      icon: SvgPicture.asset(
+        IconImage.bangong,
+        width: 32,
+        color: isCollect ? null : ColorsX.inactive,
       ),
       onPressed: _collectBtnClick,
+      tooltip: '收藏',
     );
   }
 
@@ -140,10 +162,9 @@ class _EventSubscribeNotifyPageState extends State<EventSubscribeNotifyPage> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
-          isGet ? Icons.favorite_rounded : Icons.favorite_border_rounded,
-          size: 30,
-          color: isGet ? Colors.red[300] : null,
+        SvgPicture.asset(
+          IconImage.biaoqing,
+          width: 32,
         ),
         Text(getCounter.toString()),
       ],
@@ -153,19 +174,23 @@ class _EventSubscribeNotifyPageState extends State<EventSubscribeNotifyPage> {
   Widget mainContentView() {
     return Expanded(
       child: CupertinoScrollbar(
-        child: SingleChildScrollView(
-          child: RichShower(
-              text:
-                  '哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n[阿哲](https://www.baidu.com)'),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SingleChildScrollView(
+            child: RichShower(
+                text:
+                    '哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n[阿哲](https://www.baidu.com)'),
+          ),
         ),
       ),
     );
   }
 
   Widget contentMetaInfoView() {
-    return SizedBox(
+    return Container(
       width: double.infinity,
       height: 48,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

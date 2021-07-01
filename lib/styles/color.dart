@@ -30,4 +30,5 @@ class ColorsX {
   static const blackLight = Color(0xff9e9e9e);
 
   static const text = Colors.black;
+  static const inactive = Color(0xff4f4f4f);
 }
