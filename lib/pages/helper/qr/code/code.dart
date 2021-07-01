@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:suit/suit.dart';
 
 import 'package:uni_party/components/button/button.dart';
 import 'package:uni_party/components/rounded/rounded.dart';
@@ -41,14 +40,7 @@ class QrCodePage extends StatelessWidget {
       child: Container(
         child: Column(
           children: [
-            Text(
-              '我的二维码',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: ColorsX.inactive,
-              ),
-            ),
+            titleView(),
             Spacer(),
             qrCodeCardView(),
             Spacer(),
@@ -58,33 +50,46 @@ class QrCodePage extends StatelessWidget {
     );
   }
 
+  Widget titleView() {
+    return Text(
+      '我的二维码',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
+        color: ColorsX.inactive,
+      ),
+    );
+  }
+
   Widget qrCodeCardView() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: PhysicalModel(
+        borderRadius: BorderRadius.circular(32),
         color: ColorsX.bluePurple,
         elevation: 3,
         child: ScreenShot(
           controller: _controller,
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(48),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                userInfoView(),
-                SizedBox(height: 32),
-                QrImage(
-                  padding: const EdgeInsets.all(32),
-                  data: 'hello',
-                ),
-              ],
-            ),
-          ),
+          child: qrcodeView(),
         ),
+      ),
+    );
+  }
+
+  Widget qrcodeView() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          userInfoView(),
+          SizedBox(height: 32),
+          QrImage(
+            padding: const EdgeInsets.all(32),
+            data: 'hello',
+          ),
+        ],
       ),
     );
   }
@@ -99,28 +104,32 @@ class QrCodePage extends StatelessWidget {
         SizedBox(
           width: 12,
         ),
-        Expanded(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '魔咔啦咔',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  '我能看到日落，你在哪儿里',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                )
-              ],
-            ),
-          ),
-        ),
+        userBaseInfoView(),
       ],
+    );
+  }
+
+  Widget userBaseInfoView() {
+    return Expanded(
+      child: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '魔咔啦咔',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              '我能看到日落，你在哪儿里',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -129,7 +138,7 @@ class QrCodePage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        BackBtn(),
+        BackBtn(color: Colors.black),
         Spacer(),
         IconButton(
           icon: SvgPicture.asset(

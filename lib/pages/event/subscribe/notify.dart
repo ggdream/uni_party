@@ -63,7 +63,7 @@ class _EventSubscribeNotifyPageState extends State<EventSubscribeNotifyPage> {
       child: Container(
         alignment: Alignment.center,
         height: kBottomNavigationBarHeight * 1.6,
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

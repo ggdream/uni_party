@@ -11,11 +11,12 @@ class BackBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => Navigator.of(context).pop(),
       icon: Icon(
         Icons.arrow_back_ios_new_rounded,
         color: color,
       ),
+      onPressed: () => Navigator.of(context).pop(),
+      tooltip: '返回',
     );
   }
 }
