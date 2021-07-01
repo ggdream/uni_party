@@ -49,7 +49,7 @@ class _NotifyCardState extends State<NotifyCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () => Get.toNamed(RouteNames.EventSubscribeNotify),
+      onTap: () => Get.toNamed(RouteNames.EventSubscribeVote),
       child: Container(
         width: double.infinity,
         height: 61.8.vw,

@@ -202,4 +202,10 @@ class IconImage {
 
   /// 女性
   static const nvxing = 'assets/icons/common/woman.svg';
+
+  /// 概率
+  static const gailv = 'assets/icons/common/gailv.svg';
+
+  /// 文件
+  static const wenjian = 'assets/icons/common/wenjian.svg';
 }

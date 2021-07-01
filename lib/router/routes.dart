@@ -84,6 +84,18 @@ final List<GetPage> routes = [
     page: () => EventSubscribeNotifyPage(),
   ),
   GetPage(
+    name: RouteNames.EventSubscribeVote,
+    page: () => EventSubscribeVotePage(),
+  ),
+  GetPage(
+    name: RouteNames.EventSubscribeRandom,
+    page: () => EventSubscribeRandomPage(),
+  ),
+  GetPage(
+    name: RouteNames.EventSubscribeApply,
+    page: () => EventSubscribeApplyPage(),
+  ),
+  GetPage(
     name: RouteNames.EventFilePreview,
     page: () => EventFilePreviewPage(),
   ),
