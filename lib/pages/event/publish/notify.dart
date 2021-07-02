@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'package:uni_party/components/button/button.dart';
@@ -214,10 +215,7 @@ class SelectedFileWidget extends StatelessWidget {
       alignment: Alignment.topRight,
       child: IconButton(
         onPressed: onPressed,
-        icon: Icon(
-          Icons.close,
-          color: Colors.black,
-        ),
+        icon: SvgPicture.asset(IconImage.shanchu, width: 18),
         tooltip: '移除文件',
       ),
     );

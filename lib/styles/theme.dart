@@ -26,10 +26,10 @@ class ThemesX {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        // padding: const EdgeInsets.symmetric(vertical: 16),
         primary: ColorsX.primary,
         textStyle: TextStyle(
-          fontSize: 18,
+          // fontSize: 18,
         ),
       ),
     ),
