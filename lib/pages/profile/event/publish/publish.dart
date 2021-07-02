@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'package:uni_party/components/button/button.dart';
+import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 
 class ProfileEventPublishPage extends StatefulWidget {
@@ -129,20 +130,21 @@ class _EventPublishCardWidget extends StatelessWidget {
     return ButtonBar(
       children: [
         ElevatedButton(
-            onPressed: () {
-              print('1');
-            },
-            child: Text('分享')),
+          onPressed: () => Get.toNamed(RoutesNamespace.EventAnalysisNotify),
+          child: Text('分析'),
+        ),
         ElevatedButton(
-            onPressed: () {
-              print('2');
-            },
-            child: Text('编辑')),
+          onPressed: () {
+            print('2');
+          },
+          child: Text('编辑'),
+        ),
         ElevatedButton(
-            onPressed: () {
-              print('3');
-            },
-            child: Text('删除')),
+          onPressed: () {
+            print('3');
+          },
+          child: Text('删除'),
+        ),
       ],
     );
   }

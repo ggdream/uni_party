@@ -98,7 +98,7 @@ class QrCodePage extends StatelessWidget {
     return Row(
       children: [
         RoundedAvatar.network(
-          'http://qvgbcgfc6.hn-bkt.clouddn.com/image/315.jpg',
+          'http://qvgbcgfc6.hn-bkt.clouddn.com/image/752.jpg',
           size: 64,
         ),
         SizedBox(

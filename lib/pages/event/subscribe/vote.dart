@@ -213,6 +213,15 @@ class _EventSubscribeVotePageState extends State<EventSubscribeVotePage> {
       child: ElevatedButton(
         onPressed: _onSubmitClick,
         child: Text('提交'),
+        style: ElevatedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          primary: ColorsX.primary,
+          textStyle: TextStyle(
+            fontSize: 18,
+          ),
+        ),
       ),
     );
   }
@@ -220,7 +229,6 @@ class _EventSubscribeVotePageState extends State<EventSubscribeVotePage> {
   Future<void> _onSubmitClick() async {
     final status = await showConfirmDialogX(context, '确定提交投票信息？');
     if (status == null || !status) return;
-
   }
 
   Widget voteChipsView() {

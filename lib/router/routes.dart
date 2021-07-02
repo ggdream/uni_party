@@ -66,6 +66,22 @@ final List<GetPage> routes = [
     page: () => ChatSearchFriendPage(),
   ),
   GetPage(
+    name: RoutesNamespace.EventAnalysisNotify,
+    page: () => EventAnalysisNotifyPage(),
+  ),
+  GetPage(
+    name: RoutesNamespace.EventAnalysisVote,
+    page: () => EventAnalysisVotePage(),
+  ),
+  GetPage(
+    name: RoutesNamespace.EventAnalysisRandom,
+    page: () => EventAnalysisRandomPage(),
+  ),
+  GetPage(
+    name: RoutesNamespace.EventAnalysisApply,
+    page: () => EventAnalysisApplyPage(),
+  ),
+  GetPage(
     name: RoutesNamespace.EventPublishNotify,
     page: () => EventPublishNotifyPage(),
   ),

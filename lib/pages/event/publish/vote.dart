@@ -81,6 +81,16 @@ class _EventPublishVotePageState extends State<EventPublishVotePage> {
       child: ElevatedButton(
         onPressed: _addOptionClick,
         child: Text('添加选项'),
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          primary: ColorsX.primary,
+          textStyle: TextStyle(
+            fontSize: 18,
+          ),
+        ),
       ),
     );
   }

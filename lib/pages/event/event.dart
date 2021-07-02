@@ -1,4 +1,5 @@
 export 'page.dart';
+export 'analysis/analysis.dart';
 export 'comment/comment.dart';
 export 'detail/detail.dart';
 export 'file_preview/file_preview.dart';

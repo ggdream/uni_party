@@ -3,10 +3,13 @@ import 'package:get/get.dart';
 import 'package:suit/suit.dart';
 
 import 'package:uni_party/components/rounded/rounded.dart';
+import 'package:uni_party/components/sheet/sheet.dart';
 import 'package:uni_party/components/snackbar/snackbar.dart';
 import 'package:uni_party/components/toast/toast.dart';
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
+
+import 'comment/comment.dart';
 
 class NotifyCard extends StatefulWidget {
   NotifyCard({
@@ -112,7 +115,12 @@ class _NotifyCardState extends State<NotifyCard> {
               : Icon(Icons.savings_outlined),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () async {
+            await showBottomSheetX(
+              context,
+              EventCommentPage(),
+            );
+          },
           icon: Icon(Icons.mode_comment_outlined),
         ),
       ],
@@ -165,6 +173,7 @@ class _NotifyCardState extends State<NotifyCard> {
     );
   }
 }
+
 
 enum _MoreOperate {
   share,

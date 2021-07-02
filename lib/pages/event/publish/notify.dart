@@ -41,6 +41,15 @@ class _EventPublishNotifyPageState extends State<EventPublishNotifyPage>
           child: ElevatedButton(
             onPressed: _selectFilesClick,
             child: Text('选择文件'),
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              primary: ColorsX.primary,
+              textStyle: TextStyle(
+                fontSize: 18,
+              ),
+            ),
           ),
         ),
         SizedBox(height: 8),

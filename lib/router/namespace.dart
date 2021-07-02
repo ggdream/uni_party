@@ -18,6 +18,18 @@ class RoutesNamespace {
   /// 好友搜索页
   static const ChatSearchFriend = '/chat/search/friend';
 
+  /// 分析通知消息数据页
+  static const EventAnalysisNotify = '/event/analysis/notify';
+
+  /// 分析投票消息数据页
+  static const EventAnalysisVote = '/event/analysis/vote';
+
+  /// 分析随机消息数据页
+  static const EventAnalysisRandom = '/event/analysis/random';
+
+  /// 分析报名消息数据页
+  static const EventAnalysisApply = '/event/analysis/apply';
+
   /// 发布通知消息页
   static const EventPublishNotify = '/event/publish/notify';
 
