@@ -98,7 +98,7 @@ class _ActionsView extends StatelessWidget {
         IconImage.shezhi,
         width: 32,
       ),
-      onPressed: () => Get.toNamed(RouteNames.HelperSettings),
+      onPressed: () => Get.toNamed(RoutesNamespace.HelperSettings),
       tooltip: '应用设置',
     );
   }
@@ -109,7 +109,7 @@ class _ActionsView extends StatelessWidget {
         IconImage.saomiao,
         width: 32,
       ),
-      onPressed: () => Get.toNamed(RouteNames.HelperQrScan),
+      onPressed: () => Get.toNamed(RoutesNamespace.HelperQrScan),
       tooltip: '二维码扫描',
     );
   }

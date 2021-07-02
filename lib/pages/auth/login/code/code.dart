@@ -169,7 +169,7 @@ class _ForgetPwdView extends StatelessWidget {
       children: [
         Text('想要密码登录？'),
         GestureDetector(
-          onTap: () => Get.offAndToNamed(RouteNames.AuthLoginByCipher),
+          onTap: () => Get.offAndToNamed(RoutesNamespace.AuthLoginByCipher),
           child: MouseRegion(
             child: Text(
               '密码登录',

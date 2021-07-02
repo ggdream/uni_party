@@ -83,12 +83,12 @@ class QrScanPage extends StatelessWidget {
   Future<void> _onCapture(String value) async {
     if (value.startsWith('http')) {
       // 如果是网络地址，就用Webview打开（scan包只支持移动端，所以只考虑移动端）
-      await Get.toNamed(RouteNames.WebViewThirdParty, arguments: value);
+      await Get.toNamed(RoutesNamespace.WebViewThirdParty, arguments: value);
     } else if (value == 'uni_party') {
       // 自己的逻辑
     } else {
       // 跳转页面，直接显示原文本
-      await Get.toNamed(RouteNames.HelperShowText, arguments: value);
+      await Get.toNamed(RoutesNamespace.HelperShowText, arguments: value);
     }
 
     /// 恢复至可扫描状态

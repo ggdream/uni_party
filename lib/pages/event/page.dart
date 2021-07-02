@@ -38,7 +38,7 @@ class _EventPageState extends State<EventPage> {
     var res = await showBottomSheetX(context, EventPublishTypeSelected());
     if (res == null) return; // Click blank area, so exit
 
-    await Get.toNamed(RouteNames.TextEdit, arguments: res);
+    await Get.toNamed(RoutesNamespace.TextEdit, arguments: res);
   }
 
   Widget bodyView() {
@@ -84,7 +84,7 @@ class _EventPageState extends State<EventPage> {
 
   Widget _circleAvatar() {
     return GestureDetector(
-      onTap: () => Get.toNamed(RouteNames.HelperQrCode),
+      onTap: () => Get.toNamed(RoutesNamespace.HelperQrCode),
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: RoundedAvatar.asset(

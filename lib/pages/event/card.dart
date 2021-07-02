@@ -49,7 +49,7 @@ class _NotifyCardState extends State<NotifyCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () => Get.toNamed(RouteNames.EventSubscribeVote),
+      onTap: () => Get.toNamed(RoutesNamespace.EventSubscribeVote),
       child: Container(
         width: double.infinity,
         height: 61.8.vw,
@@ -132,7 +132,7 @@ class _NotifyCardState extends State<NotifyCard> {
       children: [
         GestureDetector(
           onTap: () {
-            Get.toNamed(RouteNames.ProfileInfoBrowse);
+            Get.toNamed(RoutesNamespace.ProfileInfoBrowse);
           },
           child: RoundedAvatar.network(
             widget.avatarURL,

@@ -1,8 +1,10 @@
+import 'namespace.dart';
 import 'routes.dart' as r;
-export 'routes.dart';
+
+export 'namespace.dart';
 
 class RouterX {
-  static const String InitRoute = r.RouteNames.Home;
+  static const String InitRoute = RoutesNamespace.Home;
 
   static final routes = r.routes;
 }

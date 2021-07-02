@@ -19,17 +19,17 @@ class HelperSettingsPage extends StatelessWidget {
             ListTileLinkWidget(
               icon: IconImage.xuanxiang,
               title: '主题设置',
-              to: RouteNames.HelperSettingsTheme,
+              to: RoutesNamespace.HelperSettingsTheme,
             ),
             ListTileLinkWidget(
               icon: IconImage.xinxi,
               title: '邮件设置',
-              to: RouteNames.HelperSettingsTheme,
+              to: RoutesNamespace.HelperSettingsTheme,
             ),
             ListTileLinkWidget(
               icon: IconImage.anquan,
               title: '安全设置',
-              to: RouteNames.HelperSettingsTheme,
+              to: RoutesNamespace.HelperSettingsTheme,
             ),
           ],
         ),

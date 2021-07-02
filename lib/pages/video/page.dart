@@ -274,6 +274,6 @@ class _VideoPageState extends State<VideoPage> {
     List<Media>? video = await ImagesPicker.pick(pickType: PickType.video);
     if (video == null) return;
 
-    await Get.toNamed(RouteNames.VideoUpload, arguments: video[0].path);
+    await Get.toNamed(RoutesNamespace.VideoUpload, arguments: video[0].path);
   }
 }

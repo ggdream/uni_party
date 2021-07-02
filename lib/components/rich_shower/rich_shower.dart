@@ -79,7 +79,8 @@ class _RichTextParser {
           recognizer: TapGestureRecognizer()
             ..onTap = () async {
               if (DeviceType.isMobile) {
-                await Get.toNamed(RouteNames.WebViewThirdParty, arguments: url);
+                await Get.toNamed(RoutesNamespace.WebViewThirdParty,
+                    arguments: url);
               } else {
                 await canLaunch(url)
                     ? await launch(url)

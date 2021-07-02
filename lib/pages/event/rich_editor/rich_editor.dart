@@ -95,16 +95,16 @@ class _RichEditorState extends State<RichEditor> {
     var route = '';
     switch (_type) {
       case EventPublishType.notice:
-        route = RouteNames.EventPublishNotify;
+        route = RoutesNamespace.EventPublishNotify;
         break;
       case EventPublishType.vote:
-        route = RouteNames.EventPublishVote;
+        route = RoutesNamespace.EventPublishVote;
         break;
       case EventPublishType.sortition:
-        route = RouteNames.EventPublishRandom;
+        route = RoutesNamespace.EventPublishRandom;
         break;
       case EventPublishType.participation:
-        route = RouteNames.EventPublishApply;
+        route = RoutesNamespace.EventPublishApply;
         break;
       default:
         SnackBarX.showRaw(context, '消息类型错误，请重新打开本页面进行编辑');

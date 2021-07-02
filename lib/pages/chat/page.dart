@@ -50,7 +50,7 @@ class _ChatPageState extends State<ChatPage> {
   //   return FloatingActionButton(
   //     heroTag: 'chat',
   //     child: Icon(Icons.search_rounded),
-  //     onPressed: () => Get.toNamed(RouteNames.ChatSearchFriend),
+  //     onPressed: () => Get.toNamed(RoutesNamespace.ChatSearchFriend),
   //   );
   // }
 
@@ -62,7 +62,7 @@ class _ChatPageState extends State<ChatPage> {
       actions: [
         IconButton(
           tooltip: '全网搜索',
-          onPressed: () => Get.toNamed(RouteNames.ChatSearchFriend),
+          onPressed: () => Get.toNamed(RoutesNamespace.ChatSearchFriend),
           icon: Icon(
             Icons.search_rounded,
           ),
@@ -100,7 +100,7 @@ class ChatWindowCard extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => Get.toNamed(
-        RouteNames.ChatCommunicate,
+        RoutesNamespace.ChatCommunicate,
         arguments: Chat2CommunRouteModel(
           uname: uname,
         ),

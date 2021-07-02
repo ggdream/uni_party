@@ -33,7 +33,7 @@ class RadioLabelUserServiceProtocolWidget extends StatelessWidget {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Get.toNamed(RouteNames.HelperProtocolsService);
+                  Get.toNamed(RoutesNamespace.HelperProtocolsService);
                 },
             ),
           ],
@@ -63,7 +63,7 @@ class LabelUserServiceProtocolWidget extends StatelessWidget {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                Get.toNamed(RouteNames.HelperProtocolsService);
+                Get.toNamed(RoutesNamespace.HelperProtocolsService);
               },
           )
         ],

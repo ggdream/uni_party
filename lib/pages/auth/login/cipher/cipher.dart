@@ -201,7 +201,8 @@ class _ForgetPwdView extends StatelessWidget {
       children: [
         Text('忘记密码？'),
         GestureDetector(
-          onTap: () => Get.offAndToNamed(RouteNames.AuthLoginFoundPassword),
+          onTap: () =>
+              Get.offAndToNamed(RoutesNamespace.AuthLoginFoundPassword),
           child: MouseRegion(
             child: Text(
               '找回密码',
@@ -228,7 +229,7 @@ class _JoinUsView extends StatelessWidget {
       children: [
         Text('第一次来到这里？'),
         GestureDetector(
-          onTap: () => Get.offAndToNamed(RouteNames.AuthLoginByCode),
+          onTap: () => Get.offAndToNamed(RoutesNamespace.AuthLoginByCode),
           child: MouseRegion(
             child: Text(
               '加入我们',
