@@ -53,10 +53,10 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: const NetworkImage('http://qvgbcgfc6.hn-bkt.clouddn.com/image/355.jpg'),
-            fit: BoxFit.cover,
-          ),
+          // image: DecorationImage(
+          //   image: const NetworkImage('http://qvgbcgfc6.hn-bkt.clouddn.com/image/355.jpg'),
+          //   fit: BoxFit.cover,
+          // ),
         ),
         child: ListView(
           controller: _scrollController,

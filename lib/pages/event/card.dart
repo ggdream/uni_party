@@ -52,7 +52,7 @@ class _NotifyCardState extends State<NotifyCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () => Get.toNamed(RoutesNamespace.EventSubscribeVote),
+      onTap: () => Get.toNamed(RoutesNamespace.EventSubscribeNotify),
       child: Container(
         width: double.infinity,
         height: 61.8.vw,
@@ -75,6 +75,7 @@ class _NotifyCardState extends State<NotifyCard> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         topMetaInfo(),
+        SizedBox(height: 2),
         centerContent(),
         Spacer(),
         bottomActions(),
@@ -132,6 +133,7 @@ class _NotifyCardState extends State<NotifyCard> {
       widget.title,
       maxLines: 4,
       overflow: TextOverflow.ellipsis,
+      style: TextStyle(fontSize: 16),
     );
   }
 

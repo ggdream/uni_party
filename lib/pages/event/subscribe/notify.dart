@@ -179,7 +179,15 @@ class _EventSubscribeNotifyPageState extends State<EventSubscribeNotifyPage> {
           child: SingleChildScrollView(
             child: RichShower(
                 text:
-                    '哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n![](https://c-ssl.duitang.com/uploads/item/202003/03/20200303075755_pqhfy.thumb.1000_0.jpg)哈喽[百度](http://baidu.com)\n\n啊这，\n\n[阿哲](https://www.baidu.com)'),
+                    """关于狮子山校区医院6月22日集中接种第二剂新冠疫苗的通知
+各位师生员工：\n\n
+狮子山校区医院将于6月22日集中接种新冠疫苗，具体安排如下： \n
+1.接种时间：6月22日（星期二）14:00–17:00\n
+2.接种地点：狮子山校区医院；\n
+3.相关要求：6月1号前（包含6月1号）接种了第一剂（北京生物、成都生物）的18-59岁师生员工，请携带身份证按通知要求前往。\n
+4.温馨提示：必须间隔满21天，微信小程序“天府健康通”可查阅接种信息。
+![](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fstatics.qdxin.cn%2Fuploadfile%2F2020%2F0127%2F20200127115259494.jpg&refer=http%3A%2F%2Fstatics.qdxin.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1627898306&t=a64cb53eac7ae5a4ea73b02f3d7d45ce)
+"""),
           ),
         ),
       ),
