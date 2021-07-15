@@ -53,21 +53,22 @@ class _RichEditorState extends State<RichEditor> {
 
   Widget floatingBtn() {
     return FloatingActionButton(
-      onPressed: () async {
-        await showBottomSheetX(
-          context,
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            child: CupertinoScrollbar(
-              child: SingleChildScrollView(
-                child: RichShower(text: _editingController.text),
-              ),
-            ),
-          ),
-        );
-      },
-      child: Icon(Icons.preview_rounded),
+      onPressed: _nextStepClick,
+      child: _AdditionBtn(
+        onSelected: (_AdditionType? type) async {
+          if (type == null) return;
+
+          switch (type) {
+            case _AdditionType.url:
+              await _addLinkClick();
+              break;
+            case _AdditionType.img:
+              await _addImageClick();
+              break;
+            default:
+          }
+        },
+      ),
     );
   }
 
@@ -75,19 +76,30 @@ class _RichEditorState extends State<RichEditor> {
     return AppBar(
       leading: BackButton(),
       title: Text('编辑文本'),
+      centerTitle: true,
       actions: [
-        addLinkBtn(),
-        selectImageBtn(),
-        SizedBox(width: 8),
-        nextStepBtn(),
+        IconButton(
+          onPressed: () async {
+            await showBottomSheetX(
+              context,
+              Container(
+                width: double.infinity,
+                height: double.infinity,
+                child: CupertinoScrollbar(
+                  child: SingleChildScrollView(
+                    child: RichShower(text: _editingController.text),
+                  ),
+                ),
+              ),
+            );
+          },
+          icon: Icon(Icons.preview_rounded),
+        ),
+        IconButton(
+          onPressed: _nextStepClick,
+          icon: Icon(Icons.arrow_right_alt_rounded),
+        ),
       ],
-    );
-  }
-
-  Widget nextStepBtn() {
-    return TextButton(
-      onPressed: _nextStepClick,
-      child: Text('下一步'),
     );
   }
 
@@ -165,28 +177,6 @@ class _RichEditorState extends State<RichEditor> {
     final text = TransformX.image(image[0].path);
 
     _addTextAndSuitSelection(text, position);
-  }
-
-  IconButton addLinkBtn() {
-    return IconButton(
-      onPressed: _addLinkClick,
-      icon: Icon(
-        Icons.add_link_rounded,
-        color: widget.color,
-      ),
-      tooltip: '网络链接',
-    );
-  }
-
-  IconButton selectImageBtn() {
-    return IconButton(
-      onPressed: _addImageClick,
-      icon: Icon(
-        Icons.photo_outlined,
-        color: widget.color,
-      ),
-      tooltip: '插入图片',
-    );
   }
 
   Widget bodyView() {
@@ -318,6 +308,61 @@ class _InputDialogView extends StatelessWidget {
         ),
       ),
       controller: _controller1,
+    );
+  }
+}
+
+/// 富文本类型
+enum _AdditionType {
+  url,
+  img,
+}
+
+/// 富文本类型选择按钮
+class _AdditionBtn extends StatelessWidget {
+  const _AdditionBtn({
+    Key? key,
+    this.onSelected,
+  }) : super(key: key);
+
+  final void Function(_AdditionType?)? onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<_AdditionType?>(
+      onSelected: onSelected,
+      tooltip: '添加其他',
+      icon: Icon(Icons.add_rounded),
+      itemBuilder: (context) {
+        return <PopupMenuEntry<_AdditionType>>[
+          PopupMenuItem(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(
+                  Icons.link_rounded,
+                  color: Theme.of(context).primaryColor,
+                ),
+                Text('链接'),
+              ],
+            ),
+            value: _AdditionType.url,
+          ),
+          PopupMenuItem(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(
+                  Icons.image_rounded,
+                  color: Theme.of(context).primaryColor,
+                ),
+                Text('图片'),
+              ],
+            ),
+            value: _AdditionType.img,
+          ),
+        ];
+      },
     );
   }
 }
