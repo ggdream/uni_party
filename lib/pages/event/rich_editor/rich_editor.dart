@@ -38,11 +38,6 @@ class _RichEditorState extends State<RichEditor> {
   final EventPublishType _type = Get.arguments;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
@@ -94,10 +89,12 @@ class _RichEditorState extends State<RichEditor> {
             );
           },
           icon: Icon(Icons.preview_rounded),
+          tooltip: '预览',
         ),
         IconButton(
           onPressed: _nextStepClick,
-          icon: Icon(Icons.arrow_right_alt_rounded),
+          icon: Icon(Icons.next_plan_rounded),
+          tooltip: '下一步',
         ),
       ],
     );
@@ -186,19 +183,28 @@ class _RichEditorState extends State<RichEditor> {
         selectionColor: Theme.of(context).primaryColor,
       ),
     );
-    return Theme(
-      data: themeData,
-      child: TextField(
-        maxLines: null,
-        minLines: 72,
-        keyboardType: TextInputType.multiline,
-        onChanged: widget.onChanged,
-        onSubmitted: widget.onSubmitted,
-        onTap: widget.onTap,
-        controller: _editingController,
-        scrollController: _scrollController,
-        decoration: _inputDecoration(),
-        scrollPhysics: const BouncingScrollPhysics(),
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Theme(
+          data: themeData,
+          child: TextField(
+            maxLines: null,
+            minLines: 72,
+            keyboardType: TextInputType.multiline,
+            onChanged: widget.onChanged,
+            onSubmitted: widget.onSubmitted,
+            onTap: widget.onTap,
+            controller: _editingController,
+            scrollController: _scrollController,
+            decoration: _inputDecoration(),
+            scrollPhysics: const BouncingScrollPhysics(),
+          ),
+        ),
       ),
     );
   }
