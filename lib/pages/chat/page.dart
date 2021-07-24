@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:uni_party/components/rounded/rounded.dart';
+import 'package:uni_party/widgets/rounded/rounded.dart';
 import 'package:uni_party/models/models.dart';
 import 'package:uni_party/router/router.dart';
 

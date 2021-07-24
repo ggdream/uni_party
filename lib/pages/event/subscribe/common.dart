@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uni_party/components/rounded/rounded.dart';
+import 'package:uni_party/widgets/rounded/rounded.dart';
 
 class TopView extends StatelessWidget {
   const TopView({
@@ -49,4 +49,3 @@ class TopView extends StatelessWidget {
     );
   }
 }
-

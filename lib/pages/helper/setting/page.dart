@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:uni_party/components/button/button.dart';
-import 'package:uni_party/components/link/link.dart';
+import 'package:uni_party/widgets/button/button.dart';
+import 'package:uni_party/widgets/link/link.dart';
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 

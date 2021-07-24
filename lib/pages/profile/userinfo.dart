@@ -3,8 +3,8 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:uni_party/components/rounded/rounded.dart';
-import 'package:uni_party/components/sex/sex.dart';
+import 'package:uni_party/widgets/rounded/rounded.dart';
+import 'package:uni_party/widgets/sex/sex.dart';
 import 'package:uni_party/styles/styles.dart';
 
 /// 用户信息展示

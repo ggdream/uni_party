@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:uni_party/components/rich_shower/rich_shower.dart';
+import 'package:uni_party/widgets/rich_shower/rich_shower.dart';
 import 'package:uni_party/styles/styles.dart';
 import 'package:uni_party/tools/sharex/sharex.dart';
 

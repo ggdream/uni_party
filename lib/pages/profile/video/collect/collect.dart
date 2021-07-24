@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:suit/suit.dart';
 
-import 'package:uni_party/components/button/button.dart';
+import 'package:uni_party/widgets/button/button.dart';
 
 class ProfileVideoCollectPage extends StatefulWidget {
   const ProfileVideoCollectPage({Key? key}) : super(key: key);

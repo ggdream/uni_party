@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:uni_party/components/radio_label/radio_label.dart';
+import 'package:uni_party/widgets/radio_label/radio_label.dart';
 import 'package:uni_party/router/router.dart';
 
 class RadioLabelUserServiceProtocolWidget extends StatelessWidget {

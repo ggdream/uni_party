@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:images_picker/images_picker.dart';
 
-import 'package:uni_party/components/rich_shower/rich_shower.dart';
-import 'package:uni_party/components/sheet/sheet.dart';
-import 'package:uni_party/components/snackbar/snackbar.dart';
+import 'package:uni_party/widgets/rich_shower/rich_shower.dart';
+import 'package:uni_party/widgets/sheet/sheet.dart';
+import 'package:uni_party/widgets/snackbar/snackbar.dart';
 import 'package:uni_party/logic/logic.dart';
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';

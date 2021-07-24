@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import 'package:uni_party/components/button/button.dart';
-import 'package:uni_party/components/rounded/rounded.dart';
-import 'package:uni_party/components/sex/sex.dart';
+import 'package:uni_party/widgets/button/button.dart';
+import 'package:uni_party/widgets/rounded/rounded.dart';
+import 'package:uni_party/widgets/sex/sex.dart';
 import 'package:uni_party/styles/styles.dart';
 
 class ProfileEventCollectPage extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uni_party/components/rounded/avatar.dart';
+import 'package:uni_party/widgets/rounded/avatar.dart';
 
 class ChatSearchFriendPage extends StatefulWidget {
   const ChatSearchFriendPage({Key? key}) : super(key: key);

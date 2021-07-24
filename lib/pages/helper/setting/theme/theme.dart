@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:uni_party/components/button/button.dart';
+import 'package:uni_party/widgets/button/button.dart';
 import 'package:uni_party/styles/styles.dart';
 import 'package:uni_party/tools/hex_color/hex_color.dart';
 

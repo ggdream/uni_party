@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import 'package:uni_party/components/button/button.dart';
-import 'package:uni_party/components/rounded/rounded.dart';
-import 'package:uni_party/components/screenshot/screenshot.dart';
+import 'package:uni_party/widgets/button/button.dart';
+import 'package:uni_party/widgets/rounded/rounded.dart';
+import 'package:uni_party/widgets/screenshot/screenshot.dart';
 import 'package:uni_party/styles/styles.dart';
 import 'package:uni_party/tools/sharex/sharex.dart';
 

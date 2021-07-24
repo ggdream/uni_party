@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:suit/suit.dart';
 
-import 'package:uni_party/components/rounded/rounded.dart';
-import 'package:uni_party/components/toast/toast.dart';
+import 'package:uni_party/widgets/rounded/rounded.dart';
+import 'package:uni_party/widgets/toast/toast.dart';
 import 'package:uni_party/styles/styles.dart';
 
 class NotifyCard extends StatefulWidget {

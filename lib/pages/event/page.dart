@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:uni_party/components/rounded/rounded.dart';
-import 'package:uni_party/components/sheet/sheet.dart';
+import 'package:uni_party/widgets/rounded/rounded.dart';
+import 'package:uni_party/widgets/sheet/sheet.dart';
 import 'package:uni_party/mock/mock.dart';
 import 'package:uni_party/router/router.dart';
 

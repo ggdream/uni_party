@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:uni_party/components/dialog/dialog.dart';
-import 'package:uni_party/components/sheet/sheet.dart';
-import 'package:uni_party/components/snackbar/snackbar.dart';
+import 'package:uni_party/widgets/dialog/dialog.dart';
+import 'package:uni_party/widgets/sheet/sheet.dart';
+import 'package:uni_party/widgets/snackbar/snackbar.dart';
 import 'package:uni_party/styles/styles.dart';
 
 import 'common.dart';

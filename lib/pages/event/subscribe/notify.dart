@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:uni_party/components/rich_shower/rich_shower.dart';
+import 'package:uni_party/widgets/rich_shower/rich_shower.dart';
 import 'package:uni_party/styles/styles.dart';
 import 'package:uni_party/tools/sharex/sharex.dart';
 
@@ -177,9 +177,7 @@ class _EventSubscribeNotifyPageState extends State<EventSubscribeNotifyPage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SingleChildScrollView(
-            child: RichShower(
-                text:
-                    """关于狮子山校区医院6月22日集中接种第二剂新冠疫苗的通知
+            child: RichShower(text: """关于狮子山校区医院6月22日集中接种第二剂新冠疫苗的通知
 各位师生员工：\n\n
 狮子山校区医院将于6月22日集中接种新冠疫苗，具体安排如下： \n
 1.接种时间：6月22日（星期二）14:00–17:00\n

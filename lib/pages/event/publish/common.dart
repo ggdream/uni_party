@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:uni_party/components/button/button.dart';
+import 'package:uni_party/widgets/button/button.dart';
 
 class CommonAppBar extends StatelessWidget with PreferredSizeWidget {
   const CommonAppBar({
@@ -62,6 +62,6 @@ class SubmitMixin {
 
     final List<String> images = localImages;
 
-    return  _setNetworkImages(text, images);
+    return _setNetworkImages(text, images);
   }
 }

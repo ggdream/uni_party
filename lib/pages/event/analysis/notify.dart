@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:uni_party/components/button/button.dart';
-import 'package:uni_party/components/rounded/rounded.dart';
-import 'package:uni_party/components/sex/sex.dart';
+import 'package:uni_party/widgets/button/button.dart';
+import 'package:uni_party/widgets/rounded/rounded.dart';
+import 'package:uni_party/widgets/sex/sex.dart';
 
 class EventAnalysisNotifyPage extends StatefulWidget {
   const EventAnalysisNotifyPage({Key? key}) : super(key: key);

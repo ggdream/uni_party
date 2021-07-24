@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:uni_party/components/monitor/monitor.dart';
+import 'package:uni_party/widgets/monitor/monitor.dart';
 import 'package:uni_party/models/models.dart';
 import 'package:uni_party/tools/safety/safety.dart';
 

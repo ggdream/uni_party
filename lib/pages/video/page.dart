@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:images_picker/images_picker.dart';
 
-import 'package:uni_party/components/rounded/rounded.dart';
+import 'package:uni_party/widgets/rounded/rounded.dart';
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 

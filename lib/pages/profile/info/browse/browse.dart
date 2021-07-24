@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:uni_party/components/rounded/rounded.dart';
+import 'package:uni_party/widgets/rounded/rounded.dart';
 import 'package:uni_party/styles/styles.dart';
 
 import 'nav_card.dart';
