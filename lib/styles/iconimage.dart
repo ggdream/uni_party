@@ -208,4 +208,7 @@ class IconImage {
 
   /// 文件
   static const wenjian = 'assets/icons/common/wenjian.svg';
+
+  /// 文件
+  static const dagou = 'assets/icons/common/mark.svg';
 }

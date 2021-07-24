@@ -154,10 +154,11 @@ class _EventPublishNotifyPageState extends State<EventPublishNotifyPage>
       title: Text('添加附件'),
       centerTitle: true,
       actions: [
-        TextButton(
-          onPressed: _submitClick,
-          child: Text(
-            '发布',
+        Container(
+          margin: const EdgeInsets.all(8.0),
+          child: TextButton(
+            onPressed: _submitClick,
+            child: Text('发布'),
           ),
         ),
       ],
