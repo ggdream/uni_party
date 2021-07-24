@@ -54,6 +54,9 @@ class RoutesNamespace {
   /// 订阅报名消息页
   static const EventSubscribeApply = '/event/subscribe/apply';
 
+  /// 消息搜索页
+  static const EventSearch = '/event/search';
+
   /// 文件在线预览页
   static const EventFilePreview = '/event/file/preview';
 

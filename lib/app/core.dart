@@ -39,6 +39,7 @@ class _CoreState extends State<Core> {
       initialRoute: RouterX.InitRoute,
       theme: ThemesX.global,
       title: AppMeta.name,
+      defaultTransition: Transition.cupertino,
     );
   }
 }

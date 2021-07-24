@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:uni_party/pages/auth/auth.dart';
 import 'package:uni_party/pages/chat/chat.dart';
 import 'package:uni_party/pages/event/event.dart';
+import 'package:uni_party/pages/event/search/search.dart';
 import 'package:uni_party/pages/home/home.dart';
 import 'package:uni_party/pages/helper/helper.dart';
 import 'package:uni_party/pages/profile/profile.dart';
@@ -143,6 +144,11 @@ final List<GetPage> routes = [
   GetPage(
     name: RoutesNamespace.EventFilePreview,
     page: () => EventFilePreviewPage(),
+    transition: Transition.cupertino,
+  ),
+  GetPage(
+    name: RoutesNamespace.EventSearch,
+    page: () => EventSearchPage(),
     transition: Transition.cupertino,
   ),
   GetPage(

@@ -17,24 +17,16 @@ class EventSubscribeRandomPage extends StatefulWidget {
 }
 
 class _EventSubscribeRandomPageState extends State<EventSubscribeRandomPage> {
-  bool isGet = false;
   int getCounter = 302;
   int commentCounter = 65;
 
   int files = 5;
 
   bool isCollect = false;
+  bool isJoin = true;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      setState(() {
-        isGet = true;
-        _autoGet();
-      });
-    });
-  }
+  String eid = '';
+  String title = '';
 
   @override
   Widget build(BuildContext context) {
@@ -48,126 +40,20 @@ class _EventSubscribeRandomPageState extends State<EventSubscribeRandomPage> {
       child: Column(
         children: [
           TopView(),
-          contentMetaInfoView(),
+          ContentMetaInfoWidget(
+            datetime: 'datetime',
+            watchCounter: 50,
+          ),
           mainContentView(),
-          bottomActionsView(),
+          _SubActionsView(
+            eid: eid,
+            title: title,
+            voteCounter: 50,
+            isJoin: isJoin,
+            isCollect: isCollect,
+          ),
         ],
       ),
-    );
-  }
-
-  Widget bottomActionsView() {
-    return PhysicalModel(
-      color: Colors.white,
-      elevation: 3,
-      child: Container(
-        alignment: Alignment.center,
-        height: kBottomNavigationBarHeight * 1.6,
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            imGetView(),
-            SizedBox(width: 16),
-            commentCounterView(),
-            SizedBox(width: 16),
-            fileNumberView(),
-            Spacer(),
-            collectBtn(),
-            shareEventBtn(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget fileNumberView() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        InkWell(
-          onTap: () {},
-          child: Tooltip(
-            message: '附件',
-            child: SvgPicture.asset(
-              IconImage.fujian,
-              width: 32,
-            ),
-          ),
-        ),
-        Text(commentCounter.toString()),
-      ],
-    );
-  }
-
-  Widget commentCounterView() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        InkWell(
-          onTap: () {},
-          child: Tooltip(
-            message: '评论',
-            child: SvgPicture.asset(
-              IconImage.xinxi,
-              width: 32,
-            ),
-          ),
-        ),
-        Text(files.toString()),
-      ],
-    );
-  }
-
-  Widget shareEventBtn() {
-    return IconButton(
-      icon: SvgPicture.asset(
-        IconImage.fenxiang,
-        width: 32,
-      ),
-      onPressed: () async {
-        await ShareX.text('data');
-      },
-      tooltip: '分享',
-    );
-  }
-
-  Widget collectBtn() {
-    return IconButton(
-      icon: SvgPicture.asset(
-        IconImage.bangong,
-        width: 32,
-        color: isCollect ? null : ColorsX.inactive,
-      ),
-      onPressed: _collectBtnClick,
-      tooltip: '收藏',
-    );
-  }
-
-  Future<void> _collectBtnClick() async {
-    setState(() {
-      isCollect = !isCollect;
-    });
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(isCollect ? '收藏成功' : '取消收藏成功'),
-        duration: Duration(seconds: 1),
-      ),
-    );
-  }
-
-  Future<void> _autoGet() async {}
-
-  Widget imGetView() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SvgPicture.asset(
-          IconImage.biaoqing,
-          width: 32,
-        ),
-        Text(getCounter.toString()),
-      ],
     );
   }
 
@@ -210,6 +96,97 @@ class _EventSubscribeRandomPageState extends State<EventSubscribeRandomPage> {
           RawChip(
             avatar: Icon(Icons.visibility_rounded),
             label: Text('32.k'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SubActionsView extends StatelessWidget {
+  const _SubActionsView({
+    Key? key,
+    required this.eid,
+    required this.title,
+    required this.voteCounter,
+    required this.isJoin,
+    required this.isCollect,
+  }) : super(key: key);
+
+  final String eid;
+  final String title;
+
+  final int voteCounter;
+
+  final bool isJoin;
+  final bool isCollect;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: PhysicalModel(
+        color: Colors.black,
+        elevation: 3,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          alignment: Alignment.center,
+          height: kBottomNavigationBarHeight,
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Theme(
+            data: ThemeData(
+              iconTheme: IconThemeData(
+                color: Colors.white,
+              ),
+            ),
+            child: mainView(),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget mainView() {
+    return Row(
+      children: [
+        voteCountView(),
+        Spacer(),
+        WatchWidget(isCollect: isCollect),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.message_rounded),
+          tooltip: '交流',
+        ),
+        IconButton(
+          icon: Icon(Icons.share_rounded),
+          onPressed: () async {
+            await ShareX.text('data');
+          },
+          tooltip: '分享',
+        ),
+      ],
+    );
+  }
+
+  Widget voteCountView() {
+    return Tooltip(
+      message: '投票人数',
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Icon(
+              Icons.people_alt_rounded,
+              color: isJoin ? ColorsX.pink : Colors.white,
+            ),
+          ),
+          Text(
+            voteCounter.toString(),
+            style: TextStyle(
+              color: isJoin ? ColorsX.pink : Colors.white,
+              fontSize: 16,
+            ),
           ),
         ],
       ),

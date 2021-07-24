@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:suit/suit.dart';
 
-import 'package:uni_party/components/rounded/rounded.dart';
-import 'package:uni_party/components/sheet/sheet.dart';
-import 'package:uni_party/components/snackbar/snackbar.dart';
-import 'package:uni_party/components/toast/toast.dart';
+import 'package:uni_party/logic/event/event.dart';
+import 'package:uni_party/logic/event/page.dart';
+
+import 'package:uni_party/widgets/rounded/rounded.dart';
+import 'package:uni_party/widgets/sheet/sheet.dart';
+import 'package:uni_party/widgets/snackbar/snackbar.dart';
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 
@@ -16,22 +18,24 @@ class NotifyCard extends StatefulWidget {
     Key? key,
     required this.uid,
     required this.eid,
+    required this.type,
     required this.username,
     required this.avatarURL,
     required this.datetime,
     required this.title,
     required this.isLiked,
-    required this.isCollected,
+    required this.isCollect,
   }) : super(key: key);
 
   final String uid;
   final String eid;
+  final EventPublishType type;
   final String username;
   final String avatarURL;
   final String datetime;
   final String title;
   final bool isLiked;
-  final bool isCollected;
+  final bool isCollect;
 
   @override
   _NotifyCardState createState() => _NotifyCardState();
@@ -39,20 +43,20 @@ class NotifyCard extends StatefulWidget {
 
 class _NotifyCardState extends State<NotifyCard> {
   late bool isLiked;
-  late bool isCollected;
+  late bool isCollect;
 
   @override
   void initState() {
     super.initState();
     isLiked = widget.isLiked;
-    isCollected = widget.isCollected;
+    isCollect = widget.isCollect;
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () => Get.toNamed(RoutesNamespace.EventSubscribeNotify),
+      onTap: () => Get.toNamed(EventTypePage.getPageByEnum(widget.type)!),
       child: Container(
         width: double.infinity,
         height: 61.8.vw,
@@ -104,16 +108,16 @@ class _NotifyCardState extends State<NotifyCard> {
         IconButton(
           onPressed: () {
             setState(() {
-              isCollected = !isCollected;
+              isCollect = !isCollect;
             });
-            SnackBarX.showRaw(context, isCollected ? '收藏成功' : '取消收藏');
+            SnackBarX.showRaw(context, isCollect ? '关注成功' : '取消关注');
           },
-          icon: isCollected
+          icon: isCollect
               ? Icon(
-                  Icons.savings_rounded,
+                  Icons.visibility_rounded,
                   color: ColorsX.pink,
                 )
-              : Icon(Icons.savings_outlined),
+              : Icon(Icons.visibility_outlined),
         ),
         IconButton(
           onPressed: () async {
@@ -175,7 +179,6 @@ class _NotifyCardState extends State<NotifyCard> {
     );
   }
 }
-
 
 enum _MoreOperate {
   share,

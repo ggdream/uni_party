@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uni_party/logic/event/event.dart';
 
 import 'package:uni_party/widgets/rounded/rounded.dart';
 import 'package:uni_party/widgets/sheet/sheet.dart';
@@ -50,6 +51,7 @@ class _EventPageState extends State<EventPage> {
         itemCount: EventMock.data.length,
         itemBuilder: (context, index) {
           return NotifyCard(
+            type: EventPublishType.values[EventMock.data[index]['type']],
             uid: EventMock.data[index]['uid'],
             eid: EventMock.data[index]['eid'],
             username: EventMock.data[index]['username'],
@@ -57,7 +59,7 @@ class _EventPageState extends State<EventPage> {
             datetime: EventMock.data[index]['time'],
             title: EventMock.data[index]['title'],
             isLiked: EventMock.data[index]['isLiked'],
-            isCollected: EventMock.data[index]['isCollected'],
+            isCollect: EventMock.data[index]['isCollect'],
           );
         },
       ),
@@ -71,7 +73,7 @@ class _EventPageState extends State<EventPage> {
       title: Text('消息'),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () => Get.toNamed(RoutesNamespace.EventSearch),
           icon: Icon(Icons.search_rounded),
         ),
         IconButton(

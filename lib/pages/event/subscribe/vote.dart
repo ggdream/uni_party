@@ -25,6 +25,9 @@ class _EventSubscribeVotePageState extends State<EventSubscribeVotePage> {
 
   bool isCollect = false;
 
+  String eid = '';
+  String title = '';
+
   late final int _allowedNumber;
   late final List<String> _options;
   late final List<bool> _myAnswer;
@@ -51,104 +54,20 @@ class _EventSubscribeVotePageState extends State<EventSubscribeVotePage> {
       child: Column(
         children: [
           TopView(),
-          contentMetaInfoView(),
+          ContentMetaInfoWidget(
+            datetime: '22:56',
+            watchCounter: 12,
+          ),
           mainContentView(),
-          bottomActionsView(),
+          _SubActionsView(
+            eid: eid,
+            title: title,
+            isVote: true,
+            isCollect: isCollect,
+            voteCounter: 20,
+          ),
         ],
       ),
-    );
-  }
-
-  Widget bottomActionsView() {
-    return PhysicalModel(
-      color: Colors.white,
-      elevation: 3,
-      child: Container(
-        alignment: Alignment.center,
-        height: kBottomNavigationBarHeight * 1.6,
-        padding: const EdgeInsets.symmetric(horizontal: 36),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            imGetView(),
-            SizedBox(width: 16),
-            commentCounterView(),
-            SizedBox(width: 16),
-            Spacer(),
-            collectBtn(),
-            shareEventBtn(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget commentCounterView() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        InkWell(
-          onTap: () {},
-          child: Tooltip(
-            message: '评论',
-            child: SvgPicture.asset(
-              IconImage.xinxi,
-              width: 32,
-            ),
-          ),
-        ),
-        Text(files.toString()),
-      ],
-    );
-  }
-
-  Widget shareEventBtn() {
-    return IconButton(
-      icon: SvgPicture.asset(
-        IconImage.fenxiang,
-        width: 32,
-      ),
-      onPressed: () async {
-        await ShareX.text('data');
-      },
-      tooltip: '分享',
-    );
-  }
-
-  Widget collectBtn() {
-    return IconButton(
-      icon: SvgPicture.asset(
-        IconImage.bangong,
-        width: 32,
-        color: isCollect ? null : ColorsX.inactive,
-      ),
-      onPressed: _collectBtnClick,
-      tooltip: '收藏',
-    );
-  }
-
-  Future<void> _collectBtnClick() async {
-    setState(() {
-      isCollect = !isCollect;
-    });
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(isCollect ? '收藏成功' : '取消收藏成功'),
-        duration: Duration(seconds: 1),
-      ),
-    );
-  }
-
-  Widget imGetView() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SvgPicture.asset(
-          IconImage.biaoqing,
-          width: 32,
-        ),
-        Text(getCounter.toString()),
-      ],
     );
   }
 
@@ -267,31 +186,92 @@ class _EventSubscribeVotePageState extends State<EventSubscribeVotePage> {
       },
     ));
   }
+}
 
-  Widget contentMetaInfoView() {
-    return Container(
-      width: double.infinity,
-      height: 48,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          RawChip(
-            backgroundColor: Colors.black,
-            avatar: Icon(
-              Icons.date_range_rounded,
-              color: Colors.white,
-            ),
-            label: Text(
-              '2021-06-27 12:43',
-              style: TextStyle(
+class _SubActionsView extends StatelessWidget {
+  const _SubActionsView({
+    Key? key,
+    required this.eid,
+    required this.title,
+    required this.voteCounter,
+    required this.isVote,
+    required this.isCollect,
+  }) : super(key: key);
+
+  final String eid;
+  final String title;
+
+  final int voteCounter;
+
+  final bool isVote;
+  final bool isCollect;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: PhysicalModel(
+        color: Colors.black,
+        elevation: 3,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          alignment: Alignment.center,
+          height: kBottomNavigationBarHeight,
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Theme(
+            data: ThemeData(
+              iconTheme: IconThemeData(
                 color: Colors.white,
               ),
             ),
+            child: mainView(),
           ),
-          RawChip(
-            avatar: Icon(Icons.visibility_rounded),
-            label: Text('32.k'),
+        ),
+      ),
+    );
+  }
+
+  Widget mainView() {
+    return Row(
+      children: [
+        voteCountView(),
+        Spacer(),
+        WatchWidget(isCollect: isCollect),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.message_rounded),
+          tooltip: '交流',
+        ),
+        IconButton(
+          icon: Icon(Icons.share_rounded),
+          onPressed: () async {
+            await ShareX.text('data');
+          },
+          tooltip: '分享',
+        ),
+      ],
+    );
+  }
+
+  Widget voteCountView() {
+    return Tooltip(
+      message: '投票人数',
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Icon(
+              Icons.people_alt_rounded,
+              color: isVote ? ColorsX.pink : Colors.white,
+            ),
+          ),
+          Text(
+            voteCounter.toString(),
+            style: TextStyle(
+              color: isVote ? ColorsX.pink : Colors.white,
+              fontSize: 16,
+            ),
           ),
         ],
       ),

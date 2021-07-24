@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:uni_party/router/router.dart';
-import 'package:uni_party/tools/device/device.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // 富文本显示组件
@@ -78,7 +77,7 @@ class _RichTextParser {
           ),
           recognizer: TapGestureRecognizer()
             ..onTap = () async {
-              if (DeviceType.isMobile) {
+              if (Platform.isAndroid || Platform.isIOS) {
                 await Get.toNamed(RoutesNamespace.WebViewThirdParty,
                     arguments: url);
               } else {
@@ -97,48 +96,8 @@ class _RichTextParser {
 
         span = WidgetSpan(
           child: url.startsWith('http')
-              ? Image.network(
-                  url,
-                  errorBuilder: (BuildContext context, Object exception,
-                      StackTrace? stackTrace) {
-                    return Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(showText),
-                          const Text(
-                            '图片不小心走丢了😢',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                )
-              : Image.file(
-                  File(url),
-                  errorBuilder: (BuildContext context, Object exception,
-                      StackTrace? stackTrace) {
-                    return Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(showText),
-                          const Text(
-                            '图片不小心走丢了😢',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+              ? networkImageView(url, showText)
+              : nativeImageView(url, showText),
         );
         _imagePointer++;
       } else if (v.isEmpty) {
@@ -151,6 +110,65 @@ class _RichTextParser {
     }
 
     return res;
+  }
+
+  Widget errorView(String showText) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(showText),
+          const Text(
+            '图片不小心走丢了😢',
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.red,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget nativeImageView(String url, String showText) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 24,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Image.file(
+          File(url),
+          errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return errorView(showText);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget networkImageView(String url, String showText) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 24,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Image.network(
+          url,
+          errorBuilder: (
+            BuildContext context,
+            Object exception,
+            StackTrace? stackTrace,
+          ) {
+            return errorView(showText);
+          },
+        ),
+      ),
+    );
   }
 
   List<InlineSpan> parse(Color color) {
