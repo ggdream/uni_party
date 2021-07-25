@@ -55,8 +55,8 @@ class TopView extends StatelessWidget {
 class ContentMetaInfoWidget extends StatelessWidget {
   const ContentMetaInfoWidget({
     Key? key,
-required    this.datetime,
-required    this.watchCounter,
+    required this.datetime,
+    required this.watchCounter,
   }) : super(key: key);
 
   final String datetime;
@@ -94,7 +94,6 @@ required    this.watchCounter,
     );
   }
 }
-
 
 class WatchWidget extends StatefulWidget {
   const WatchWidget({

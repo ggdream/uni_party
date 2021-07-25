@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:uni_party/widgets/rich_shower/rich_shower.dart';
 import 'package:uni_party/styles/styles.dart';
@@ -17,24 +16,22 @@ class EventSubscribeApplyPage extends StatefulWidget {
 }
 
 class _EventSubscribeApplyPageState extends State<EventSubscribeApplyPage> {
-  bool isGet = false;
   int getCounter = 302;
   int commentCounter = 65;
 
   int files = 5;
 
   bool isCollect = false;
+  bool isJoin = true;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      setState(() {
-        isGet = true;
-        _autoGet();
-      });
-    });
-  }
+  String eid = '';
+  String title = '';
+
+  int randomCounter = 2;
+  String deadline = '2021-07-05 13:40';
+  bool allowCancel = true;
+
+  bool isEnd = true;
 
   @override
   Widget build(BuildContext context) {
@@ -48,126 +45,32 @@ class _EventSubscribeApplyPageState extends State<EventSubscribeApplyPage> {
       child: Column(
         children: [
           TopView(),
-          contentMetaInfoView(),
+          ContentMetaInfoWidget(
+            datetime: 'datetime',
+            watchCounter: 50,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: RawChip(
+              label: Text(
+                isEnd ? '已截止参与报名' : '截止时间：$deadline',
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: Colors.black,
+            ),
+          ),
           mainContentView(),
-          bottomActionsView(),
+          _SubActionsView(
+            eid: eid,
+            title: title,
+            voteCounter: 50,
+            isJoin: isJoin,
+            isCollect: isCollect,
+            isEnd: false,
+            hasMe: false,
+          ),
         ],
       ),
-    );
-  }
-
-  Widget bottomActionsView() {
-    return PhysicalModel(
-      color: Colors.white,
-      elevation: 3,
-      child: Container(
-        alignment: Alignment.center,
-        height: kBottomNavigationBarHeight * 1.6,
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            imGetView(),
-            SizedBox(width: 16),
-            commentCounterView(),
-            SizedBox(width: 16),
-            fileNumberView(),
-            Spacer(),
-            collectBtn(),
-            shareEventBtn(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget fileNumberView() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        InkWell(
-          onTap: () {},
-          child: Tooltip(
-            message: '附件',
-            child: SvgPicture.asset(
-              IconImage.fujian,
-              width: 32,
-            ),
-          ),
-        ),
-        Text(commentCounter.toString()),
-      ],
-    );
-  }
-
-  Widget commentCounterView() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        InkWell(
-          onTap: () {},
-          child: Tooltip(
-            message: '评论',
-            child: SvgPicture.asset(
-              IconImage.xinxi,
-              width: 32,
-            ),
-          ),
-        ),
-        Text(files.toString()),
-      ],
-    );
-  }
-
-  Widget shareEventBtn() {
-    return IconButton(
-      icon: SvgPicture.asset(
-        IconImage.fenxiang,
-        width: 32,
-      ),
-      onPressed: () async {
-        await ShareX.text('data');
-      },
-      tooltip: '分享',
-    );
-  }
-
-  Widget collectBtn() {
-    return IconButton(
-      icon: SvgPicture.asset(
-        IconImage.bangong,
-        width: 32,
-        color: isCollect ? null : ColorsX.inactive,
-      ),
-      onPressed: _collectBtnClick,
-      tooltip: '收藏',
-    );
-  }
-
-  Future<void> _collectBtnClick() async {
-    setState(() {
-      isCollect = !isCollect;
-    });
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(isCollect ? '收藏成功' : '取消收藏成功'),
-        duration: Duration(seconds: 1),
-      ),
-    );
-  }
-
-  Future<void> _autoGet() async {}
-
-  Widget imGetView() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SvgPicture.asset(
-          IconImage.biaoqing,
-          width: 32,
-        ),
-        Text(getCounter.toString()),
-      ],
     );
   }
 
@@ -185,34 +88,159 @@ class _EventSubscribeApplyPageState extends State<EventSubscribeApplyPage> {
       ),
     );
   }
+}
 
-  Widget contentMetaInfoView() {
-    return Container(
-      width: double.infinity,
-      height: 48,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          RawChip(
-            backgroundColor: Colors.black,
-            avatar: Icon(
-              Icons.date_range_rounded,
-              color: Colors.white,
-            ),
-            label: Text(
-              '2021-06-27 12:43',
-              style: TextStyle(
+class _SubActionsView extends StatelessWidget {
+  const _SubActionsView({
+    Key? key,
+    required this.eid,
+    required this.title,
+    required this.voteCounter,
+    required this.isJoin,
+    required this.isCollect,
+    required this.isEnd,
+    required this.hasMe,
+  }) : super(key: key);
+
+  final String eid;
+  final String title;
+
+  final int voteCounter;
+
+  final bool isJoin;
+  final bool isCollect;
+
+  final bool isEnd;
+  final bool hasMe;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 4,
+      ),
+      child: PhysicalModel(
+        color: Colors.black,
+        elevation: 3,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          alignment: Alignment.center,
+          height: kBottomNavigationBarHeight,
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Theme(
+            data: ThemeData(
+              iconTheme: IconThemeData(
                 color: Colors.white,
               ),
             ),
+            child: mainView(),
           ),
-          RawChip(
-            avatar: Icon(Icons.visibility_rounded),
-            label: Text('32.k'),
-          ),
-        ],
+        ),
       ),
     );
+  }
+
+  Widget mainView() {
+    return Row(
+      children: [
+        isEnd
+            ? randomHasMeView()
+            : _JoinItWidget(
+                isJoin: isJoin,
+                currentCount: 2,
+                totalCount: 10,
+              ),
+        Spacer(),
+        WatchWidget(isCollect: isCollect),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.message_rounded),
+          tooltip: '交流',
+        ),
+        IconButton(
+          icon: Icon(Icons.share_rounded),
+          onPressed: () async {
+            await ShareX.text('data');
+          },
+          tooltip: '分享',
+        ),
+      ],
+    );
+  }
+
+  Widget randomHasMeView() {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 4,
+      ),
+      decoration: BoxDecoration(
+        color: hasMe ? ColorsX.green : Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(hasMe ? '上榜' : '落榜'),
+    );
+  }
+}
+
+class _JoinItWidget extends StatefulWidget {
+  const _JoinItWidget({
+    Key? key,
+    required this.isJoin,
+    required this.currentCount,
+    required this.totalCount,
+  }) : super(key: key);
+
+  final bool isJoin;
+  final int currentCount;
+  final int totalCount;
+
+  @override
+  _JoinItWidgetState createState() => _JoinItWidgetState();
+}
+
+class _JoinItWidgetState extends State<_JoinItWidget> {
+  late bool isJoin;
+  late int currentCount;
+  late final int totalCount;
+
+  @override
+  void initState() {
+    super.initState();
+    isJoin = widget.isJoin;
+    currentCount = widget.currentCount;
+    totalCount = widget.totalCount;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: '投票人数',
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: isJoin ? ColorsX.pink : Colors.white,
+            onPrimary: Colors.black,
+          ),
+          onPressed: () {
+            setState(() {
+              isJoin = !isJoin;
+              isJoin ? currentCount++ : currentCount--;
+            });
+          },
+          child: showBtnContentView(),
+        ),
+      ),
+    );
+  }
+
+  Widget showBtnContentView() {
+    final text = Text('取消  $currentCount/$totalCount',
+        style: TextStyle(color: Colors.white));
+    final text2 = Text('参加  $currentCount/$totalCount',
+        style: TextStyle(color: Colors.black));
+    return isJoin ? text : text2;
   }
 }

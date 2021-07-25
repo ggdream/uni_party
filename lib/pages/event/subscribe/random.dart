@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:uni_party/widgets/rich_shower/rich_shower.dart';
 import 'package:uni_party/styles/styles.dart';
@@ -28,6 +27,12 @@ class _EventSubscribeRandomPageState extends State<EventSubscribeRandomPage> {
   String eid = '';
   String title = '';
 
+  int randomCounter = 2;
+  String deadline = '2021-07-05 13:40';
+  bool allowCancel = true;
+
+  bool isEnd = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +49,16 @@ class _EventSubscribeRandomPageState extends State<EventSubscribeRandomPage> {
             datetime: 'datetime',
             watchCounter: 50,
           ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: RawChip(
+              label: Text(
+                isEnd ? '已截止参与抽签' : '截止时间：$deadline',
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: Colors.black,
+            ),
+          ),
           mainContentView(),
           _SubActionsView(
             eid: eid,
@@ -51,6 +66,8 @@ class _EventSubscribeRandomPageState extends State<EventSubscribeRandomPage> {
             voteCounter: 50,
             isJoin: isJoin,
             isCollect: isCollect,
+            isEnd: isEnd,
+            hasMe: false,
           ),
         ],
       ),
@@ -71,36 +88,6 @@ class _EventSubscribeRandomPageState extends State<EventSubscribeRandomPage> {
       ),
     );
   }
-
-  Widget contentMetaInfoView() {
-    return Container(
-      width: double.infinity,
-      height: 48,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          RawChip(
-            backgroundColor: Colors.black,
-            avatar: Icon(
-              Icons.date_range_rounded,
-              color: Colors.white,
-            ),
-            label: Text(
-              '2021-06-27 12:43',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
-          RawChip(
-            avatar: Icon(Icons.visibility_rounded),
-            label: Text('32.k'),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _SubActionsView extends StatelessWidget {
@@ -111,6 +98,8 @@ class _SubActionsView extends StatelessWidget {
     required this.voteCounter,
     required this.isJoin,
     required this.isCollect,
+    required this.isEnd,
+    required this.hasMe,
   }) : super(key: key);
 
   final String eid;
@@ -121,10 +110,16 @@ class _SubActionsView extends StatelessWidget {
   final bool isJoin;
   final bool isCollect;
 
+  final bool isEnd;
+  final bool hasMe;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 4,
+      ),
       child: PhysicalModel(
         color: Colors.black,
         elevation: 3,
@@ -149,7 +144,13 @@ class _SubActionsView extends StatelessWidget {
   Widget mainView() {
     return Row(
       children: [
-        voteCountView(),
+        isEnd
+            ? randomHasMeView()
+            : _JoinItWidget(
+                isJoin: isJoin,
+                currentCount: 2,
+                totalCount: 10,
+              ),
         Spacer(),
         WatchWidget(isCollect: isCollect),
         IconButton(
@@ -168,28 +169,78 @@ class _SubActionsView extends StatelessWidget {
     );
   }
 
-  Widget voteCountView() {
+  Widget randomHasMeView() {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 4,
+      ),
+      decoration: BoxDecoration(
+        color: hasMe ? ColorsX.green : Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(hasMe ? '上榜' : '落榜'),
+    );
+  }
+}
+
+class _JoinItWidget extends StatefulWidget {
+  const _JoinItWidget({
+    Key? key,
+    required this.isJoin,
+    required this.currentCount,
+    required this.totalCount,
+  }) : super(key: key);
+
+  final bool isJoin;
+  final int currentCount;
+  final int totalCount;
+
+  @override
+  _JoinItWidgetState createState() => _JoinItWidgetState();
+}
+
+class _JoinItWidgetState extends State<_JoinItWidget> {
+  late bool isJoin;
+  late int currentCount;
+  late final int totalCount;
+
+  @override
+  void initState() {
+    super.initState();
+    isJoin = widget.isJoin;
+    currentCount = widget.currentCount;
+    totalCount = widget.totalCount;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Tooltip(
       message: '投票人数',
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Icon(
-              Icons.people_alt_rounded,
-              color: isJoin ? ColorsX.pink : Colors.white,
-            ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: isJoin ? ColorsX.pink : Colors.white,
+            onPrimary: Colors.black,
           ),
-          Text(
-            voteCounter.toString(),
-            style: TextStyle(
-              color: isJoin ? ColorsX.pink : Colors.white,
-              fontSize: 16,
-            ),
-          ),
-        ],
+          onPressed: () {
+            setState(() {
+              isJoin = !isJoin;
+              isJoin ? currentCount++ : currentCount--;
+            });
+          },
+          child: showBtnContentView(),
+        ),
       ),
     );
+  }
+
+  Widget showBtnContentView() {
+    final text = Text('取消  $currentCount/$totalCount',
+        style: TextStyle(color: Colors.white));
+    final text2 = Text('参加  $currentCount/$totalCount',
+        style: TextStyle(color: Colors.black));
+    return isJoin ? text : text2;
   }
 }

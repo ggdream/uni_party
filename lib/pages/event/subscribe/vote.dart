@@ -28,10 +28,13 @@ class _EventSubscribeVotePageState extends State<EventSubscribeVotePage> {
   String eid = '';
   String title = '';
 
+  bool isJoin = true;
+
   late final int _allowedNumber;
   late final List<String> _options;
   late final List<bool> _myAnswer;
   int _myAnswerCounter = 0;
+  String deadline = '2021-02-25 13:33';
 
   @override
   void initState() {
@@ -39,7 +42,8 @@ class _EventSubscribeVotePageState extends State<EventSubscribeVotePage> {
 
     _allowedNumber = 1;
     _options = ['你是男生吗', '你是大学生吗', '你是大学生吗2'];
-    _myAnswer = List.generate(_options.length, (index) => false);
+    // _myAnswer = List.generate(_options.length, (index) => false);
+    _myAnswer = [true, false, true];
   }
 
   @override
@@ -115,14 +119,72 @@ class _EventSubscribeVotePageState extends State<EventSubscribeVotePage> {
       elevation: 3,
       child: Container(
         margin: const EdgeInsets.all(8),
-        child: Column(
-          children: [
-            voteChipsView(),
-            SizedBox(height: 24),
-            voteSubmitBtn(),
-          ],
-        ),
+        child: isJoin ? voteJoinView() : voteUnjoinView(),
       ),
+    );
+  }
+
+  Widget voteUnjoinView() {
+    return Column(
+      children: [
+        voteChipsView(),
+        SizedBox(height: 24),
+        deadlineView(),
+        SizedBox(height: 8),
+        voteSubmitBtn(),
+      ],
+    );
+  }
+
+  Widget deadlineView() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [Text('截止时间：$deadline')],
+    );
+  }
+
+  Widget voteJoinView() {
+    return Column(
+      children: [
+        Column(
+            children: List.generate(
+          _options.length,
+          (index) {
+            return ListTile(
+              leading: CircleAvatar(
+                backgroundColor: ColorsX.green,
+                child: Text(
+                  (index + 1).toString(),
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              title: Text(_options[index]),
+              subtitle: ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: LinearProgressIndicator(
+                  value: 0.8,
+                  minHeight: 8,
+                  color: Colors.black87,
+                  backgroundColor: ColorsX.green,
+                ),
+              ),
+              trailing: _myAnswer[index]
+                  ? Icon(
+                      Icons.mark_email_read_rounded,
+                      color: ColorsX.pink,
+                    )
+                  : SizedBox(
+                      width: 24,
+                    ),
+            );
+          },
+        )),
+        SizedBox(height: 12),
+        deadlineView(),
+        SizedBox(height: 8),
+      ],
     );
   }
 
