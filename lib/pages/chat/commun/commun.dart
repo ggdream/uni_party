@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uni_party/logic/chat/chat.dart';
 
 import 'package:uni_party/widgets/button/button.dart';
 import 'package:uni_party/widgets/sheet/sheet.dart';
@@ -23,6 +24,8 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
   final _args = Get.arguments as Chat2CommunRouteModel;
 
   final List<ChatBubbleWidget> _chatMsgs = [];
+
+  final _controller = Get.find<ChatController>();
 
   @override
   void initState() {
@@ -53,11 +56,12 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-            // image: DecorationImage(
-            //   image: const NetworkImage('http://qvgbcgfc6.hn-bkt.clouddn.com/image/355.jpg'),
-            //   fit: BoxFit.cover,
-            // ),
-            ),
+          image: DecorationImage(
+            image: const NetworkImage(
+                'http://qvgbcgfc6.hn-bkt.clouddn.com/image/355.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: ListView(
           controller: _scrollController,
           children: _chatMsgs,
@@ -102,6 +106,7 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
       text: text,
       textDirection: TextDirection.rtl,
     );
+    _controller.send(text);
     setState(() {
       _chatMsgs.add(msgWidget);
     });

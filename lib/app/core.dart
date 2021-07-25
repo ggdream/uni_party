@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:uni_party/global/global.dart';
+import 'package:uni_party/logic/chat/chat.dart';
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 import 'package:uni_party/tools/i18n/i18n.dart';
@@ -23,6 +24,7 @@ class _CoreState extends State<Core> {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       initializeLate();
+      Get.put(ChatController());
     });
   }
 
