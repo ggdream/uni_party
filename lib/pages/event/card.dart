@@ -59,7 +59,7 @@ class _NotifyCardState extends State<NotifyCard> {
       onTap: () => Get.toNamed(EventTypePage.getPageByEnum(widget.type)!),
       child: Container(
         width: double.infinity,
-        height: 61.8.vw,
+        height: 62.vw,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
         child: PhysicalModel(
           child: Padding(
@@ -79,7 +79,7 @@ class _NotifyCardState extends State<NotifyCard> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         topMetaInfo(),
-        SizedBox(height: 2),
+        SizedBox(height: 8),
         centerContent(),
         Spacer(),
         bottomActions(),
@@ -135,7 +135,7 @@ class _NotifyCardState extends State<NotifyCard> {
   Widget centerContent() {
     return Text(
       widget.title,
-      maxLines: 4,
+      maxLines: 3,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(fontSize: 16),
     );
