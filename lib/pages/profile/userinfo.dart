@@ -18,19 +18,16 @@ class UserInfoView extends StatefulWidget {
 class _UserInfoViewState extends State<UserInfoView> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: PhysicalModel(
-        borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
-        elevation: 3,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 8,
-            vertical: 12,
-          ),
-          child: mainView(),
+    return PhysicalModel(
+      borderRadius: BorderRadius.circular(8),
+      color: Colors.white,
+      elevation: 3,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 12,
         ),
+        child: mainView(),
       ),
     );
   }

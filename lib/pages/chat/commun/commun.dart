@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uni_party/logic/chat/chat.dart';
 
+import 'package:uni_party/logic/chat/commun.dart';
 import 'package:uni_party/widgets/button/button.dart';
 import 'package:uni_party/widgets/sheet/sheet.dart';
 import 'package:uni_party/models/models.dart';
@@ -23,13 +25,13 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
 
   final _args = Get.arguments as Chat2CommunRouteModel;
 
-  final List<ChatBubbleWidget> _chatMsgs = [];
-
-  final _controller = Get.find<ChatController>();
+  late final CommunController _controller;
 
   @override
   void initState() {
     super.initState();
+    _controller = Get.put(CommunController(id: _args.id));
+
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
     });
@@ -62,11 +64,22 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
             fit: BoxFit.cover,
           ),
         ),
-        child: ListView(
-          controller: _scrollController,
-          children: _chatMsgs,
-          physics: const BouncingScrollPhysics(),
-        ),
+        child: Obx(() {
+          final data = _controller.data;
+          return ListView(
+            controller: _scrollController,
+            children: List.generate(data.length, (index) {
+              return ChatBubbleWidget(
+                avatar: 'http://qvgbcgfc6.hn-bkt.clouddn.com/image/355.jpg',
+                text: data[index].message!,
+                textDirection: data[index].fromUID == 2
+                    ? TextDirection.rtl
+                    : TextDirection.ltr,
+              );
+            }),
+            physics: ScrollX.physics,
+          );
+        }),
       ),
     );
   }
@@ -101,15 +114,8 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
     final text = _editingController.text;
     if (text == '') return; // 不允许发送空消息
 
-    final msgWidget = ChatBubbleWidget(
-      avatar: 'http://qvgbcgfc6.hn-bkt.clouddn.com/image/102.jpg',
-      text: text,
-      textDirection: TextDirection.rtl,
-    );
+    // {"type":0,"from_uid":1,"to_uid":2,"message":"搜索","datetime":550,"version":"v1","signature":"首发式地方打"}
     _controller.send(text);
-    setState(() {
-      _chatMsgs.add(msgWidget);
-    });
     _scrollController.jumpTo(_scrollController.position.maxScrollExtent + 64);
     _editingController.clear();
   }
@@ -164,7 +170,7 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
     return AppBar(
       elevation: 0,
       leading: BackBtn(),
-      title: Text(_args.uname),
+      title: Text(_args.username),
       centerTitle: true,
       actions: [
         IconButton(

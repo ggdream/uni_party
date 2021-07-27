@@ -25,10 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
             // 顶部操作栏
             const _ActionsView(),
             SizedBox(height: 8),
-            // 用户信息
-            const UserInfoView(),
-            SizedBox(height: 36),
-            // 视频、消息 发布-收藏 详情跳转
+            // 用户信息、视频、消息 发布-收藏 详情跳转
             linksView(),
           ],
         ),
@@ -43,6 +40,9 @@ class _ProfilePageState extends State<ProfilePage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              // 用户信息
+              const UserInfoView(),
+              SizedBox(height: 36),
               ListTileLinkWidget(
                 icon: IconImage.yingshi,
                 title: '视频',

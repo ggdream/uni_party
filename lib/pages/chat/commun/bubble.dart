@@ -32,16 +32,18 @@ class ChatBubbleWidget extends StatelessWidget {
             size: 40,
           ),
           SizedBox(width: 12),
-          Container(
-            padding: const EdgeInsets.all(8),
-            constraints: BoxConstraints(
-              maxWidth: 100.vw - 12 * 2 - 12 - 40,
+          Flexible(
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 12,
+              ),
+              decoration: BoxDecoration(
+                color: ColorsX.bluePurple,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: SelectableText(text),
             ),
-            decoration: BoxDecoration(
-              color: ColorsX.bluePurple,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: SelectableText(text),
           ),
         ],
       ),

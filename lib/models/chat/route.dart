@@ -1,7 +1,9 @@
 class Chat2CommunRouteModel {
-  final String uname;
+  final dynamic id;
+  final String username;
 
   Chat2CommunRouteModel({
-    required this.uname,
+    required this.id,
+    required this.username,
   });
 }

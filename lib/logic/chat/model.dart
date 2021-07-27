@@ -1,116 +1,127 @@
-import 'dart:convert';
+// import 'dart:convert';
 
-enum ChatType {
-  text,
+// enum ChatType {
+//   text,
 
-  image,
-  audio,
-  video,
+//   image,
+//   audio,
+//   video,
 
-  fullSync,
-}
+//   fullSync,
+// }
 
-class ChatWrapper {
-  ChatWrapper({
-    required this.type,
-    required this.data,
-    required this.time,
-    required this.version,
-    required this.signature,
-  });
+// class ChatWrapper {
+//   ChatWrapper({
+//     required this.type,
+//     required this.data,
+//     // required this.time,
+//     // required this.version,
+//     // required this.signature,
+//   });
 
-  final ChatType type;
-  final dynamic data;
-  final int time;
-  final String version;
-  final String signature;
-}
+//   final ChatType type;
+//   final dynamic data;
+//   // final int time;
+//   // final String version;
+//   // final String signature;
 
-/// 普通消息
-class TextMsg {
-  TextMsg({
-    required this.uid,
-    required this.text,
-    this.gid,
-  });
+//   ChatWrapper.fromMap(Map<String, dynamic> json)
+//       : type = ChatType.values[json['type']],
+//         data = json['data'];
 
-  final int uid;
-  final String text;
+//   Map<String, dynamic> toMap() {
+//     final value = Map<String, dynamic>();
+//     value['type'] = type.index;
+//     value['data'] = data;
+//     return value;
+//   }
+// }
 
-  final String? gid; // 群号
+// /// 普通消息
+// class TextMsg {
+//   TextMsg({
+//     required this.uid,
+//     required this.text,
+//     this.gid,
+//   });
 
-  TextMsg.fromMap(Map<String, dynamic> json)
-      : uid = json['uid'],
-        gid = json['gid'],
-        text = json['text'];
+//   final int uid;
+//   final String text;
 
-  Map<String, dynamic> toMap() {
-    final data = Map<String, dynamic>();
-    data['uid'] = uid;
-    data['gid'] = gid;
-    data['text'] = text;
-    return data;
-  }
-}
+//   final String? gid; // 群号
 
-/// 二进制文件地址消息
-class BinaryMsg {
-  BinaryMsg({
-    required this.uid,
-    required this.url,
-    this.gid,
-  });
+//   TextMsg.fromMap(Map<String, dynamic> json)
+//       : uid = json['uid'],
+//         gid = json['gid'],
+//         text = json['text'];
 
-  final int uid;
-  final String url;
+//   Map<String, dynamic> toMap() {
+//     final data = Map<String, dynamic>();
+//     data['uid'] = uid;
+//     data['gid'] = gid;
+//     data['text'] = text;
+//     return data;
+//   }
+// }
 
-  final String? gid; // 群号
+// /// 二进制文件地址消息
+// class BinaryMsg {
+//   BinaryMsg({
+//     required this.uid,
+//     required this.url,
+//     this.gid,
+//   });
 
-  BinaryMsg.fromMap(Map<String, dynamic> json)
-      : uid = json['uid'],
-        gid = json['gid'],
-        url = json['url'];
+//   final int uid;
+//   final String url;
 
-  Map<String, dynamic> toMap() {
-    final data = Map<String, dynamic>();
-    data['uid'] = uid;
-    data['gid'] = gid;
-    data['url'] = url;
-    return data;
-  }
-}
+//   final String? gid; // 群号
 
-class _SyncMsg {
-  _SyncMsg({
-    required this.type,
-    required this.data,
-    required this.time,
-  });
+//   BinaryMsg.fromMap(Map<String, dynamic> json)
+//       : uid = json['uid'],
+//         gid = json['gid'],
+//         url = json['url'];
 
-  final ChatType type;
-  final dynamic data;
-  final int time;
+//   Map<String, dynamic> toMap() {
+//     final data = Map<String, dynamic>();
+//     data['uid'] = uid;
+//     data['gid'] = gid;
+//     data['url'] = url;
+//     return data;
+//   }
+// }
 
-  _SyncMsg.fromMap(Map<String, dynamic> json)
-      : type = ChatType.values[json['type']],
-        data = json['data'],
-        time = json['time'];
-}
+// class _SyncMsg {
+//   _SyncMsg({
+//     required this.type,
+//     required this.data,
+//     required this.time,
+//   });
 
-class SyncMsg {
-  SyncMsg({
-    required this.messages,
-  });
+//   final ChatType type;
+//   final dynamic data;
+//   final int time;
 
-  late final List<_SyncMsg> messages;
+//   _SyncMsg.fromMap(Map<String, dynamic> json)
+//       : type = ChatType.values[json['type']],
+//         data = json['data'],
+//         time = json['time'];
+// }
 
-  SyncMsg.fromMap(List<dynamic> _data) {
-    for (var item in _data) {
-      late Map<String, dynamic> res;
-      try {
-        res = json.decode(item);
-      } catch (e) {}
-      messages.add(_SyncMsg.fromMap(res));
-    }
-  }
-}
+// class SyncMsg {
+//   SyncMsg({
+//     required this.messages,
+//   });
+
+//   late final List<_SyncMsg> messages;
+
+//   SyncMsg.fromMap(List<dynamic> _data) {
+//     for (var item in _data) {
+//       late Map<String, dynamic> res;
+//       try {
+//         res = json.decode(item);
+//       } catch (e) {}
+//       messages.add(_SyncMsg.fromMap(res));
+//     }
+//   }
+// }
