@@ -155,41 +155,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.7.3"
-  dia:
-    dependency: "direct dev"
-    description:
-      name: dia
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.3"
-  dia_body:
-    dependency: "direct dev"
-    description:
-      name: dia_body
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.2"
-  dia_cors:
-    dependency: "direct dev"
-    description:
-      name: dia_cors
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.1"
-  dia_router:
-    dependency: "direct dev"
-    description:
-      name: dia_router
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.6"
-  dia_static:
-    dependency: "direct dev"
-    description:
-      name: dia_static
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.1"
   dio:
     dependency: "direct main"
     description:
@@ -211,13 +176,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.3"
-  event_bus:
-    dependency: "direct main"
-    description:
-      name: event_bus
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.0"
   excel:
     dependency: "direct main"
     description:
@@ -511,13 +469,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.1"
-  path_to_regexp:
-    dependency: transitive
-    description:
-      name: path_to_regexp
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.4.0"
   pedantic:
     dependency: transitive
     description:
