@@ -47,6 +47,7 @@ class ChatWrapper {
     required this.datetime,
     required this.version,
     required this.signature,
+    this.mid,
     this.toUID,
     this.groupID,
     this.message,
@@ -64,6 +65,7 @@ class ChatWrapper {
   final String? url;
   final dynamic others;
 
+  final String? mid;
   final int datetime;
   final String version;
   final String signature;
@@ -77,6 +79,7 @@ class ChatWrapper {
         message = json['message'],
         url = json['url'],
         others = json['others'],
+        mid = json['mid'],
         datetime = json['datetime'],
         version = json['version'],
         signature = json['signature'];
