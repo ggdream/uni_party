@@ -59,8 +59,7 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: const NetworkImage(
-                'http://qvgbcgfc6.hn-bkt.clouddn.com/image/355.jpg'),
+            image: const NetworkImage('https://www.mocas.icu/image/355.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -70,7 +69,7 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
             controller: _scrollController,
             children: List.generate(data.length, (index) {
               return ChatBubbleWidget(
-                avatar: 'http://qvgbcgfc6.hn-bkt.clouddn.com/image/355.jpg',
+                avatar: 'https://www.mocas.icu/image/355.jpg',
                 text: data[index].message!,
                 textDirection: data[index].fromUID == 2
                     ? TextDirection.rtl

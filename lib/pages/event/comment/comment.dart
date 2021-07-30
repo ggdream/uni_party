@@ -19,11 +19,11 @@ class EventCommentPage extends StatelessWidget {
         children: [
           _CommentCardWidget(
             text: '乘，蒙了，不是动词吗？惊了',
-            avatar: 'http://qvgbcgfc6.hn-bkt.clouddn.com/image/952.jpg',
+            avatar: 'https://www.mocas.icu/image/952.jpg',
             uname: '沙卡拉卡',
           ),
           _CommentCardWidget(
-              avatar: 'http://qvgbcgfc6.hn-bkt.clouddn.com/image/777.jpg',
+              avatar: 'https://www.mocas.icu/image/777.jpg',
               uname: '光影和你',
               text:
                   '一乘 【yī shèng 】一乘，词语，意为：物之四数；表数量，用于马、车、轿子等；方六里为一乘之地；佛教语，谓引导教化一切众生成佛的唯一方法或途径。《法华经》首倡此说。乘，指车乘，比喻能载人到达涅槃境界。《法华经·方便品》：“十方佛土之中，唯有一乘法，无二亦无三，除佛方便说。” 唐 玄奘 《谢敕赉经序启》：“搜扬三藏，尽龙宫之所储；研究一乘，穷 鷲岭 之遗旨。” 唐 白居易 《爱咏诗》：“辞章讽咏成千首，心行归依向一乘。”我国佛教宗派如 华严宗 等对此还有一些说法。参见“ 一乘显性教 ”。'),

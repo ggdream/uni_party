@@ -66,11 +66,10 @@ flutter_icons:
   ios: true
   remove_alpha_ios: true
 
-# flutter pub run flutter_native_splash:create
 flutter_native_splash:
-  color: '#42a5f5'
+  color: '#ffffff'
   image: assets/icons/logo/logo.png
-  #fullscreen: true
+  fullscreen: true
 
 
 flutter:

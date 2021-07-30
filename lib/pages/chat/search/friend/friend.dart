@@ -25,7 +25,7 @@ class _ChatSearchFriendPageState extends State<ChatSearchFriendPage> {
         itemBuilder: (context, index) {
           return ListTile(
             leading: RoundedAvatar.network(
-              'http://qvgbcgfc6.hn-bkt.clouddn.com/image/126.jpg',
+              'https://www.mocas.icu/image/126.jpg',
               size: 42,
             ),
             title: Text('科罗克娜'),

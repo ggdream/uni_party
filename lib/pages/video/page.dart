@@ -21,10 +21,10 @@ class _VideoPageState extends State<VideoPage> {
   final FijkPlayer player = FijkPlayer()..setLoop(0);
 
   final res = [
-    'http://qvgbcgfc6.hn-bkt.clouddn.com/test.mp4',
-    'http://qvgbcgfc6.hn-bkt.clouddn.com/test.mp4',
-    'http://qvgbcgfc6.hn-bkt.clouddn.com/test.mp4',
-    'http://qvgbcgfc6.hn-bkt.clouddn.com/test.mp4',
+    'https://www.mocas.icu/test.mp4',
+    'https://www.mocas.icu/test.mp4',
+    'https://www.mocas.icu/test.mp4',
+    'https://www.mocas.icu/test.mp4',
   ];
 
   @override
@@ -50,8 +50,7 @@ class _VideoPageState extends State<VideoPage> {
           FijkView(
             player: player,
             color: ColorsX.bluePurple,
-            cover: NetworkImage(
-                'http://qvgbcgfc6.hn-bkt.clouddn.com/image/375.jpg'),
+            cover: NetworkImage('https://www.mocas.icu/image/375.jpg'),
           ),
           InkWell(
             onTap: () async {
@@ -151,7 +150,7 @@ class _VideoPageState extends State<VideoPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           RoundedAvatar.network(
-            'http://qvgbcgfc6.hn-bkt.clouddn.com/image/102.jpg',
+            'https://www.mocas.icu/image/102.jpg',
             size: 52,
           ),
           SizedBox(height: 40),
