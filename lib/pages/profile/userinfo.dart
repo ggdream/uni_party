@@ -18,16 +18,16 @@ class UserInfoView extends StatefulWidget {
 class _UserInfoViewState extends State<UserInfoView> {
   @override
   Widget build(BuildContext context) {
-    return PhysicalModel(
-      borderRadius: BorderRadius.circular(8),
-      color: Colors.white,
-      elevation: 3,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 8,
-          vertical: 12,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: PhysicalModel(
+        borderRadius: BorderRadius.circular(8),
+        color: Colors.white,
+        elevation: 3,
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: mainView(),
         ),
-        child: mainView(),
       ),
     );
   }
@@ -56,7 +56,7 @@ class _UserInfoViewState extends State<UserInfoView> {
       children: [
         RoundedAvatar.network(
           'https://www.mocas.icu/image/656.jpg',
-          size: 72,
+          size: 48,
         ),
         SizedBox(width: 16),
         userMottoView(),

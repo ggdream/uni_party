@@ -1,6 +1,6 @@
 .PHONY: android
 android:
-	@flutter build apk
+	@flutter build apk --target-platform android-arm64 --split-per-abi
 
 .PHONY: icon
 icon:

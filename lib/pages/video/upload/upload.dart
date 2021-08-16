@@ -2,6 +2,8 @@ import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:uni_party/widgets/button/button.dart';
+
 class VideoUploadPage extends StatefulWidget {
   const VideoUploadPage({Key? key}) : super(key: key);
 
@@ -113,7 +115,7 @@ class _VideoUploadPageState extends State<VideoUploadPage> {
   AppBar appBar() {
     return AppBar(
       backgroundColor: Colors.black,
-      leading: BackButton(
+      leading: BackBtn(
         color: Colors.white,
       ),
       title: Text(

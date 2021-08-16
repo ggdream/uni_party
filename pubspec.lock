@@ -244,13 +244,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.2"
-  flutter_filereader:
-    dependency: "direct main"
-    description:
-      path: "lib/plugins/flutter_filereader"
-      relative: true
-    source: path
-    version: "3.0.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -277,6 +270,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_markdown:
+    dependency: "direct main"
+    description:
+      name: flutter_markdown
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.6.4"
   flutter_native_splash:
     dependency: "direct dev"
     description:
@@ -284,6 +284,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.2.0"
+  flutter_net_captcha:
+    dependency: "direct main"
+    description:
+      name: flutter_net_captcha
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -328,7 +335,7 @@ packages:
       name: get
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.4"
+    version: "4.3.8"
   http:
     dependency: transitive
     description:
@@ -378,6 +385,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.0.1"
+  markdown:
+    dependency: "direct main"
+    description:
+      name: markdown
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.0.0"
   matcher:
     dependency: transitive
     description:
@@ -525,13 +539,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.2"
-  preset_images:
-    dependency: "direct main"
-    description:
-      path: "lib/plugins/preset_images"
-      relative: true
-    source: path
-    version: "1.0.0"
   process:
     dependency: transitive
     description:

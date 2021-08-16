@@ -7,6 +7,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:uni_party/global/global.dart';
 import 'package:uni_party/tools/explorer/explorer.dart';
 import 'package:uni_party/tools/sharex/sharex.dart';
+import 'package:uni_party/widgets/button/button.dart';
 
 class WebViewThridPartyPage extends StatefulWidget {
   const WebViewThridPartyPage({
@@ -18,7 +19,7 @@ class WebViewThridPartyPage extends StatefulWidget {
 }
 
 class _WebViewThridPartyPageState extends State<WebViewThridPartyPage> {
-  final String _title = Get.arguments;
+  final params = Get.parameters;
 
   @override
   void initState() {
@@ -36,7 +37,7 @@ class _WebViewThridPartyPageState extends State<WebViewThridPartyPage> {
 
   Widget bodyView() {
     return WebView(
-      initialUrl: _title,
+      initialUrl: params['url'],
       javascriptMode: JavascriptMode.unrestricted,
       userAgent: NetworkConfig.webViewUserAgent,
     );
@@ -44,20 +45,20 @@ class _WebViewThridPartyPageState extends State<WebViewThridPartyPage> {
 
   AppBar appBar() {
     return AppBar(
-      leading: BackButton(),
-      title: Text(_title),
+      leading: BackBtn(),
+      title: Text(params['label']!),
       actions: [
         IconButton(
           tooltip: '分享链接',
           onPressed: () async {
-            await ShareX.text(_title);
+            await ShareX.text(params['url']!);
           },
           icon: Icon(Icons.share_rounded),
         ),
         IconButton(
           tooltip: '在浏览器中打开',
           onPressed: () async {
-            await Explorer.toLaunch(_title);
+            await Explorer.toLaunch(params['url']!);
           },
           icon: Icon(Icons.open_in_browser_rounded),
         ),

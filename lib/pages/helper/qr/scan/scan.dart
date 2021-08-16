@@ -5,6 +5,7 @@ import 'package:scan/scan.dart';
 
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
+import 'package:uni_party/widgets/button/button.dart';
 
 export 'text.dart';
 
@@ -31,7 +32,7 @@ class QrScanPage extends StatelessWidget {
               alignment: Alignment.topLeft,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: BackButton(color: ColorsX.blueLight2),
+                child: BackBtn(color: ColorsX.blueLight2),
               ),
             ),
             moreActionsView(),
@@ -83,7 +84,10 @@ class QrScanPage extends StatelessWidget {
   Future<void> _onCapture(String value) async {
     if (value.startsWith('http')) {
       // 如果是网络地址，就用Webview打开（scan包只支持移动端，所以只考虑移动端）
-      await Get.toNamed(RoutesNamespace.WebViewThirdParty, arguments: value);
+      await Get.toNamed(
+        RoutesNamespace.WebViewThirdParty,
+        parameters: {'url': value, 'label': value},
+      );
     } else if (value == 'uni_party') {
       // 自己的逻辑
     } else {

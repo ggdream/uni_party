@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uni_party/widgets/button/button.dart';
 
 import 'package:uni_party/widgets/rounded/rounded.dart';
 import 'package:uni_party/styles/styles.dart';
@@ -150,7 +151,7 @@ class _ProfileInfoBrowsePageState extends State<ProfileInfoBrowsePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        BackButton(),
+        BackBtn(),
         _MoreOperatesBtn(),
       ],
     );

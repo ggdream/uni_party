@@ -21,7 +21,7 @@ class ListTileLinkWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.all(8),
       child: PhysicalModel(
         borderRadius: BorderRadius.circular(16),
         color: Colors.white,

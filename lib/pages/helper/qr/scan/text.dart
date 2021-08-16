@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:uni_party/tools/sharex/sharex.dart';
+import 'package:uni_party/widgets/button/button.dart';
 
 /// 显示可选中的文本的页面，支持返回、分享
 class HelperShowTextPage extends StatelessWidget {
@@ -24,7 +25,7 @@ class HelperShowTextPage extends StatelessWidget {
 
   AppBar appBar() {
     return AppBar(
-      leading: BackButton(),
+      leading: BackBtn(),
       title: Text('扫描结果'),
       centerTitle: true,
       actions: [

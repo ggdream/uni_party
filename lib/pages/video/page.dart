@@ -14,10 +14,10 @@ class VideoPage extends StatefulWidget {
 
 class _VideoPageState extends State<VideoPage> {
   final res = [
-    'https://www.mocas.icu/beauty/1.mp4',
-    'https://www.mocas.icu/beauty/2.mp4',
-    'https://www.mocas.icu/beauty/3.mp4',
-    'https://www.mocas.icu/beauty/4.mp4',
+    // 'https://www.mocas.icu/beauty/1.mp4',
+    // 'https://www.mocas.icu/beauty/2.mp4',
+    // 'https://www.mocas.icu/beauty/3.mp4',
+    // 'https://www.mocas.icu/beauty/4.mp4',
   ];
   @override
   Widget build(BuildContext context) {
