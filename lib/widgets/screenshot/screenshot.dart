@@ -2,12 +2,9 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:uni_party/tools/device/device.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/rendering.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:images_picker/images_picker.dart';
 
 class ScreenShot extends StatelessWidget {
   final Widget child;
@@ -48,27 +45,11 @@ class ShotController {
     return byteData!.buffer.asUint8List();
   }
 
-  Future<String> _save2Gallery(Uint8List data, String name) async {
-    String location = '';
-
-    if (DeviceType.isMobile) {
-      var result = (await ImageGallerySaver.saveImage(data, name: name));
-      if (result.isSuccess as bool) {
-        location = result.filePath;
-      }
-    } else {
-      var dir = await getDownloadsDirectory();
-      if (dir == null) throw 'can\'t find downloads directory';
-
-      File file = File(join(dir.path, name));
-      if (await file.exists()) {
-        await file.delete();
-      }
-      await file.writeAsBytes(data, flush: true);
-      location = join(dir.path, name);
-    }
-
-    return location;
+  Future<bool> _save2Gallery(Uint8List data, String name) async {
+    return await ImagesPicker.saveImageToAlbum(
+      File.fromRawPath(data),
+      albumName: name,
+    );
   }
 
   Future<Uint8List> capture({
@@ -77,7 +58,7 @@ class ShotController {
   }) async =>
       _toUint8List(pixelRatio: pixelRatio, format: format);
 
-  Future<String> save(
+  Future<bool> save(
     String name, {
     double? pixelRatio,
     ImageByteFormat format = ImageByteFormat.png,

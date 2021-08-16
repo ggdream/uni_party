@@ -181,6 +181,7 @@ final List<GetPage> routes = [
     page: () => ProfileVideoPublishPage(),
     transition: Transition.cupertino,
   ),
+
   GetPage(
     name: RoutesNamespace.ProfileEventCollect,
     page: () => ProfileEventCollectPage(),
@@ -194,6 +195,11 @@ final List<GetPage> routes = [
   GetPage(
     name: RoutesNamespace.VideoUpload,
     page: () => VideoUploadPage(),
+    transition: Transition.cupertino,
+  ),
+    GetPage(
+    name: RoutesNamespace.VideoLiveWatch,
+    page: () => VideoLiveWatchPage(),
     transition: Transition.cupertino,
   ),
 ];
