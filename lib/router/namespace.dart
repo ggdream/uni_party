@@ -8,6 +8,9 @@ class RoutesNamespace {
 
   /// 视频上传页
   static const VideoUpload = '/video/upload';
+  
+  /// 观看直播页
+  static const VideoLiveWatch = '/video/live/watch';
 
   /// 聊天对话页
   static const ChatCommunicate = '/chat/communicate';

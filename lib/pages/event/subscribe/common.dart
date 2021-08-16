@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:uni_party/styles/styles.dart';
-import 'package:uni_party/tools/sharex/sharex.dart';
+import 'package:uni_party/widgets/button/button.dart';
 import 'package:uni_party/widgets/rounded/rounded.dart';
 
 class TopView extends StatelessWidget {
@@ -15,7 +16,7 @@ class TopView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
-          BackButton(),
+          BackBtn(),
           Spacer(),
           userTextInfoView(),
           SizedBox(width: 12),

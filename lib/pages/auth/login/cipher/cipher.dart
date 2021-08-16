@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
+import 'package:uni_party/tools/captcha/captcha.dart';
 
 import '../common/common.dart';
 
@@ -46,7 +47,7 @@ class _AuthLoginByCipherPageState extends State<AuthLoginByCipherPage> {
 
             /// 账号输入框
             accountInputField(),
-            Spacer(flex: 1),
+            SizedBox(height: 16),
 
             /// 密码输入框
             passwordInputField(),
@@ -77,9 +78,9 @@ class _AuthLoginByCipherPageState extends State<AuthLoginByCipherPage> {
           textStyle: TextStyle(
             fontSize: 20,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(16),
           ),
         ),
       ),
@@ -87,6 +88,7 @@ class _AuthLoginByCipherPageState extends State<AuthLoginByCipherPage> {
   }
 
   Future<void> _submitData() async {
+    Captcha.show();
     print(_accountController.text);
     print(_passwordController.text);
   }
@@ -115,7 +117,7 @@ class _AuthLoginByCipherPageState extends State<AuthLoginByCipherPage> {
           focusedBorder: BorderX.outlineLoginInputBorder,
           disabledBorder: BorderX.outlineLoginInputBorder,
           focusedErrorBorder: BorderX.outlineLoginInputBorder,
-          contentPadding: const EdgeInsets.all(24),
+          contentPadding: const EdgeInsets.all(8),
           hintText: '手机号或邮箱',
         ),
       ),
@@ -160,7 +162,7 @@ class _AuthLoginByCipherPageState extends State<AuthLoginByCipherPage> {
           focusedBorder: BorderX.outlineLoginInputBorder,
           disabledBorder: BorderX.outlineLoginInputBorder,
           focusedErrorBorder: BorderX.outlineLoginInputBorder,
-          contentPadding: const EdgeInsets.all(24),
+          contentPadding: const EdgeInsets.all(8),
           hintText: '密码',
         ),
       ),

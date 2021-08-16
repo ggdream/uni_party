@@ -7,12 +7,12 @@ class FileBrowserWidget extends StatefulWidget {
   const FileBrowserWidget({
     Key? key,
     required this.url,
-    this.fname = '文件预览',
+    this.label = '文件预览',
   }) : super(key: key);
 
   final String url;
 
-  final String fname;
+  final String label;
 
   @override
   _FileBrowserWidgetState createState() => _FileBrowserWidgetState();
@@ -46,7 +46,7 @@ class _FileBrowserWidgetState extends State<FileBrowserWidget> {
         onPressed: () {},
         icon: Icon(Icons.arrow_back_ios_rounded),
       ),
-      title: Text(widget.fname),
+      title: Text(widget.label),
       actions: [
         IconButton(
           onPressed: () {},

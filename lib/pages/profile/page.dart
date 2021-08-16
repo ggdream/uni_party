@@ -35,14 +35,15 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget linksView() {
     return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 12),
         child: SingleChildScrollView(
+          physics: ScrollX.physics,
           child: Column(
             children: [
               // 用户信息
               const UserInfoView(),
-              SizedBox(height: 36),
+              SizedBox(height: 24),
               ListTileLinkWidget(
                 icon: IconImage.yingshi,
                 title: '视频',

@@ -24,13 +24,15 @@ dependencies:
   excel: any
   ffi: ^1.1.2
   file_picker: ^3.0.2+2
-  fijkplayer: ^0.9.0
+  fijkplayer: ^0.10.0
   flutter_local_notifications: ^6.0.0
+  flutter_markdown: ^0.6.4
+  flutter_net_captcha: ^2.0.1
   flutter_svg: ^0.22.0
   fk_user_agent: ^2.0.1
-  get: ^4.1.4
+  get: ^4.3.8
   images_picker: ^1.2.4
-  image_gallery_saver: ^1.6.9
+  markdown: ^4.0.0
   path_provider: ^2.0.2
   permission_handler: ^8.0.1
   photo_view: ^0.11.1
@@ -44,10 +46,6 @@ dependencies:
   # video_player: ^2.1.6
   web_socket_channel: ^2.1.0
   webview_flutter: ^2.0.8
-  flutter_filereader:
-    path: lib/plugins/flutter_filereader
-  preset_images:
-    path: lib/plugins/preset_images
 
 dev_dependencies:
   flutter_test:
@@ -66,11 +64,10 @@ flutter_icons:
   ios: true
   remove_alpha_ios: true
 
-# flutter pub run flutter_native_splash:create
 flutter_native_splash:
-  color: '#42a5f5'
+  color: '#ffffff'
   image: assets/icons/logo/logo.png
-  #fullscreen: true
+  fullscreen: true
 
 
 flutter:
