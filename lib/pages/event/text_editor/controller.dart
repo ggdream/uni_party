@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:images_picker/images_picker.dart';
 
 class TextController extends GetxController {
-  var images = [];
+  List<String> images = [];
 
   final controller = TextEditingController();
 
@@ -72,6 +72,14 @@ class TextController extends GetxController {
     if (image == null) return;
 
     final path = image[0].path;
+    // TODO: 上传至服务器
+    // 文章时刻要保存至服务器，用户打开编辑时会拉取
+    // 服务器用Redis-Set做图片记录(该键值对永久有效)
+    // 用户上传文章时，后台会解析文章中的图片地址，将解析到的属于自己域下的图片
+    // 合成一个集合，找到Redis中属于该用户的键值对，并删除这些内容。获取剩下的元素，删除对应的图片
+    // 成功则清空该键值对，否则响应上传失败
+    //
+    // 若用户退出时选择不保留草稿，则直接删除键值对中对应的图片
     images.add(path);
 
     _addTextAndSuitSelection('![]($path)', position);

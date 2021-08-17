@@ -69,7 +69,6 @@ flutter_native_splash:
   image: assets/icons/logo/logo.png
   fullscreen: true
 
-
 flutter:
   uses-material-design: true
   fonts:

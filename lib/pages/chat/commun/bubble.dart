@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:suit/suit.dart';
 
 import 'package:uni_party/widgets/rounded/avatar.dart';
-import 'package:uni_party/styles/color.dart';
+import 'package:uni_party/styles/styles.dart';
 
 class ChatBubbleWidget extends StatelessWidget {
   const ChatBubbleWidget({

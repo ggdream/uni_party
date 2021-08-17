@@ -14,17 +14,7 @@ import 'editor.dart';
 class FileEditorPage extends StatefulWidget {
   const FileEditorPage({
     Key? key,
-    this.onChanged,
-    this.onSubmitted,
-    this.onTap,
-    this.color = Colors.black,
   }) : super(key: key);
-
-  final void Function(String value)? onChanged;
-  final void Function(String value)? onSubmitted;
-  final void Function()? onTap;
-
-  final Color color;
 
   @override
   _FileEditorPageState createState() => _FileEditorPageState();
@@ -95,31 +85,23 @@ class _FileEditorPageState extends State<FileEditorPage>
   }
 
   Future<void> _nextStepClick() async {
-    var route = '';
+    print(_type);
     switch (_type) {
       case EventPublishType.notice:
-        route = RoutesNamespace.EventPublishNotify;
+        await Get.toNamed(RoutesNamespace.EventPublishNotify);
         break;
       case EventPublishType.vote:
-        route = RoutesNamespace.EventPublishVote;
+        await Get.toNamed(RoutesNamespace.EventPublishVote);
         break;
       case EventPublishType.sortition:
-        route = RoutesNamespace.EventPublishRandom;
+        await Get.toNamed(RoutesNamespace.EventPublishRandom);
         break;
       case EventPublishType.participation:
-        route = RoutesNamespace.EventPublishApply;
+        await Get.toNamed(RoutesNamespace.EventPublishApply);
         break;
       default:
         SnackBarX.showRaw(context, '消息类型错误，请重新打开本页面进行编辑');
         return;
     }
-
-    await Get.toNamed(
-      route,
-      arguments: {
-        'text': TextController.to.controller.text,
-        'images': TextController.to.images,
-      },
-    );
   }
 }

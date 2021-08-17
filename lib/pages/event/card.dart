@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:suit/suit.dart';
 
 import 'package:uni_party/logic/event/event.dart';
-import 'package:uni_party/logic/event/page.dart';
 
 import 'package:uni_party/widgets/rounded/rounded.dart';
 import 'package:uni_party/widgets/sheet/sheet.dart';
@@ -54,36 +52,35 @@ class _NotifyCardState extends State<NotifyCard> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => Get.toNamed(EventTypePage.getPageByEnum(widget.type)!),
-      child: Container(
-        width: double.infinity,
-        height: 62.vw,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      child: InkWell(
+        onTap: () => Get.toNamed(EventTypePage.getPageByEnum(widget.type)!),
         child: PhysicalModel(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: mainView(),
-          ),
+          child: mainView(),
           color: Colors.white,
           elevation: 4,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
         ),
       ),
     );
   }
 
   Widget mainView() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        topMetaInfo(),
-        SizedBox(height: 8),
-        centerContent(),
-        Spacer(),
-        bottomActions(),
-      ],
+    return Container(
+      width: double.infinity,
+      height: 240,
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          topMetaInfo(),
+          SizedBox(height: 16),
+          centerContent(),
+          Spacer(),
+          bottomActions(),
+        ],
+      ),
     );
   }
 
@@ -106,19 +103,16 @@ class _NotifyCardState extends State<NotifyCard> {
               : Icon(Icons.mark_email_unread_rounded),
         ),
         IconButton(
-          onPressed: () {
-            setState(() {
-              isCollect = !isCollect;
-            });
-            SnackBarX.showRaw(context, isCollect ? '关注成功' : '取消关注');
-          },
-          icon: isCollect
-              ? Icon(
-                  Icons.visibility_rounded,
-                  color: ColorsX.pink,
-                )
-              : Icon(Icons.visibility_outlined),
-        ),
+            onPressed: () {
+              setState(() {
+                isCollect = !isCollect;
+              });
+              SnackBarX.showRaw(context, isCollect ? '关注成功' : '取消关注');
+            },
+            icon: Icon(
+              Icons.visibility_rounded,
+              color: isCollect ? ColorsX.pink : null,
+            )),
         IconButton(
           onPressed: () async {
             await showBottomSheetX(
@@ -126,56 +120,67 @@ class _NotifyCardState extends State<NotifyCard> {
               EventCommentPage(),
             );
           },
-          icon: Icon(Icons.mode_comment_outlined),
+          icon: Icon(Icons.chat_bubble_rounded),
         ),
       ],
     );
   }
 
   Widget centerContent() {
-    return Text(
-      widget.title,
-      maxLines: 3,
-      overflow: TextOverflow.ellipsis,
-      style: TextStyle(fontSize: 16),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Text(
+        widget.title,
+        maxLines: 3,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(fontSize: 16),
+      ),
     );
   }
 
+  /// 顶部用户头像、昵称、时间...
   Widget topMetaInfo() {
     return Row(
       children: [
-        GestureDetector(
-          onTap: () {
-            Get.toNamed(RoutesNamespace.ProfileInfoBrowse);
-          },
-          child: RoundedAvatar.network(
-            widget.avatarURL,
-            size: 48,
+        Expanded(
+          child: Row(
+            children: [
+              SizedBox(width: 12),
+              InkWell(
+                onTap: () => Get.toNamed(RoutesNamespace.ProfileInfoBrowse),
+                child: RoundedAvatar.network(widget.avatarURL, size: 48),
+              ),
+              SizedBox(width: 12),
+              usernameView(),
+            ],
           ),
         ),
-        SizedBox(
-          width: 8,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.username,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-            Text(widget.datetime),
-          ],
-        ),
-        Spacer(),
         _MoreOperatesBtn(
           onSelected: (value) {
             print(value);
           },
         ),
       ],
+    );
+  }
+
+  /// 用户昵称和时间
+  Flexible usernameView() {
+    return Flexible(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.username,
+            maxLines: 1,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+          Text(widget.datetime, maxLines: 1),
+        ],
+      ),
     );
   }
 }
@@ -196,6 +201,7 @@ class _MoreOperatesBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<_MoreOperate>(
+      tooltip: '更多操作',
       onSelected: onSelected,
       itemBuilder: (context) {
         return <PopupMenuEntry<_MoreOperate>>[

@@ -1,7 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+import 'package:uni_party/pages/event/text_editor/controller.dart';
 
 import 'package:uni_party/widgets/button/button.dart';
 import 'package:uni_party/styles/styles.dart';
@@ -17,8 +17,6 @@ class EventPublishNotifyPage extends StatefulWidget {
 
 class _EventPublishNotifyPageState extends State<EventPublishNotifyPage>
     with SubmitMixin {
-  final String _text = Get.arguments;
-
   final List<PlatformFile> _files = [];
 
   @override
@@ -166,7 +164,8 @@ class _EventPublishNotifyPageState extends State<EventPublishNotifyPage>
   }
 
   Future<void> _submitClick() async {
-    final String richText = await uploadImgsAndGetText(_text);
+    final text = TextController.to.controller.text;
+    final String richText = await uploadImgsAndGetText(text);
   }
 
   Future<void> _selectFilesClick() async {

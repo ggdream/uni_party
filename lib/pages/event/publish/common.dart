@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:uni_party/widgets/button/button.dart';
 
+import '../text_editor/controller.dart';
+
 class CommonAppBar extends StatelessWidget with PreferredSizeWidget {
   const CommonAppBar({
     Key? key,
@@ -56,12 +58,21 @@ class SubmitMixin {
 
   /// 调用入口：上传图片并且返回富文本
   Future<String> uploadImgsAndGetText(String text) async {
-    final localImages = _getLocalImages(text);
+    String text = TextController.to.controller.text;
+    final localImages = TextController.to.images;
 
-    // TODO: 发送请求，上传图片
+    // 过滤用户选取后又删掉的本地图片
+    List<String> newImages = [];
+    for (var image in localImages) {
+      if (text.contains('($image)')) {
+        newImages.add(image);
+      }
+    }
 
-    final List<String> images = localImages;
+    // 发送一次
+    // TODO: 调用api接口
 
-    return _setNetworkImages(text, images);
+
+    return _setNetworkImages(text, newImages);
   }
 }
