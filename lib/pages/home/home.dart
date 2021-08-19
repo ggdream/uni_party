@@ -1,47 +1,66 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:suit/suit.dart';
-import 'package:uni_party/tools/permissions/permissions.dart';
 
-import 'compose.dart';
+import 'package:uni_party/pages/chat/chat.dart';
+import 'package:uni_party/pages/event/event.dart';
+import 'package:uni_party/pages/profile/profile.dart';
+import 'package:uni_party/pages/video/video.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+import 'package:uni_party/styles/styles.dart';
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
+import 'controller.dart';
 
-class _HomePageState extends State<HomePage> {
-  int _currentIdx = Compose.startIdx;
+class HomePage extends StatelessWidget {
+  HomePage({Key? key}) : super(key: key);
 
-  @override
-  void initState() {
-    super.initState();
-    Permissions.request().then((allowed) {
-      if (!allowed) exit(0);
-    });
-  }
+  final _controller = Get.put(BarController());
 
   @override
   Widget build(BuildContext context) {
     Adapter.initialize(context);
 
-    return Scaffold(
-      body: IndexedStack(
-        index: _currentIdx,
-        children: Compose.pages,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIdx,
-        items: Compose.navItems,
-        type: BottomNavigationBarType.fixed,
-        onTap: (int index) {
-          setState(() {
-            _currentIdx = index;
-          });
-        },
+    return Obx(
+      () => Scaffold(
+        extendBody: _controller.requireFullScreen,
+        body: IndexedStack(
+          index: _controller.currentIndex.value,
+          children: [
+            EventPage(),
+            VideoPage(),
+            ChatPage(),
+            ProfilePage(),
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor:
+              _controller.requireFullScreen ? Colors.transparent : Colors.white,
+          items: [
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(IconImage.shouye, width: 24),
+              label: '消息',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(IconImage.shipin, width: 24),
+              label: '世界',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(IconImage.xiaoxi, width: 24),
+              label: '对话',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(IconImage.wode, width: 24),
+              label: '我的',
+            ),
+          ],
+          selectedFontSize: 12,
+          unselectedItemColor:
+              _controller.requireFullScreen ? Colors.white : null,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _controller.currentIndex.value,
+          onTap: _controller.onPage,
+        ),
       ),
     );
   }
