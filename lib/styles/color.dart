@@ -26,8 +26,8 @@ class ColorsX {
   static const orange = Color(0xfffdce84);
   static const grey = Color(0xff9e9e9e);
   static const greyLight = Color(0xffe0e0e0);
-  static const black = Color(0xff252836);
-  static const blackLight = Color(0xff9e9e9e);
+  static const black = Color(0xff262626);
+  static const blackLight = Color(0xff313131);
 
   static const text = Colors.black;
   static const inactive = Color(0xff4f4f4f);

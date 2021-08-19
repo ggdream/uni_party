@@ -2,72 +2,95 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:uni_party/styles/styles.dart';
-import 'package:uni_party/tools/sharex/sharex.dart';
-
+import 'controller.dart';
+import 'reply/reply.dart';
 import 'video_player.dart';
 
-class VideoPage extends StatefulWidget {
-  const VideoPage({Key? key}) : super(key: key);
+class VideoPage extends StatelessWidget {
+  VideoPage({Key? key}) : super(key: key);
 
-  @override
-  _VideoPageState createState() => _VideoPageState();
-}
+  static const Color _color = Colors.white;
 
-class _VideoPageState extends State<VideoPage> {
-  final res = [
-    'https://www.mocas.icu/beauty/1.mp4',
-    'https://www.mocas.icu/beauty/2.mp4',
-    'https://www.mocas.icu/beauty/3.mp4',
-    'https://www.mocas.icu/beauty/4.mp4',
-  ];
+  final _controller = Get.put(VideoController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            videoView(),
-            topActionsView(),
-            bottomVideoInfoView(),
-            rightActionsVIew()
-          ],
-        ),
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          videoView(),
+          topActionsView(),
+          bottomVideoInfoView(),
+          rightActionsView(context)
+        ],
       ),
     );
   }
 
-  Align rightActionsVIew() {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            avatarView(),
-            SizedBox(height: 40),
-            // 点赞
-            BrandWidget(
-              icon: Icons.favorite_rounded,
-              brand: '25',
-              onClick: () {},
-            ),
-            SizedBox(height: 12),
-            // 评论
-            BrandWidget(
-              icon: CupertinoIcons.chat_bubble_text_fill,
-              brand: '25',
-              onClick: () {},
-            ),
-            SizedBox(height: 16),
-            // 更多操作
-            IconButton(
-              iconSize: 40,
-              onPressed: _clickMore,
-              icon: Icon(CupertinoIcons.ellipsis_circle_fill),
-            ),
-          ],
+  Widget rightActionsView(BuildContext context) {
+    return SafeArea(
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 8),
+          child: Obx(
+            () {
+              debugPrint(VideoController.to.loveIndicator.toString());
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  /// 视频作者的头像
+                  avatarView(),
+                  SizedBox(height: 40),
+
+                  /// 点赞
+                  BrandWidget(
+                    icon: Icons.favorite_rounded,
+                    color: VideoController.to.currentVideoModel.isLoveIt
+                        ? Colors.red
+                        : _color,
+                    textColor: _color,
+                    brand: VideoController.to.currentVideoModel.loveCounter
+                        .toString(),
+                    onClick: VideoController.to.onLove,
+                  ),
+                  SizedBox(height: 12),
+
+                  /// 评论
+                  BrandWidget(
+                    icon: CupertinoIcons.chat_bubble_text_fill,
+                    color: _color,
+                    textColor: _color,
+                    brand: VideoController.to.currentVideoModel.replyCounter
+                        .toString(),
+                    onClick: () async {
+                      await VideoController.to.onOpen(
+                        context,
+                        VideoReplyRootView(
+                          vid: VideoController.to.currentVideoModel.vid,
+                        ),
+                        Color(0xff262626),
+                      );
+                    },
+                  ),
+                  SizedBox(height: 16),
+
+                  /// 更多操作
+                  IconButton(
+                    iconSize: 40,
+                    onPressed: () => VideoController.to.onOpen(
+                      context,
+                      _BottomActionsSheetView(),
+                      Colors.white,
+                    ),
+                    icon: Icon(CupertinoIcons.ellipsis_circle_fill),
+                    color: _color,
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
@@ -84,37 +107,43 @@ class _VideoPageState extends State<VideoPage> {
         image: DecorationImage(
           fit: BoxFit.cover,
           image: NetworkImage(
-            'https://www.mocas.icu/image/875.jpg',
+            VideoController.to.currentVideoModel.avatar,
           ),
         ),
       ),
     );
   }
 
+  /// 顶部操作视图：搜索、直播、动态
   Widget topActionsView() {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Row(
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(CupertinoIcons.search),
-              tooltip: '搜索',
-            ),
-            Spacer(),
-            IconButton(
-              onPressed: () => Get.toNamed('/video/live/watch'),
-              icon: Icon(CupertinoIcons.videocam_circle_fill),
-              tooltip: '直播',
-            ),
-            IconButton(
-              onPressed: () => {},
-              icon: Icon(Icons.camera),
-              tooltip: '动态',
-            ),
-          ],
+    return SafeArea(
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                color: _color,
+                icon: Icon(CupertinoIcons.search),
+                tooltip: '搜索',
+              ),
+              Spacer(),
+              IconButton(
+                onPressed: () => Get.toNamed('/video/live/watch'),
+                color: _color,
+                icon: Icon(CupertinoIcons.videocam_circle_fill),
+                tooltip: '直播',
+              ),
+              IconButton(
+                onPressed: () => {},
+                color: _color,
+                icon: Icon(Icons.camera),
+                tooltip: '动态',
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -122,19 +151,21 @@ class _VideoPageState extends State<VideoPage> {
 
   /// 视频相关元信息
   Widget bottomVideoInfoView() {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          bottom: 8,
-          left: 12,
-          right: 12,
-        ),
-        child: Row(
-          children: [
-            labelView(),
-            // 可以放其他信息
-          ],
+    return SafeArea(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            bottom: 16,
+            left: 12,
+            right: 12,
+          ),
+          child: Row(
+            children: [
+              labelView(),
+              // 可以放其他信息
+            ],
+          ),
         ),
       ),
     );
@@ -148,10 +179,14 @@ class _VideoPageState extends State<VideoPage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           labelTopView(),
-          Text(
-            '视频简介',
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+          SizedBox(height: 4),
+          Obx(
+            () => Text(
+              VideoController.to.currentVideoModel.desc,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: _color),
+            ),
           ),
         ],
       ),
@@ -159,52 +194,55 @@ class _VideoPageState extends State<VideoPage> {
   }
 
   Widget labelTopView() {
-    return Row(
-      children: [
-        Text(
-          '魔咔啦咔',
-          style: TextStyle(fontSize: 24),
-        ),
-        SizedBox(width: 8),
-        ClipOval(
-          child: Image.network(
-            'https://pic2.zhimg.com/v2-bd165afbe15d520e279ef4354fc02186_r.jpg?source=172ae18b',
-            width: 24,
-            height: 24,
-            fit: BoxFit.cover,
+    return Obx(
+      () => Row(
+        children: [
+          Text(
+            VideoController.to.currentVideoModel.username,
+            style: TextStyle(color: _color, fontSize: 24),
           ),
-        ),
-      ],
-    );
-  }
-
-  Future<void> _clickMore() async {
-    await showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return _ButtomActionsSheetView();
-      },
+          SizedBox(width: 8),
+          ClipOval(
+            child: Image.network(
+              VideoController.to.currentVideoModel.avatar,
+              width: 24,
+              height: 24,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget videoView() {
-    return PageView.builder(
-      physics: ScrollX.physics,
-      scrollDirection: Axis.vertical,
-      itemCount: res.length,
-      itemBuilder: (context, index) {
-        return VideoPlayer(
-          cover: 'https://www.mocas.icu/image/background.jpg',
-          video: res[index],
-        );
-      },
+    return RefreshIndicator(
+      onRefresh: () async {},
+      child: Obx(
+        () => PageView.builder(
+          physics: const ClampingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          onPageChanged: VideoController.to.onPage,
+          itemCount: VideoController.to.data.length,
+          itemBuilder: (context, index) {
+            return VideoPlayer(
+              cover: 'https://www.mocas.icu/image/background.jpg',
+              video: VideoController.to.data[index].video,
+            );
+            // return Image.network(
+            //   VideoController.to.data[index].video,
+            //   fit: BoxFit.fill,
+            // );
+          },
+        ),
+      ),
     );
   }
 }
 
 /// 底部操作弹窗
-class _ButtomActionsSheetView extends StatelessWidget {
-  const _ButtomActionsSheetView({
+class _BottomActionsSheetView extends StatelessWidget {
+  const _BottomActionsSheetView({
     Key? key,
   }) : super(key: key);
 
@@ -212,9 +250,7 @@ class _ButtomActionsSheetView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: ThemeData(
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       child: Container(
         height: 160,
@@ -222,25 +258,25 @@ class _ButtomActionsSheetView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-              onPressed: _onNotInterest,
+              onPressed: VideoController.to.onNotInterest,
               iconSize: 48,
               icon: Icon(CupertinoIcons.bolt_circle_fill),
               tooltip: '不感兴趣',
             ),
             IconButton(
-              onPressed: _onDownload,
+              onPressed: VideoController.to.onDownload,
               iconSize: 48,
               icon: Icon(CupertinoIcons.arrow_down_circle_fill),
               tooltip: '下载',
             ),
             IconButton(
-              onPressed: () => _onCollect(context),
+              onPressed: () => VideoController.to.onCollect(context),
               iconSize: 48,
               icon: Icon(CupertinoIcons.star_circle_fill),
               tooltip: '收藏',
             ),
             IconButton(
-              onPressed: _onShare,
+              onPressed: VideoController.to.onShare,
               iconSize: 48,
               icon: Icon(CupertinoIcons.arrowshape_turn_up_right_circle_fill),
               tooltip: '分享',
@@ -249,22 +285,6 @@ class _ButtomActionsSheetView extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  /// 不感兴趣
-  Future<void> _onNotInterest() async {}
-
-  /// 下载视频
-  Future<void> _onDownload() async {}
-
-  /// 收藏视频
-  Future<void> _onCollect(BuildContext context) async {
-    Navigator.of(context).pop();
-  }
-
-  /// 分享视频
-  Future<void> _onShare() async {
-    await ShareX.text('data');
   }
 }
 
