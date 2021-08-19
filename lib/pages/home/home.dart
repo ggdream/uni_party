@@ -34,6 +34,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
+          elevation: 0,
           backgroundColor:
               _controller.requireFullScreen ? Colors.transparent : Colors.white,
           items: [
