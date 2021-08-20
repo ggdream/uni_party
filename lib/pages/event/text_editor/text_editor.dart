@@ -36,6 +36,7 @@ class _FileEditorPageState extends State<FileEditorPage>
       switch (_tabController.index) {
         case 1:
           if (key.currentState == null) return;
+          Focus.of(context).requestFocus(FocusNode());
           key.currentState!.setState(() {});
           break;
         default:

@@ -37,7 +37,7 @@ class VideoPage extends StatelessWidget {
           padding: const EdgeInsets.only(right: 8),
           child: Obx(
             () {
-              debugPrint(VideoController.to.loveIndicator.toString());
+              VideoController.to.loveIndicator.toString();
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
