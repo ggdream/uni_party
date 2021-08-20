@@ -1,5 +1,11 @@
 // import 'package:fijkplayer/fijkplayer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:uni_party/styles/styles.dart';
+
+import 'chat.dart';
 
 class VideoLiveWatchPage extends StatefulWidget {
   const VideoLiveWatchPage({Key? key}) : super(key: key);
@@ -18,40 +24,41 @@ class _VideoLiveWatchPageState extends State<VideoLiveWatchPage>
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: 3, vsync: this);
+    _controller = TabController(length: 2, vsync: this);
+
+    Get.put(LiveChatController(Get.arguments ?? 5200));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          // FijkView(player: player),
-          Container(
-            width: double.infinity,
-            height: 240,
-            child: Row(),
-          ),
-          TabBar(
-            controller: _controller,
-            tabs: [
-              Tab(text: '聊天'),
-              Tab(text: '主播'),
-              Tab(text: '其他'),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
+      // backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Column(
+          children: [
+            // FijkView(player: player),
+            AspectRatio(aspectRatio: 16 / 9),
+            TabBar(
+              physics: ScrollX.physics,
               controller: _controller,
-              children: [
-                Text('data'),
-                Text('data'),
-                Text('data'),
+              indicatorColor: Colors.black,
+              tabs: [
+                Tab(text: '聊天'),
+                Tab(text: '主播'),
               ],
             ),
-          ),
-        ],
+            Expanded(
+              child: TabBarView(
+                physics: ScrollX.physics,
+                controller: _controller,
+                children: [
+                  LiveChatWidget(),
+                  Text('data'),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
