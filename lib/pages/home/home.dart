@@ -9,6 +9,7 @@ import 'package:uni_party/pages/profile/profile.dart';
 import 'package:uni_party/pages/video/video.dart';
 
 import 'package:uni_party/styles/styles.dart';
+import 'package:uni_party/widgets/keepalive/keepalive.dart';
 
 import 'controller.dart';
 

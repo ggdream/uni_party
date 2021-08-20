@@ -45,7 +45,6 @@ class TextFieldController extends GetxController {
   final controller = TextEditingController();
 
   var openEmoji = false.obs;
-  bool emojiWatcher = false;
 
   String get text => controller.text;
 
@@ -70,13 +69,9 @@ class TextFieldController extends GetxController {
   }
 
   Future<void> onClickTextField() async {
-    print(openEmoji.value);
-    if (openEmoji.value && !emojiWatcher) {
+    if (openEmoji.value) {
       openEmoji.value = false;
     }
-
-    emojiWatcher = false;
-    await SystemChannels.textInput.invokeMethod('TextInput.show');
   }
 
   Future<void> openEmojiField() async {
@@ -84,11 +79,10 @@ class TextFieldController extends GetxController {
       return;
     }
 
+    await SystemChannels.textInput.invokeMethod('TextInput.hide');
     openEmoji.value = true;
-    emojiWatcher = true;
 
     final int position = controller.selection.baseOffset;
-    await SystemChannels.textInput.invokeMethod('TextInput.hide');
     addTextAndSuitSelection('', position);
   }
 }

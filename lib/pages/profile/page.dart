@@ -96,7 +96,7 @@ class _ActionsView extends StatelessWidget {
 
   IconButton openSettingsBtn() {
     return IconButton(
-      icon: Icon(CupertinoIcons.viewfinder_circle_fill),
+      icon: Icon(CupertinoIcons.gear_alt),
       onPressed: () => Get.toNamed(RoutesNamespace.HelperSettings),
       tooltip: '应用设置',
     );
@@ -104,7 +104,7 @@ class _ActionsView extends StatelessWidget {
 
   IconButton qrScanBtn() {
     return IconButton(
-      icon: Icon(CupertinoIcons.gear_alt_fill),
+      icon: Icon(CupertinoIcons.viewfinder_circle),
       onPressed: () => Get.toNamed(RoutesNamespace.HelperQrScan),
       tooltip: '二维码扫描',
     );

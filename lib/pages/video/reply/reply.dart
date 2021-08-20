@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:uni_party/styles/styles.dart';
+import 'package:uni_party/widgets/expandable_text/expanded_text.dart';
 
 import 'controller.dart';
 import 'emoji.dart';
@@ -105,6 +108,7 @@ class TextInputWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8),
       child: textInputView(
         context,
+        true,
         () async {
           await TextFieldController.to.onClickTextField();
           await showDialog(
@@ -130,9 +134,10 @@ class TextInputWidget extends StatelessWidget {
             Positioned.fill(
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () {
+                onTap: () async {
                   TextFieldController.to.openEmoji.value = false;
                   Navigator.pop(context);
+                  await SystemChannels.textInput.invokeMethod('TextInput.hide');
                 },
                 child: Container(color: Colors.black.withOpacity(.5)),
               ),
@@ -145,7 +150,11 @@ class TextInputWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   textInputView(
-                      context, TextFieldController.to.onClickTextField),
+                    context,
+                    false,
+                    TextFieldController.to.onClickTextField,
+                    true,
+                  ),
                   Obx(
                     () => TextFieldController.to.openEmoji.value
                         ? SelectEmojiWidget()
@@ -161,38 +170,50 @@ class TextInputWidget extends StatelessWidget {
   }
 
   /// 文本输入框
-  Row textInputView(BuildContext context, void Function() onTap) {
+  Row textInputView(BuildContext context, bool canUse, void Function() onTap,
+      [bool autofocus = false]) {
     return Row(
       children: [
         Expanded(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 48),
-            child: TextField(
-              autofocus: true,
-              controller: TextFieldController.to.controller,
-              onTap: onTap,
-              maxLines: null,
-              keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.newline,
-              cursorColor: Theme.of(context).primaryColor,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey[200],
-                contentPadding: const EdgeInsets.all(0),
-                prefixIcon: IconButton(
+          child: Container(
+            height: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(width: 0),
+              color: Colors.grey[200],
+            ),
+            child: Row(
+              children: [
+                IconButton(
                   onPressed: TextFieldController.to.openEmojiField,
                   color: Colors.black,
                   icon: Icon(CupertinoIcons.smiley),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(24),
-                  borderSide: BorderSide.none,
+                Expanded(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: 40),
+                    child: TextField(
+                      autofocus: autofocus,
+                      controller: TextFieldController.to.controller,
+                      onTap: onTap,
+                      readOnly: canUse,
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline,
+                      textInputAction: TextInputAction.newline,
+                      cursorColor: Theme.of(context).primaryColor,
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(0),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(24),
-                  borderSide: BorderSide.none,
-                ),
-              ),
+              ],
             ),
           ),
         ),
@@ -205,131 +226,6 @@ class TextInputWidget extends StatelessWidget {
       ],
     );
   }
-}
-
-class ExpandableText extends StatefulWidget {
-  final String text;
-  final int maxLines;
-  final TextStyle style;
-  final bool expand;
-  final TextStyle markerStyle;
-  final String atName;
-
-  const ExpandableText({
-    Key? key,
-    required this.text,
-    required this.maxLines,
-    required this.style,
-    required this.markerStyle,
-    this.expand = false,
-    this.atName = '',
-  }) : super(key: key);
-
-  @override
-  createState() => _ExpandableTextState();
-}
-
-class _ExpandableTextState extends State<ExpandableText> {
-  late bool expand;
-  late TextStyle style;
-  late int maxLines;
-
-  @override
-  void initState() {
-    expand = widget.expand;
-    style = widget.style;
-    maxLines = widget.maxLines;
-    super.initState();
-  }
-
-  Widget buildOrdinaryText() {
-    final text = widget.text;
-    return LayoutBuilder(builder: (_, size) {
-      final tp = TextPainter(
-        text: TextSpan(text: text, style: style),
-        maxLines: maxLines,
-        textDirection: TextDirection.ltr,
-      );
-      tp.layout(maxWidth: size.maxWidth);
-
-      if (!tp.didExceedMaxLines) return Text(text, style: style);
-
-      return Builder(
-        builder: (context) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(text, maxLines: expand ? null : widget.maxLines, style: style),
-            GestureDetector(
-              onTap: () {
-                expand = !expand;
-                (context as Element).markNeedsBuild();
-              },
-              child: Text(
-                expand ? '收起' : '展开',
-                style: widget.markerStyle,
-              ),
-            ),
-          ],
-        ),
-      );
-    });
-  }
-
-  Widget buildAtText() {
-    return LayoutBuilder(builder: (_, size) {
-      final tp = TextPainter(
-        text: TextSpan(text: '回复 @${widget.text}：', style: style),
-        maxLines: maxLines,
-        textDirection: TextDirection.ltr,
-      );
-      tp.layout(maxWidth: size.maxWidth);
-
-      if (!tp.didExceedMaxLines)
-        return Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(text: '回复 '),
-              TextSpan(text: '@${widget.atName}', style: widget.markerStyle),
-              TextSpan(text: '：${widget.text}'),
-            ],
-          ),
-          style: style,
-        );
-
-      return Builder(
-        builder: (context) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(text: '回复 '),
-                  TextSpan(
-                      text: '@${widget.atName}', style: widget.markerStyle),
-                  TextSpan(text: '：${widget.text}'),
-                ],
-              ),
-              maxLines: expand ? null : widget.maxLines,
-              style: style,
-            ),
-            GestureDetector(
-              onTap: () {
-                expand = !expand;
-                (context as Element).markNeedsBuild();
-              },
-              child: Text(
-                expand ? '收起' : '展开',
-                style: widget.markerStyle,
-              ),
-            ),
-          ],
-        ),
-      );
-    });
-  }
-
-  @override
-  build(context) => widget.atName == '' ? buildOrdinaryText() : buildAtText();
 }
 
 /// 评论展示卡片
@@ -398,23 +294,46 @@ class ReplyCardWidget extends StatelessWidget {
             style: TextStyle(color: Colors.white.withOpacity(.6)),
           ),
           SizedBox(height: 8),
+          // ExpandableText(
+          //   maxLines: 4,
+          //   style: TextStyle(color: Colors.white),
+          //   text: 'kkkkk',
+          //   markerStyle: TextStyle(color: Colors.yellow),
+          // ),
           ExpandableText(
-            maxLines: 4,
+            text:
+                '不管原理怎样，现在需要的效果是使视图常驻，立马找到了KeepAlive和AutomaticKeepAlive控件，然而让人费解的是这两个控件必须声明祖先节点SliverWithKeepAliveWidget，否则就崩溃。好在找到了这篇文章，核心意思是必须通过StatefulWidget的状态',
             style: TextStyle(color: Colors.white),
-            text: 'kkkkk',
-            markerStyle: TextStyle(color: Colors.yellow),
+            tName: 'ssss',
+            tUID: 2412,
+            uStyle: TextStyle(color: Color(0xfffff0b3)),
           ),
           SizedBox(height: 8),
           actionsView(),
           SizedBox(height: 8),
           Container(
-            height: 40,
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: Color(0xff313131),
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Row(),
-          )
+            child: Column(
+              children: [
+                ExpandableText(
+                  text:
+                      '不管原理怎样，现在需要的效果是使视图常驻，立马找到了KeepAlive和AutomaticKeepAlive控件，然而让人费解的是这两个控件必须声明祖先节点SliverWithKeepAliveWidget，否则就崩溃。好在找到了这篇文章，核心意思是必须通过StatefulWidget的状态',
+                  maxLines: 2,
+                  canExtend: false,
+                  style: TextStyle(color: Colors.white),
+                  fName: '莫卡拉卡',
+                  fUID: 1,
+                  tName: 'ssss',
+                  tUID: 2412,
+                  uStyle: TextStyle(color: Color(0xfffff0b3)),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

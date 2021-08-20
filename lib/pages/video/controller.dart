@@ -50,7 +50,7 @@ class VideoController extends GetxController {
       cid: 52,
       cLogo: 'https://www.mocas.icu/image/45.jpg',
       vid: '1',
-      cover: 'cover',
+      cover: 'https://www.mocas.icu/image/455.jpg',
       video: 'https://www.mocas.icu/test/1.mp4',
       desc: 'desc',
       isLoveIt: true,
@@ -64,7 +64,7 @@ class VideoController extends GetxController {
       cid: 52,
       cLogo: 'https://www.mocas.icu/image/45.jpg',
       vid: '2',
-      cover: 'cover',
+      cover: 'https://www.mocas.icu/image/845.jpg',
       video: 'https://www.mocas.icu/test/2.mp4',
       desc: 'desc',
       isLoveIt: false,
@@ -78,7 +78,7 @@ class VideoController extends GetxController {
       cid: 52,
       cLogo: 'https://www.mocas.icu/image/45.jpg',
       vid: '3',
-      cover: 'cover',
+      cover: 'https://www.mocas.icu/image/465.jpg',
       video: 'https://www.mocas.icu/test/3.mp4',
       desc: 'desc',
       isLoveIt: true,
@@ -92,7 +92,7 @@ class VideoController extends GetxController {
       cid: 52,
       cLogo: 'https://www.mocas.icu/image/20.jpg',
       vid: '3',
-      cover: 'cover',
+      cover: 'https://www.mocas.icu/image/425.jpg',
       video: 'https://www.mocas.icu/test/4.mp4',
       desc: 'desc',
       isLoveIt: true,
@@ -101,6 +101,7 @@ class VideoController extends GetxController {
     ),
   ].obs;
   var currentIndex = 0.obs;
+
 
   /// 监听PageChange
   onPage(int index) {
@@ -119,7 +120,6 @@ class VideoController extends GetxController {
 
     loveIndicator.value = !loveIndicator.value;
   }
-
 
   Future<void> onOpen(BuildContext context, Widget child, Color color) async {
     await showModalBottomSheet(

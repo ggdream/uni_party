@@ -112,6 +112,9 @@ class SelectEmojiWidget extends StatelessWidget {
     );
     return SafeArea(
       child: GridView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 8,
         ),

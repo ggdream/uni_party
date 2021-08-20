@@ -17,6 +17,7 @@ class VideoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           videoView(),
@@ -220,19 +221,22 @@ class VideoPage extends StatelessWidget {
       onRefresh: () async {},
       child: Obx(
         () => PageView.builder(
+          controller: PageController(
+            initialPage: VideoController.to.currentIndex.value,
+          ),
           physics: const ClampingScrollPhysics(),
           scrollDirection: Axis.vertical,
           onPageChanged: VideoController.to.onPage,
           itemCount: VideoController.to.data.length,
           itemBuilder: (context, index) {
-            return VideoPlayer(
-              cover: 'https://www.mocas.icu/image/background.jpg',
-              video: VideoController.to.data[index].video,
-            );
-            // return Image.network(
-            //   VideoController.to.data[index].video,
-            //   fit: BoxFit.fill,
+            // return VideoPlayer(
+            //   cover: 'https://www.mocas.icu/image/background.jpg',
+            //   video: VideoController.to.data[index].video,
             // );
+            return Image.network(
+              VideoController.to.data[index].cover,
+              fit: BoxFit.fill,
+            );
           },
         ),
       ),

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:uni_party/pages/video/controller.dart';
 
 import 'package:uni_party/tools/permissions/permissions.dart';
 
