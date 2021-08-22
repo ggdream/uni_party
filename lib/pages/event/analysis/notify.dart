@@ -63,7 +63,7 @@ class _UserCardWidget extends StatelessWidget {
       onTap: () {},
       child: ListTile(
         leading: RoundedAvatar.network(
-          'https://www.mocas.icu/image/228.jpg',
+          'http://qy7zrkdso.hn-bkt.clouddn.com/image/228.jpg',
           size: 48,
         ),
         title: unameAndSexView(),

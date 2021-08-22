@@ -230,7 +230,7 @@ class VideoPage extends StatelessWidget {
           itemCount: VideoController.to.data.length,
           itemBuilder: (context, index) {
             // return VideoPlayer(
-            //   cover: 'https://www.mocas.icu/image/background.jpg',
+            //   cover: 'http://qy7zrkdso.hn-bkt.clouddn.com/image/background.jpg',
             //   video: VideoController.to.data[index].video,
             // );
             return Image.network(
