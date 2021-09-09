@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -95,10 +96,7 @@ class _ActionsView extends StatelessWidget {
 
   IconButton openSettingsBtn() {
     return IconButton(
-      icon: SvgPicture.asset(
-        IconImage.shezhi,
-        width: 32,
-      ),
+      icon: Icon(CupertinoIcons.gear_alt),
       onPressed: () => Get.toNamed(RoutesNamespace.HelperSettings),
       tooltip: '应用设置',
     );
@@ -106,10 +104,7 @@ class _ActionsView extends StatelessWidget {
 
   IconButton qrScanBtn() {
     return IconButton(
-      icon: SvgPicture.asset(
-        IconImage.saomiao,
-        width: 32,
-      ),
+      icon: Icon(CupertinoIcons.viewfinder_circle),
       onPressed: () => Get.toNamed(RoutesNamespace.HelperQrScan),
       tooltip: '二维码扫描',
     );

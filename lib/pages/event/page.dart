@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uni_party/logic/event/event.dart';
 
+import 'package:uni_party/logic/event/event.dart';
 import 'package:uni_party/widgets/rounded/rounded.dart';
 import 'package:uni_party/widgets/sheet/sheet.dart';
 import 'package:uni_party/mock/mock.dart';

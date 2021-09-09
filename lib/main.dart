@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'app/app.dart';
 
+Future<void> main() async {
+  await initialize();
 
-Future<void> main() => initialize().then((_) => runApp(App())).catchError((e) => print(e));
+  runApp(App());
+
+  final style = SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarBrightness: Brightness.light,
+  );
+  SystemChrome.setSystemUIOverlayStyle(style);
+}

@@ -33,7 +33,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
   @override
   Widget build(BuildContext context) {
     return FijkView(
-      color: Colors.white,
+      color: Colors.black,
       cover: NetworkImage(widget.cover),
       player: player,
       panelBuilder: _panelBuilder,
