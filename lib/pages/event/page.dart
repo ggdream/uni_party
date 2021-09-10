@@ -31,7 +31,7 @@ class _EventPageState extends State<EventPage> {
     return FloatingActionButton(
       heroTag: 'event',
       onPressed: _publishEventClick,
-      child: Icon(Icons.add),
+      child: Icon(Icons.add, color: Colors.white),
     );
   }
 
