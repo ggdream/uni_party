@@ -1,11 +1,17 @@
-.PHONY: android
+.PHONY: android icon splash protoenv proto
+
+
 android:
 	@flutter build apk --target-platform android-arm64 --split-per-abi
 
-.PHONY: icon
 icon:
 	@flutter pub run flutter_launcher_icons:main
 
-.PHONY: splash
 splash:
 	@flutter pub run flutter_native_splash:create
+
+protoenv:
+	@dart pub global activate protoc_plugin
+
+proto:
+	@protoc  --dart_out=. ./lib/tools/chat/generated/protocol.proto

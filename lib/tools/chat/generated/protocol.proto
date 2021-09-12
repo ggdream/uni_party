@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "./;chat";
+
+message PingMessage {}
+
+message AckMessage {}
+
+message RetMessage {}
+
+message TextMessage {
+	string data = 1;
+}
+
+message BinaryMessage {
+	string sign = 1;
+}
