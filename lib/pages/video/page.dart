@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uni_party/styles/styles.dart';
 
 import 'controller.dart';
 import 'reply/reply.dart';
@@ -20,7 +22,7 @@ class VideoPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          videoView(),
+          videoView(context),
           topActionsView(),
           bottomVideoInfoView(),
           rightActionsView(context)
@@ -216,28 +218,34 @@ class VideoPage extends StatelessWidget {
     );
   }
 
-  Widget videoView() {
+  Widget videoView(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {},
       child: Obx(
-        () => PageView.builder(
-          controller: PageController(
-            initialPage: VideoController.to.currentIndex.value,
+        () => ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
+            PointerDeviceKind.touch,
+            PointerDeviceKind.mouse,
+          }),
+          child: PageView.builder(
+            controller: PageController(
+              initialPage: VideoController.to.currentIndex.value,
+            ),
+            physics: ScrollX.physics,
+            scrollDirection: Axis.vertical,
+            onPageChanged: VideoController.to.onPage,
+            itemCount: VideoController.to.data.length,
+            itemBuilder: (context, index) {
+              // return VideoPlayer(
+              //   cover: 'http://qzu191yre.hn-bkt.clouddn.com/image/background.jpg',
+              //   video: VideoController.to.data[index].video,
+              // );
+              return Image.network(
+                VideoController.to.data[index].cover,
+                fit: BoxFit.fill,
+              );
+            },
           ),
-          physics: const ClampingScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          onPageChanged: VideoController.to.onPage,
-          itemCount: VideoController.to.data.length,
-          itemBuilder: (context, index) {
-            // return VideoPlayer(
-            //   cover: 'http://qy7zrkdso.hn-bkt.clouddn.com/image/background.jpg',
-            //   video: VideoController.to.data[index].video,
-            // );
-            return Image.network(
-              VideoController.to.data[index].cover,
-              fit: BoxFit.fill,
-            );
-          },
         ),
       ),
     );

@@ -93,7 +93,7 @@ class _EventPublishCardWidget extends StatelessWidget {
             Row(
               children: [
                 RoundedAvatar.network(
-                  'http://qy7zrkdso.hn-bkt.clouddn.com/image/656.jpg',
+                  'http://qzu191yre.hn-bkt.clouddn.com/image/656.jpg',
                   size: 50,
                 ),
                 SizedBox(width: 8),

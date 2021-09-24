@@ -44,12 +44,9 @@ class _ExpandableTextState extends State<ExpandableText> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      children: widget.canExtend
-          ? [
-              textView(),
-              openView(),
-            ]
-          : [textView()],
+      children: !widget.canExtend || widget.text.length < 64
+          ? [textView()]
+          : [textView(), openView()],
     );
   }
 

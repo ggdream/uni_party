@@ -161,7 +161,7 @@ class _VideoCollectCardWidget extends StatelessWidget {
         image: DecorationImage(
           fit: BoxFit.cover,
           image: NetworkImage(
-            'http://qy7zrkdso.hn-bkt.clouddn.com/image/845.jpg',
+            'http://qzu191yre.hn-bkt.clouddn.com/image/845.jpg',
           ),
         ),
       ),
