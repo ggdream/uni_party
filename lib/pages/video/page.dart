@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 
 import 'controller.dart';
@@ -127,7 +128,7 @@ class VideoPage extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () => Get.toNamed(RoutesNamespace.VideoSearch),
                 color: _color,
                 icon: Icon(CupertinoIcons.search),
                 tooltip: '搜索',
@@ -231,7 +232,7 @@ class VideoPage extends StatelessWidget {
             controller: PageController(
               initialPage: VideoController.to.currentIndex.value,
             ),
-            physics: ScrollX.physics,
+            physics: const ClampingScrollPhysics(),
             scrollDirection: Axis.vertical,
             onPageChanged: VideoController.to.onPage,
             itemCount: VideoController.to.data.length,

@@ -21,6 +21,10 @@ class _VideoPlayerState extends State<VideoPlayer> {
   @override
   void initState() {
     super.initState();
+
+    // 屏幕常亮由`Wakelock.toggle`控制
+    // package:uni_party/lib/pages/home/controller.dart
+    player.setLoop(0);
     player.setDataSource(widget.video, autoPlay: true);
   }
 

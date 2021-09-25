@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:uni_party/pages/video/controller.dart';
+import 'package:wakelock/wakelock.dart';
 
 import 'package:uni_party/tools/permissions/permissions.dart';
 
@@ -14,6 +14,7 @@ class BarController extends GetxController {
   /// 监听导航栏点击
   onPage(int index) {
     currentIndex.value = index;
+    Wakelock.toggle(enable: index == 1);
   }
 
   /// 判断是否需要占全屏

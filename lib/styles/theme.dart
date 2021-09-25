@@ -13,7 +13,12 @@ class ThemesX {
 
   static final global =
       ThemeData.from(colorScheme: ColorScheme.light()).copyWith(
-    appBarTheme: AppBarTheme(backgroundColor: ColorsX.primary),
+    appBarTheme: AppBarTheme(
+      backgroundColor: ColorsX.primary,
+      iconTheme: IconThemeData(
+        color: Colors.black,
+      ),
+    ),
     floatingActionButtonTheme: _floatingActionButtonTheme,
     bottomNavigationBarTheme: _bottomNavigationBarTheme,
     iconTheme: IconThemeData(

@@ -157,6 +157,10 @@ final List<GetPage> routes = [
     page: () => VideoUploadPage(),
   ),
   GetPage(
+    name: RoutesNamespace.VideoSearch,
+    page: () => VideoSearchPage(),
+  ),
+  GetPage(
     name: RoutesNamespace.VideoLiveWatch,
     page: () => VideoLiveWatchPage(),
   ),

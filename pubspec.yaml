@@ -33,6 +33,7 @@ dependencies:
   fk_user_agent: ^2.0.1
   get: ^4.3.8
   images_picker: ^1.2.4
+  jpush_flutter: ^2.1.5
   markdown: ^4.0.0
   path_provider: ^2.0.2
   permission_handler: ^8.0.1
@@ -46,6 +47,7 @@ dependencies:
   suit: 1.0.0
   url_launcher: ^6.0.6
   # video_player: ^2.1.6
+  wakelock: ^0.5.6
   web_socket_channel: ^2.1.0
   webview_flutter: ^2.0.8
 
