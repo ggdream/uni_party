@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:jpush_flutter/jpush_flutter.dart';
 
 typedef Future<dynamic> EventHandler(Map<String, dynamic> event);
 
 class PushChannel {
-  static final _jpush = JPush();
+  static late final JPush _jpush;
 
   static Future<void> register({
     required String alias,
@@ -12,6 +14,9 @@ class PushChannel {
     EventHandler? onReceiveMessage,
     EventHandler? onReceiveNotificationAuthorization,
   }) async {
+    if (!(Platform.isAndroid || Platform.isIOS)) return;
+
+    _jpush = JPush();
     _jpush.addEventHandler(
       onReceiveNotification: onReceiveNotification,
       onOpenNotification: onOpenNotification,
