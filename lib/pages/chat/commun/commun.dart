@@ -59,7 +59,8 @@ class _ChatCommunPageState extends State<ChatCommunPage> {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: const NetworkImage('http://qzu191yre.hn-bkt.clouddn.com/image/355.jpg'),
+            image: const NetworkImage(
+                'http://qzu191yre.hn-bkt.clouddn.com/image/355.jpg'),
             fit: BoxFit.cover,
           ),
         ),

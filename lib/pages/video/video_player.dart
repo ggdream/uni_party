@@ -1,6 +1,8 @@
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
 
+import 'package:uni_party/pages/home/controller.dart';
+
 class VideoPlayer extends StatefulWidget {
   const VideoPlayer({
     Key? key,
@@ -25,7 +27,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
     // 屏幕常亮由`Wakelock.toggle`控制
     // package:uni_party/lib/pages/home/controller.dart
     player.setLoop(0);
-    player.setDataSource(widget.video, autoPlay: true);
+    player.setDataSource(widget.video, autoPlay: BarController.to.requireFullScreen);
   }
 
   @override

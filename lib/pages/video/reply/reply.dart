@@ -301,8 +301,7 @@ class ReplyCardWidget extends StatelessWidget {
           //   markerStyle: TextStyle(color: Colors.yellow),
           // ),
           ExpandableText(
-            text:
-                '核心意思是必须通过StatefulWidget的状态',
+            text: '核心意思是必须通过StatefulWidget的状态',
             style: TextStyle(color: Colors.white),
             tName: 'ssss',
             tUID: 2412,

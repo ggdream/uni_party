@@ -42,6 +42,7 @@ class _VideoLiveWatchPageState extends State<VideoLiveWatchPage>
               physics: ScrollX.physics,
               controller: _controller,
               indicatorColor: Colors.black,
+              labelColor: Colors.black,
               tabs: [
                 Tab(text: '聊天'),
                 Tab(text: '主播'),

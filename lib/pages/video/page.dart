@@ -2,12 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:uni_party/router/router.dart';
-import 'package:uni_party/styles/styles.dart';
+import 'package:uni_party/tools/device/device.dart';
 
 import 'controller.dart';
 import 'reply/reply.dart';
+
 import 'video_player.dart';
+import 'video_player_desktop.dart';
+import 'video_player_web.dart';
 
 class VideoPage extends StatelessWidget {
   VideoPage({Key? key}) : super(key: key);
@@ -237,10 +241,23 @@ class VideoPage extends StatelessWidget {
             onPageChanged: VideoController.to.onPage,
             itemCount: VideoController.to.data.length,
             itemBuilder: (context, index) {
-              // return VideoPlayer(
-              //   cover: 'http://qzu191yre.hn-bkt.clouddn.com/image/background.jpg',
-              //   video: VideoController.to.data[index].video,
-              // );
+              if (DeviceType.isDesktop) {
+                return VideoPlayerDesktop(
+                  cover: VideoController.to.data[index].cover,
+                  video: VideoController.to.data[index].video,
+                );
+              } else if (DeviceType.isMobile) {
+                return VideoPlayer(
+                  cover: VideoController.to.data[index].cover,
+                  video: VideoController.to.data[index].video,
+                );
+              } else if (DeviceType.isWeb) {
+                return VideoPlayerWeb(
+                  cover: VideoController.to.data[index].cover,
+                  video: VideoController.to.data[index].video,
+                );
+              }
+
               return Image.network(
                 VideoController.to.data[index].cover,
                 fit: BoxFit.fill,

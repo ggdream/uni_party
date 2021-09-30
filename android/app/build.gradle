@@ -40,10 +40,6 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
-        ndk {
-            abiFilters 'arm64-v8a'
-        }
-
         manifestPlaceholders = [
             JPUSH_PKGNAME: applicationId,
             JPUSH_APPKEY: "key",
@@ -60,6 +56,23 @@ android {
             shrinkResources false
         }
     }
+
+    // splits {
+    //     abi {
+    //         enable true
+    //         reset()
+    //         include 'x86' 'x86_64' 'armeabi-v7a' 'arm64-v8a'
+    //         universalApk true
+    //     }
+    // }
+
+    // android.applicationVariants.all { variant ->
+    //     variant.outputs.all { output ->
+    //     // if (variant.buildType.name == "Release") {
+    //         outputFileName = "uparty_${defaultConfig.versionName}_${defaultConfig.versionCode}_${output.getFilter(com.android.build.OutputFile.ABI)}.apk"
+    //     // }
+    //     }
+    // }
 }
 
 flutter {
