@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:uni_party/pages/home/controller.dart';
 
-class VideoPlayerDesktop extends StatefulWidget {
-  const VideoPlayerDesktop({
+class VideoPlayerOther extends StatefulWidget {
+  const VideoPlayerOther({
     Key? key,
     required this.cover,
     required this.video,
@@ -16,10 +16,10 @@ class VideoPlayerDesktop extends StatefulWidget {
   final String video;
 
   @override
-  _VideoPlayerDesktopState createState() => _VideoPlayerDesktopState();
+  _VideoPlayerOtherState createState() => _VideoPlayerOtherState();
 }
 
-class _VideoPlayerDesktopState extends State<VideoPlayerDesktop> {
+class _VideoPlayerOtherState extends State<VideoPlayerOther> {
   static final _randomer = Random(DateTime.now().millisecondsSinceEpoch);
 
   final Player player = Player(id: _randomer.nextInt(65536));

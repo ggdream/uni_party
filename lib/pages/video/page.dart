@@ -10,18 +10,17 @@ import 'controller.dart';
 import 'reply/reply.dart';
 
 import 'video_player.dart';
-// import 'video_player_desktop.dart';
-import 'video_player_web.dart';
+import 'video_player_desktop.dart' if (dart.library.html) 'video_player_web.dart';
 
 class VideoPage extends StatelessWidget {
   VideoPage({Key? key}) : super(key: key);
 
   static const Color _color = Colors.white;
 
-  final _controller = Get.put(VideoController());
-
   @override
   Widget build(BuildContext context) {
+    Get.put(VideoController());
+
     return Scaffold(
       backgroundColor: Colors.black,
       resizeToAvoidBottomInset: false,
@@ -241,18 +240,13 @@ class VideoPage extends StatelessWidget {
             onPageChanged: VideoController.to.onPage,
             itemCount: VideoController.to.data.length,
             itemBuilder: (context, index) {
-              if (DeviceType.isDesktop) {
-                // return VideoPlayerDesktop(
-                //   cover: VideoController.to.data[index].cover,
-                //   video: VideoController.to.data[index].video,
-                // );
-              } else if (DeviceType.isMobile) {
+              if (DeviceType.isMobile) {
                 return VideoPlayer(
                   cover: VideoController.to.data[index].cover,
                   video: VideoController.to.data[index].video,
                 );
-              } else if (DeviceType.isWeb) {
-                return VideoPlayerWeb(
+              } else if (DeviceType.isWeb || DeviceType.isDesktop) {
+                return VideoPlayerOther(
                   cover: VideoController.to.data[index].cover,
                   video: VideoController.to.data[index].video,
                 );

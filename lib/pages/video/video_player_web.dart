@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-class VideoPlayerWeb extends StatefulWidget {
-  const VideoPlayerWeb({
+class VideoPlayerOther extends StatefulWidget {
+  const VideoPlayerOther({
     Key? key,
     required this.cover,
     required this.video,
@@ -12,10 +12,10 @@ class VideoPlayerWeb extends StatefulWidget {
   final String video;
 
   @override
-  _VideoPlayerWebState createState() => _VideoPlayerWebState();
+  _VideoPlayerOtherState createState() => _VideoPlayerOtherState();
 }
 
-class _VideoPlayerWebState extends State<VideoPlayerWeb> {
+class _VideoPlayerOtherState extends State<VideoPlayerOther> {
   late VideoPlayerController _controller;
 
   @override
