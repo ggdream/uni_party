@@ -4,5 +4,6 @@ export 'color.dart';
 export 'font.dart';
 export 'iconfont.dart';
 export 'iconimage.dart';
+export 'mp.dart';
 export 'scroll.dart';
 export 'theme.dart';

@@ -14,6 +14,10 @@ class ThemesX {
   static final global =
       ThemeData.from(colorScheme: ColorScheme.light()).copyWith(
     appBarTheme: AppBarTheme(
+      titleTextStyle: TextStyle(
+        color: Colors.black,
+        fontSize: 20,
+      ),
       backgroundColor: ColorsX.primary,
       iconTheme: IconThemeData(
         color: Colors.black,

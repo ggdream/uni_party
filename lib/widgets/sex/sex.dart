@@ -14,7 +14,8 @@ class SexView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      isMan ? IconImage.nanxing : IconImage.nvxing,
+      // isMan ? IconImage.nanxing : IconImage.nvxing,
+      isMan ? IconImage.nanxing : IconImage.baohu,
       color: isMan ? ColorsX.blue : ColorsX.red,
       width: 16,
     );

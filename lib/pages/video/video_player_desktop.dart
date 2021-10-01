@@ -40,7 +40,7 @@ class _VideoPlayerDesktopState extends State<VideoPlayerDesktop> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () => player.playOrPause(),
       child: Video(
         player: player,

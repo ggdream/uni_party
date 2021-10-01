@@ -3,15 +3,16 @@ class RoutesNamespace {
   static const Home = '/';
   static const Event = '/event';
   static const World = '/world';
+  static const Picture = '/picture';
   static const Chat = '/chat';
   static const Profile = '/profile';
 
   /// 视频上传页
   static const VideoUpload = '/video/upload';
 
-    /// 视频搜索页
+  /// 视频搜索页
   static const VideoSearch = '/video/search';
-  
+
   /// 观看直播页
   static const VideoLiveWatch = '/video/live/watch';
 
@@ -122,4 +123,7 @@ class RoutesNamespace {
 
   /// 消息发布列表页
   static const ProfileEventPublish = '/profile/event/publish';
+
+  /// 查看所有照片页
+  static const PictureBrowser = '/picture/browser';
 }
