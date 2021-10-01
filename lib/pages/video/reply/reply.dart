@@ -56,33 +56,41 @@ class VideoReplyRootView extends StatelessWidget {
                   uid: 55,
                   cid: 5,
                   username: '沙卡拉卡',
-                  avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/952.jpg',
+                  avatar:
+                      'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/952.jpg',
                   content: '乘，蒙了，不是动词吗？惊了',
-                  logo: 'http://qzu191yre.hn-bkt.clouddn.com/image/952.jpg',
+                  logo:
+                      'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/952.jpg',
                 ),
                 ReplyCardWidget(
                   uid: 55,
                   cid: 5,
                   username: '沙卡拉卡',
-                  avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/952.jpg',
+                  avatar:
+                      'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/952.jpg',
                   content: '乘，蒙了，不是动词吗？惊了',
-                  logo: 'http://qzu191yre.hn-bkt.clouddn.com/image/952.jpg',
+                  logo:
+                      'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/952.jpg',
                 ),
                 ReplyCardWidget(
                   uid: 55,
                   cid: 5,
                   username: '沙卡拉卡',
-                  avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/952.jpg',
+                  avatar:
+                      'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/952.jpg',
                   content: '乘，蒙了，不是动词吗？惊了',
-                  logo: 'http://qzu191yre.hn-bkt.clouddn.com/image/952.jpg',
+                  logo:
+                      'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/952.jpg',
                 ),
                 ReplyCardWidget(
                   uid: 55,
                   cid: 5,
                   username: '沙卡拉卡',
-                  avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/952.jpg',
+                  avatar:
+                      'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/952.jpg',
                   content: '乘，蒙了，不是动词吗？惊了',
-                  logo: 'http://qzu191yre.hn-bkt.clouddn.com/image/952.jpg',
+                  logo:
+                      'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/952.jpg',
                 ),
               ],
             ),

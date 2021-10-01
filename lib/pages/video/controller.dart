@@ -46,11 +46,11 @@ class VideoController extends GetxController {
     VideoModel(
       uid: 12,
       username: '哈喽',
-      avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/452.jpg',
+      avatar: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/452.jpg',
       cid: 52,
-      cLogo: 'http://qzu191yre.hn-bkt.clouddn.com/image/45.jpg',
+      cLogo: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/45.jpg',
       vid: '1',
-      cover: 'http://qzu191yre.hn-bkt.clouddn.com/image/455.jpg',
+      cover: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/455.jpg',
       video: 'https://cdn.jsdelivr.net/gh/ggdream/assets/beauty/4.mp4',
       desc: 'desc',
       isLoveIt: true,
@@ -60,11 +60,11 @@ class VideoController extends GetxController {
     VideoModel(
       uid: 12,
       username: '去玩啊',
-      avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/52.jpg',
+      avatar: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/52.jpg',
       cid: 52,
-      cLogo: 'http://qzu191yre.hn-bkt.clouddn.com/image/45.jpg',
+      cLogo: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/45.jpg',
       vid: '2',
-      cover: 'http://qzu191yre.hn-bkt.clouddn.com/image/357.jpg',
+      cover: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/357.jpg',
       video: 'https://cdn.jsdelivr.net/gh/ggdream/assets/beauty/5.mp4',
       desc: 'desc',
       isLoveIt: false,
@@ -74,11 +74,11 @@ class VideoController extends GetxController {
     VideoModel(
       uid: 12,
       username: '搜打发',
-      avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/75.jpg',
+      avatar: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/75.jpg',
       cid: 52,
-      cLogo: 'http://qzu191yre.hn-bkt.clouddn.com/image/45.jpg',
+      cLogo: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/45.jpg',
       vid: '3',
-      cover: 'http://qzu191yre.hn-bkt.clouddn.com/image/465.jpg',
+      cover: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/465.jpg',
       video: 'https://cdn.jsdelivr.net/gh/ggdream/assets/beauty/6.mp4',
       desc: 'desc',
       isLoveIt: true,
@@ -87,7 +87,6 @@ class VideoController extends GetxController {
     ),
   ].obs;
   var currentIndex = 0.obs;
-
 
   /// 监听PageChange
   onPage(int index) {

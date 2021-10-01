@@ -55,7 +55,7 @@ class _UserInfoViewState extends State<UserInfoView> {
     return Row(
       children: [
         RoundedAvatar.network(
-          'http://qzu191yre.hn-bkt.clouddn.com/image/656.jpg',
+          'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/656.jpg',
           size: 48,
         ),
         SizedBox(width: 16),

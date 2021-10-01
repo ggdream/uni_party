@@ -22,21 +22,21 @@ class _ChatPageState extends State<ChatPage> {
       // body: ListView(
       //   children: [
       //     ChatWindowCard(
-      //       avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/108.jpg',
+      //       avatar: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/108.jpg',
       //       uname: '人鱼公主纱耶香',
       //       message: '你死哪儿去啦？',
       //       counter: 3,
       //       dtime: '19:40',
       //     ),
       //     ChatWindowCard(
-      //       avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/874.jpg',
+      //       avatar: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/874.jpg',
       //       uname: '教导主任',
       //       message: '你在干嘛呢？来趟办公室！',
       //       counter: 0,
       //       dtime: '昨天 09:05',
       //     ),
       //     ChatWindowCard(
-      //       avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/387.jpg',
+      //       avatar: 'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/387.jpg',
       //       uname: '沙卡拉卡',
       //       message: '气死我了，今天好倒霉奥~',
       //       counter: 0,
@@ -54,7 +54,8 @@ class _ChatPageState extends State<ChatPage> {
                     ? _controller.lastList[index].toUID!
                     : _controller.lastList[index].fromUID,
                 username: '魔咔啦咔',
-                avatarURL: 'http://qzu191yre.hn-bkt.clouddn.com/image/874.jpg',
+                avatarURL:
+                    'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/874.jpg',
                 datetime: _controller.lastList[index].datetime,
                 unreadCount: 5,
                 message: _controller.lastList[index].message!,

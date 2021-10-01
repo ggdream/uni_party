@@ -60,7 +60,8 @@ class _PicturePageState extends State<PicturePage>
             return GalleryWidget(
               name: '魔咔啦咔',
               uid: 20,
-              avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/696.jpg',
+              avatar:
+                  'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/696.jpg',
               pid: 'sfa',
               text: '美少女出锅啦',
               images: List.generate(
@@ -114,37 +115,44 @@ class _PicturePageState extends State<PicturePage>
           children: [
             activeFriendView(
               name: '王思若颖1',
-              avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/375.jpg',
+              avatar:
+                  'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/375.jpg',
               uid: 23,
             ),
             activeFriendView(
               name: '王思若颖2',
-              avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/753.jpg',
+              avatar:
+                  'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/753.jpg',
               uid: 23,
             ),
             activeFriendView(
               name: '王思若颖3',
-              avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/951.jpg',
+              avatar:
+                  'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/951.jpg',
               uid: 23,
             ),
             activeFriendView(
               name: '王思若颖4',
-              avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/877.jpg',
+              avatar:
+                  'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/877.jpg',
               uid: 23,
             ),
             activeFriendView(
               name: '王思若颖5',
-              avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/333.jpg',
+              avatar:
+                  'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/333.jpg',
               uid: 23,
             ),
             activeFriendView(
               name: '王思若颖6',
-              avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/441.jpg',
+              avatar:
+                  'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/441.jpg',
               uid: 23,
             ),
             activeFriendView(
               name: '王思若颖7',
-              avatar: 'http://qzu191yre.hn-bkt.clouddn.com/image/555.jpg',
+              avatar:
+                  'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/555.jpg',
               uid: 23,
             ),
           ],
