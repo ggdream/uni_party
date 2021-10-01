@@ -10,7 +10,7 @@ import 'controller.dart';
 import 'reply/reply.dart';
 
 import 'video_player.dart';
-import 'video_player_desktop.dart';
+// import 'video_player_desktop.dart';
 import 'video_player_web.dart';
 
 class VideoPage extends StatelessWidget {
@@ -242,10 +242,10 @@ class VideoPage extends StatelessWidget {
             itemCount: VideoController.to.data.length,
             itemBuilder: (context, index) {
               if (DeviceType.isDesktop) {
-                return VideoPlayerDesktop(
-                  cover: VideoController.to.data[index].cover,
-                  video: VideoController.to.data[index].video,
-                );
+                // return VideoPlayerDesktop(
+                //   cover: VideoController.to.data[index].cover,
+                //   video: VideoController.to.data[index].video,
+                // );
               } else if (DeviceType.isMobile) {
                 return VideoPlayer(
                   cover: VideoController.to.data[index].cover,

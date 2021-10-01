@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:dart_vlc/dart_vlc.dart';
+// import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -19,7 +19,7 @@ Future<void> initialize() async {
   Get.put(ChatController());
 
   if (DeviceType.isDesktop) {
-    DartVLC.initialize();
+    // DartVLC.initialize();
   }
 }
 
