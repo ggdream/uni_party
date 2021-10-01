@@ -13,12 +13,11 @@ import 'preview.dart';
 
 class CustomScrollBehavior extends MaterialScrollBehavior {
   @override
-  Set<PointerDeviceKind> get dragDevices => { 
-    PointerDeviceKind.touch,
-    PointerDeviceKind.mouse,
-  };
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }
-
 
 class Core extends StatefulWidget {
   const Core({Key? key}) : super(key: key);
@@ -48,7 +47,7 @@ class _CoreState extends State<Core> {
       locale: Preview.locale(context),
       getPages: RouterX.routes,
       initialRoute: RouterX.InitRoute,
-      theme: ThemesX.global,
+      theme: ThemeX.global,
       title: AppMeta.name,
       defaultTransition: Transition.cupertino,
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'color.dart';
 
-class ThemesX {
+class ThemeX {
   static final _floatingActionButtonTheme = FloatingActionButtonThemeData(
     backgroundColor: ColorsX.primary,
   );
@@ -11,8 +11,11 @@ class ThemesX {
     selectedItemColor: ColorsX.primary,
   );
 
-  static final global =
-      ThemeData.from(colorScheme: ColorScheme.light()).copyWith(
+  static const colorScheme = ColorScheme.light(
+    primary: ColorsX.primary,
+  );
+
+  static final global = ThemeData.from(colorScheme: colorScheme).copyWith(
     appBarTheme: AppBarTheme(
       titleTextStyle: TextStyle(
         color: Colors.black,
