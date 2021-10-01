@@ -10,7 +10,8 @@ import 'controller.dart';
 import 'reply/reply.dart';
 
 import 'video_player.dart';
-import 'video_player_desktop.dart' if (dart.library.html) 'video_player_web.dart';
+import 'video_player_desktop.dart'
+    if (dart.library.html) 'video_player_web.dart';
 
 class VideoPage extends StatelessWidget {
   VideoPage({Key? key}) : super(key: key);

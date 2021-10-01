@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uni_party/pages/home/controller.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerOther extends StatefulWidget {
@@ -22,7 +23,12 @@ class _VideoPlayerOtherState extends State<VideoPlayerOther> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.network(widget.video)
-      ..initialize().then((_) => setState(() {}));
+      ..setLooping(true)
+      ..initialize().then((_) => setState(() {
+            if (BarController.to.requireFullScreen) {
+              _controller.play();
+            }
+          }));
   }
 
   @override
@@ -33,8 +39,6 @@ class _VideoPlayerOtherState extends State<VideoPlayerOther> {
 
   @override
   Widget build(BuildContext context) {
-    return _controller.value.isInitialized
-        ? VideoPlayer(_controller)
-        : Image.network(widget.cover);
+    return VideoPlayer(_controller);
   }
 }
