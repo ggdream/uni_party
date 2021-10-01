@@ -1,6 +1,5 @@
 import 'dart:io';
 
-// import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -12,15 +11,15 @@ import 'package:uni_party/tools/notify/notify.dart';
 import 'package:uni_party/tools/push_channel/push_channel.dart';
 import 'package:uni_party/tools/time_format/time_format.dart';
 
+import 'init_noweb.dart' if (dart.library.html) 'init_web.dart';
+
 Future<void> initialize() async {
   HttpOverrides.global = MyHttpOverrides();
   TimeFormat.init();
   BaseClient.init();
   Get.put(ChatController());
 
-  if (DeviceType.isDesktop) {
-    // DartVLC.initialize();
-  }
+  configureApp();
 }
 
 Future<void> initializeLate() async {
