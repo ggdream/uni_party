@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uni_party/pages/home/controller.dart';
 import 'package:video_player/video_player.dart';
+
+import 'package:uni_party/pages/home/controller.dart';
 
 class VideoPlayerOther extends StatefulWidget {
   const VideoPlayerOther({
@@ -39,6 +40,8 @@ class _VideoPlayerOtherState extends State<VideoPlayerOther> {
 
   @override
   Widget build(BuildContext context) {
-    return VideoPlayer(_controller);
+    return _controller.value.isInitialized
+        ? VideoPlayer(_controller)
+        : Image.network(widget.cover);
   }
 }
