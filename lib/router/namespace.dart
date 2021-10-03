@@ -25,6 +25,9 @@ class RoutesNamespace {
   /// 好友搜索页
   static const ChatSearchFriend = '/chat/search/friend';
 
+  /// 语音视频通话页
+  static const ChatVoiceCall = '/chat/call';
+
   /// 分析通知消息数据页
   static const EventAnalysisNotify = '/event/analysis/notify';
 

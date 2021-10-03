@@ -227,38 +227,32 @@ class VideoPage extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: () async {},
       child: Obx(
-        () => ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
-            PointerDeviceKind.touch,
-            PointerDeviceKind.mouse,
-          }),
-          child: PageView.builder(
-            controller: PageController(
-              initialPage: VideoController.to.currentIndex.value,
-            ),
-            physics: const ClampingScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            onPageChanged: VideoController.to.onPage,
-            itemCount: VideoController.to.data.length,
-            itemBuilder: (context, index) {
-              if (DeviceType.isMobile) {
-                return VideoPlayer(
-                  cover: VideoController.to.data[index].cover,
-                  video: VideoController.to.data[index].video,
-                );
-              } else if (DeviceType.isWeb || DeviceType.isDesktop) {
-                return VideoPlayerOther(
-                  cover: VideoController.to.data[index].cover,
-                  video: VideoController.to.data[index].video,
-                );
-              }
-
-              return Image.network(
-                VideoController.to.data[index].cover,
-                fit: BoxFit.fill,
-              );
-            },
+        () => PageView.builder(
+          controller: PageController(
+            initialPage: VideoController.to.currentIndex.value,
           ),
+          physics: const ClampingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          onPageChanged: VideoController.to.onPage,
+          itemCount: VideoController.to.data.length,
+          itemBuilder: (context, index) {
+            if (DeviceType.isMobile) {
+              return VideoPlayer(
+                cover: VideoController.to.data[index].cover,
+                video: VideoController.to.data[index].video,
+              );
+            } else if (DeviceType.isWeb || DeviceType.isDesktop) {
+              return VideoPlayerOther(
+                cover: VideoController.to.data[index].cover,
+                video: VideoController.to.data[index].video,
+              );
+            }
+
+            return Image.network(
+              VideoController.to.data[index].cover,
+              fit: BoxFit.fill,
+            );
+          },
         ),
       ),
     );

@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -78,7 +77,9 @@ class _EventPageState extends State<EventPage> {
           icon: Icon(Icons.search_rounded),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed(RoutesNamespace.ChatVoiceCall);
+          },
           icon: Icon(Icons.sort_rounded),
         ),
       ],

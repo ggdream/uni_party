@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import 'package:uni_party/pages/auth/auth.dart';
 import 'package:uni_party/pages/chat/chat.dart';
+import 'package:uni_party/pages/chat/voice_call/voice_call.dart';
 import 'package:uni_party/pages/event/event.dart';
 import 'package:uni_party/pages/event/search/search.dart';
 import 'package:uni_party/pages/home/home.dart';
@@ -68,6 +69,10 @@ final List<GetPage> routes = [
   GetPage(
     name: RoutesNamespace.ChatSearchFriend,
     page: () => ChatSearchFriendPage(),
+  ),
+  GetPage(
+    name: RoutesNamespace.ChatVoiceCall,
+    page: () => ChatVoiceCallPage(),
   ),
   GetPage(
     name: RoutesNamespace.EventAnalysisNotify,

@@ -33,8 +33,6 @@
 
 
     <application android:label="大学聚" android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="true">
-        <!-- 配置定位Service -->
-        <service android:name="com.amap.api.location.APSService"/>
         <meta-data android:name="flutterEmbedding" android:value="2" />
     </application>
 </manifest>

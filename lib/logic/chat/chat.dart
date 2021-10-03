@@ -30,10 +30,12 @@ class ChatController extends GetxController {
   void connectServe() async {
     if (isRunning) return;
 
-    channel = WebSocketChannel.connect(
-      Uri.parse('ws://127.0.0.1:8080/v1/chat?fid=2&tid=1'),
-    );
-    channel.stream.listen(_onData, onDone: _onDone, onError: _onError);
+    try {
+      channel = WebSocketChannel.connect(
+        Uri.parse('ws://127.0.0.1:8080/v1/chat?fid=2&tid=1'),
+      );
+      channel.stream.listen(_onData, onDone: _onDone, onError: _onError);
+    } catch (e) {}
   }
 
   void send({

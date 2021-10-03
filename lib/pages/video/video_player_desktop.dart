@@ -20,9 +20,9 @@ class VideoPlayerOther extends StatefulWidget {
 }
 
 class _VideoPlayerOtherState extends State<VideoPlayerOther> {
-  static final _randomer = Random(DateTime.now().millisecondsSinceEpoch);
-
-  final Player player = Player(id: _randomer.nextInt(65536));
+  static final _random = Random(DateTime.now().millisecondsSinceEpoch);
+  final Player player = Player(id: _random.nextInt(65536))
+    ..setPlaylistMode(PlaylistMode.repeat);
 
   @override
   void initState() {
