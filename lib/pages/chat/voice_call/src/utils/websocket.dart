@@ -85,15 +85,16 @@ class SignalingService {
     required Function(dynamic data) onMessage,
     required Function(String? reason) onClose,
   }) async {
-    _socket = GetSocket(url);
+    try {
+      _socket = GetSocket(url);
 
-    _socket.onOpen(onOpen);
-    _socket.onMessage(onMessage);
-    _socket.onError((Close close) {
-      onClose(close.message);
-    });
-
-    await _socket.connect();
+      _socket.onOpen(onOpen);
+      _socket.onMessage(onMessage);
+      _socket.onError((Close close) {
+        onClose(close.message);
+      });
+      await _socket.connect();
+    } catch (e) {}
   }
 
   static Future<SignalingService> connect(

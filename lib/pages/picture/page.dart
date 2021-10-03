@@ -54,6 +54,7 @@ class _PicturePageState extends State<PicturePage>
     return RefreshIndicator(
       onRefresh: () async {},
       child: ListView.builder(
+          physics: ScrollX.physics,
           shrinkWrap: true,
           itemCount: 4,
           itemBuilder: (context, index) {

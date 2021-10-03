@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:uni_party/tools/saver/saver.dart';
+
 class BrowserController extends GetxController {
   BrowserController({
     required this.pid,
-    this.initialPage = "0",
-  });
+    int initialPage = 0,
+  }) {
+    index.value = initialPage;
+  }
 
   final String? pid;
-  final String? initialPage;
+  var index = 0.obs;
 
+  var waterMode = false.obs;
   var images = <String>[].obs;
 
   static BrowserController to = Get.find();
@@ -20,25 +25,45 @@ class BrowserController extends GetxController {
   void onInit() {
     super.onInit();
 
-    int index = 0;
-    if (initialPage != null) {
-      final value = int.tryParse(initialPage!, radix: 10);
-      if (value == null) {
-        Navigator.of(Get.context!).pop();
-        return;
-      }
+    controller = PageController(initialPage: index.value);
 
-      index = value;
-      print(index);
-    }
-
-    controller = PageController(initialPage: index);
     images.addAll(
       List.generate(
         18,
-        (index) =>
-            'https://cdn.jsdelivr.net/gh/mocaraka/assets/picture/$index.jpg',
+        (idx) => 'https://cdn.jsdelivr.net/gh/mocaraka/assets/picture/$idx.jpg',
       ),
     );
+  }
+
+  /// 在瀑布流和单个仔细看模式间互相切换
+  void onSwitchWatchMode() {
+    waterMode.value = !waterMode.value;
+    if (!waterMode.value) controller = PageController(initialPage: index.value);
+  }
+
+  Future<void> saveImage() async {
+    String text = '';
+
+    try {
+      final path = await Saver.image(images[index.value]);
+
+      if (path == null) {
+        text = '保存失败';
+      } else {
+        text = '保存成功';
+      }
+    } catch (e) {
+      text = '保存失败';
+    } finally {
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        SnackBar(
+          content: Text(text),
+        ),
+      );
+    }
+  }
+
+  void onPageChanged(int currentIdx) {
+    index.value = currentIdx;
   }
 }
