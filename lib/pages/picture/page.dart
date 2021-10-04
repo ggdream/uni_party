@@ -4,9 +4,8 @@ import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:uni_party/pages/picture/controller.dart';
-import 'package:uni_party/router/router.dart';
 
+import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 import 'package:uni_party/tools/time_format/time_format.dart';
 
@@ -109,7 +108,18 @@ class _PicturePageState extends State<PicturePage>
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       expandedHeight: 160,
-      // pinned: true,
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.share_rounded),
+          tooltip: '写真分享',
+        ),
+        IconButton(
+          onPressed: () => Get.toNamed(RoutesNamespace.PicturePublish),
+          icon: Icon(Icons.cloud_upload_rounded),
+          tooltip: '上传写真',
+        ),
+      ],
       flexibleSpace: FlexibleSpaceBar(
         background: ListView(
           scrollDirection: Axis.horizontal,
@@ -169,16 +179,16 @@ class _PicturePageState extends State<PicturePage>
   }) {
     return Column(
       children: [
-        SizedBox(height: 36, width: 96),
+        SizedBox(height: 52, width: 72),
         InkWell(
           onTap: () {
             // TODO: 跳转到她的空间
           },
           borderRadius: BorderRadius.circular(40),
           child: CircleAvatar(
-            radius: 40,
+            radius: 36,
             backgroundImage: NetworkImage(avatar),
-            child: SizedBox(width: 80, height: 80),
+            child: SizedBox(width: 72, height: 72),
           ),
         ),
         SizedBox(height: 4),

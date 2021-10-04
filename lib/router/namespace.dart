@@ -127,6 +127,9 @@ class RoutesNamespace {
   /// 消息发布列表页
   static const ProfileEventPublish = '/profile/event/publish';
 
-  /// 查看所有照片页
+  /// 查看写真页
   static const PictureBrowser = '/picture/browser';
+
+  /// 发布写真页
+  static const PicturePublish = '/picture/publish';
 }

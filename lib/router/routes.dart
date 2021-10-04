@@ -7,7 +7,7 @@ import 'package:uni_party/pages/event/event.dart';
 import 'package:uni_party/pages/event/search/search.dart';
 import 'package:uni_party/pages/home/home.dart';
 import 'package:uni_party/pages/helper/helper.dart';
-import 'package:uni_party/pages/picture/browser/browser.dart';
+import 'package:uni_party/pages/picture/picture.dart';
 import 'package:uni_party/pages/profile/profile.dart';
 import 'package:uni_party/pages/start/start.dart';
 import 'package:uni_party/pages/video/video.dart';
@@ -172,6 +172,10 @@ final List<GetPage> routes = [
   ),
   GetPage(
     name: RoutesNamespace.PictureBrowser,
-    page: () => PictureBrowserWidget(),
+    page: () => PictureBrowserPage(),
+  ),
+  GetPage(
+    name: RoutesNamespace.PicturePublish,
+    page: () => PicturePublishPage(),
   ),
 ];

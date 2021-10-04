@@ -31,7 +31,7 @@ Future<void> initializeLate() async {
 
   if (DeviceType.isMobile) {
     AppNotify.init();
-    await PushChannel.register(alias: 'test');
+   // await PushChannel.register(alias: 'test');
   }
 }
 

@@ -10,8 +10,8 @@ import 'package:waterfall_flow/waterfall_flow.dart';
 
 import 'controller.dart';
 
-class PictureBrowserWidget extends StatelessWidget {
-  PictureBrowserWidget({
+class PictureBrowserPage extends StatelessWidget {
+  PictureBrowserPage({
     Key? key,
   }) : super(key: key);
 
