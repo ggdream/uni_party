@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:photo_manager/photo_manager.dart';
 
 import 'package:uni_party/styles/styles.dart';
+import 'package:uni_party/router/router.dart';
 import 'package:uni_party/widgets/button/button.dart';
 
 import 'controller.dart';
@@ -164,31 +164,7 @@ class PicturePublishPage extends StatelessWidget {
           SizedBox(width: 24),
           FloatingActionButton(
             onPressed: () async {
-              final result = await PhotoManager.getAssetPathList();
-              AssetPathEntity? entity;
-              for (var item in result) {
-                if (item.isAll) {
-                  entity = item;
-                  break;
-                }
-              }
-
-              if (entity == null) return;
-              final entities = await entity.getAssetListRange(
-                start: 0,
-                end: entity.assetCount == 0 ? 0 : entity.assetCount - 1,
-              );
-
-              List<String> images = [];
-              for (var entity in entities) {
-                if (entity.type == AssetType.image) {
-                  final title = await entity.titleAsync;
-                  images.add('${entity.relativePath}/$title');
-                }
-              }
-
-              PublishController.to.images.clear();
-              PublishController.to.images.addAll(images);
+              await Get.toNamed(RoutesNamespace.PicturePicker);
             },
             child: Icon(Icons.photo_rounded),
             heroTag: 'library',

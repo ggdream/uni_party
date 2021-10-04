@@ -601,7 +601,7 @@ packages:
       name: photo_manager
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.3.4"
+    version: "1.3.5"
   photo_view:
     dependency: "direct main"
     description:

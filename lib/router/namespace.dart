@@ -132,4 +132,10 @@ class RoutesNamespace {
 
   /// 发布写真页
   static const PicturePublish = '/picture/publish';
+
+  /// 照片选择页
+  static const PicturePicker = '/picture/picker';
+
+  /// 照片选择页
+  static const PicturePreview = '/picture/preview';
 }

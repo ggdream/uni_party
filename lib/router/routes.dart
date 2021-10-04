@@ -178,4 +178,12 @@ final List<GetPage> routes = [
     name: RoutesNamespace.PicturePublish,
     page: () => PicturePublishPage(),
   ),
+  GetPage(
+    name: RoutesNamespace.PicturePicker,
+    page: () => PicturePickerPage(),
+  ),
+  GetPage(
+    name: RoutesNamespace.PicturePreview,
+    page: () => PicturePreviewPage(),
+  ),
 ];
