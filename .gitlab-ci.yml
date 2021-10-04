@@ -19,27 +19,27 @@ build:
       - build/web
   interruptible: true
 
-release:
-  image: inetprocess/gitlab-release
-  stage: release
-  allow_failure: true
-  only:
-    - tags
-  dependencies:
-    - build
-  script:
-    - gitlab-release --message '自动发布' build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+# release:
+#   image: inetprocess/gitlab-release
+#   stage: release
+#   allow_failure: true
+#   only:
+#     - tags
+#   dependencies:
+#     - build
+#   script:
+#     - gitlab-release --message '自动发布' build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
 
-deploy:
-  stage: deploy
-  allow_failure: true
-  only:
-    - tags
-  dependencies:
-    - build
-  script:
-    - mkdir public
-    - cp -rf build/web/* public/
-  artifacts:
-    paths:
-      - public
+# deploy:
+#   stage: deploy
+#   allow_failure: true
+#   only:
+#     - tags
+#   dependencies:
+#     - build
+#   script:
+#     - mkdir public
+#     - cp -rf build/web/* public/
+#   artifacts:
+#     paths:
+#       - public

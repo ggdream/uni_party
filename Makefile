@@ -1,4 +1,4 @@
-.PHONY: android androidv icon splash protoenv proto
+.PHONY: android androidv icon splash protoenv proto deploy
 
 
 android:
@@ -18,3 +18,9 @@ protoenv:
 
 proto:
 	@protoc  --dart_out=. ./lib/tools/chat/generated/protocol.proto
+
+deploy:
+	flutter build web -v
+	cd ./build/web && git init && git add . && git commit -m "deploy" && git branch -M main && \
+	git remote add origin https://github.com/mocaraka/mocaraka.github.io.git && \
+	git push -f origin main
