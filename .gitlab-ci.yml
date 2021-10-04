@@ -1,0 +1,43 @@
+stages:
+  - build
+  - release
+  - deploy
+
+build:
+  stage: build
+  image: cirrusci/flutter:stable
+  only:
+    - tags
+  script:
+    - flutter pub get
+    - flutter build apk --target-platform android-arm64 --split-per-abi -v
+    - flutter build web -v
+  artifacts:
+    expire_in: '1 hour'
+    paths:
+      - build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+      - build/web
+  interruptible: true
+
+release:
+  image: inetprocess/gitlab-release
+  stage: release
+  only:
+    - tags
+  dependencies:
+    - build
+  script:
+    - gitlab-release --message '自动发布' build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+
+deploy:
+  state: deploy
+  only:
+    - tags
+  dependencies:
+    - build
+  script:
+    - mkdir public
+    - cp -rf build/web/* public/
+  artifacts:
+    paths:
+      - public

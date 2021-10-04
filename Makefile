@@ -1,8 +1,11 @@
-.PHONY: android icon splash protoenv proto
+.PHONY: android androidv icon splash protoenv proto
 
 
 android:
 	@flutter build apk --target-platform android-arm64 --split-per-abi
+
+androidv:
+	@flutter build apk --target-platform android-arm64 --split-per-abi -v
 
 icon:
 	@flutter pub run flutter_launcher_icons:main
