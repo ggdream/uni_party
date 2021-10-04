@@ -22,6 +22,7 @@ build:
 release:
   image: inetprocess/gitlab-release
   stage: release
+  allow_failure: true
   only:
     - tags
   dependencies:
@@ -31,6 +32,7 @@ release:
 
 deploy:
   stage: deploy
+  allow_failure: true
   only:
     - tags
   dependencies:
