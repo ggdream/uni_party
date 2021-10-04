@@ -76,49 +76,47 @@ class SimpleWebSocket {
   }
 }
 
-class SignalingService {
-  late final GetSocket _socket;
+// class SignalingService {
+//   late final GetSocket _socket;
 
-  Future<void> _init(
-    String url, {
-    required Function() onOpen,
-    required Function(dynamic data) onMessage,
-    required Function(String? reason) onClose,
-  }) async {
-    try {
-      _socket = GetSocket(url);
+//    _init(
+//     String url, {
+//     required Function() onOpen,
+//     required Function(dynamic data) onMessage,
+//     required Function(String? reason) onClose,
+//   }) async {
+//       _socket = GetSocket(url);
 
-      _socket.onOpen(onOpen);
-      _socket.onMessage(onMessage);
-      _socket.onError((Close close) {
-        onClose(close.message);
-      });
-      await _socket.connect();
-    } catch (e) {}
-  }
+//       _socket.onOpen(onOpen);
+//       _socket.onMessage(onMessage);
+//       _socket.onError((Close close) {
+//         onClose(close.message);
+//       });
+//       final _ = await _socket.connect();
+//   }
 
-  static Future<SignalingService> connect(
-    String url, {
-    required void Function() onOpen,
-    required void Function(dynamic data) onMessage,
-    required void Function(String? reason) onClose,
-  }) async {
-    final service = SignalingService();
-    await service._init(
-      url,
-      onOpen: onOpen,
-      onMessage: onMessage,
-      onClose: onClose,
-    );
+//   static Future<SignalingService> connect(
+//     String url, {
+//     required void Function() onOpen,
+//     required void Function(dynamic data) onMessage,
+//     required void Function(String? reason) onClose,
+//   }) async {
+//     final service = SignalingService();
+//     await service._init(
+//       url,
+//       onOpen: onOpen,
+//       onMessage: onMessage,
+//       onClose: onClose,
+//     );
 
-    return service;
-  }
+//     return service;
+//   }
 
-  void send(String data) {
-    _socket.send(data);
-  }
+//   void send(String data) {
+//     _socket.send(data);
+//   }
 
-  void close() {
-    _socket.close();
-  }
-}
+//   void close() {
+//     _socket.close();
+//   }
+// }
