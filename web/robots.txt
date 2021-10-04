@@ -1,0 +1,47 @@
+User-agent: Baiduspider
+Disallow: /assets
+
+User-agent: Googlebot
+Disallow: /assets
+
+User-agent: MSNBot
+Disallow: /assets
+
+User-agent: Baiduspider-image
+Disallow: /assets
+
+User-agent: YoudaoBot
+Disallow: /assets
+
+User-agent: Sogou web spider
+Disallow: /assets
+
+User-agent: Sogou inst spider
+Disallow: /assets
+
+User-agent: Sogou spider2
+Disallow: /assets
+
+User-agent: Sogou blog
+Disallow: /assets
+
+User-agent: Sogou News Spider
+Disallow: /assets
+
+User-agent: Sogou Orion spider
+Disallow: /assets
+
+User-agent: ChinasoSpider
+Disallow: /assets
+
+User-agent: Sosospider
+Disallow: /assets
+
+User-agent: yisouspider
+Disallow: /assets
+
+User-agent: EasouSpider
+Disallow: /assets
+
+User-agent: *
+Disallow: /
