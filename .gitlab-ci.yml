@@ -30,7 +30,7 @@ release:
     - gitlab-release --message '自动发布' build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
 
 deploy:
-  state: deploy
+  stage: deploy
   only:
     - tags
   dependencies:
