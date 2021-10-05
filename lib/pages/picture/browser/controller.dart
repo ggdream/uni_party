@@ -6,16 +6,15 @@ import 'package:uni_party/tools/saver/saver.dart';
 class BrowserController extends GetxController {
   BrowserController({
     required this.pid,
-    int initialPage = 0,
-  }) {
-    index.value = initialPage;
-  }
+    this.initialPage = 0,
+  });
 
   final String? pid;
   var index = 0.obs;
+  final int initialPage;
 
   var waterMode = false.obs;
-  var images = <String>[].obs;
+  final images = <String>[].obs;
 
   static BrowserController to = Get.find();
 
@@ -25,14 +24,7 @@ class BrowserController extends GetxController {
   void onInit() {
     super.onInit();
 
-    controller = PageController(initialPage: index.value);
-
-    images.addAll(
-      List.generate(
-        18,
-        (idx) => 'https://cdn.jsdelivr.net/gh/mocaraka/assets/picture/$idx.jpg',
-      ),
-    );
+    controller = PageController(initialPage: initialPage);
   }
 
   /// 在瀑布流和单个仔细看模式间互相切换

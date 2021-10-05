@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:suit/suit.dart';
+import 'package:uni_party/pages/picture/controller.dart';
 
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
@@ -25,6 +26,7 @@ class _PicturePageState extends State<PicturePage>
   void initState() {
     super.initState();
     tabController = TabController(length: 2, vsync: this);
+    Get.put(PictureController());
   }
 
   @override
@@ -56,7 +58,7 @@ class _PicturePageState extends State<PicturePage>
       child: ListView.builder(
           physics: ScrollX.physics,
           shrinkWrap: true,
-          itemCount: 4,
+          itemCount: PictureController.to.images.length,
           itemBuilder: (context, index) {
             return GalleryWidget(
               name: '魔咔啦咔',
@@ -65,11 +67,7 @@ class _PicturePageState extends State<PicturePage>
                   'https://cdn.jsdelivr.net/gh/mocaraka/assets/temp/696.jpg',
               pid: 'sfa',
               text: '美少女出锅啦',
-              images: List.generate(
-                9,
-                (index) =>
-                    'https://cdn.jsdelivr.net/gh/mocaraka/assets/picture/$index.jpg',
-              ),
+              images: PictureController.to.images[index],
               tags: ['桜桃喵', '写真集'],
               timestamp: 1633070264000,
             );
@@ -230,7 +228,7 @@ class GalleryWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         Map<String, String> params = {'p': pid};
-        await Get.toNamed(RoutesNamespace.PictureBrowser, parameters: params);
+        await Get.toNamed(RoutesNamespace.PictureBrowser, parameters: params, arguments: images);
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -249,6 +247,7 @@ class GalleryWidget extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           infoView(),
           SizedBox(height: 6),
@@ -275,8 +274,8 @@ class GalleryWidget extends StatelessWidget {
     );
   }
 
-  GridView imageView() {
-    return GridView.builder(
+  Widget imageView() {
+    return GridView(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -284,27 +283,32 @@ class GalleryWidget extends StatelessWidget {
         mainAxisSpacing: 4,
         crossAxisSpacing: 4,
       ),
-      itemCount: images.length,
-      itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () async {
-            Map<String, String> params = {'p': pid, 'offset': index.toString()};
-            await Get.toNamed(
-              RoutesNamespace.PictureBrowser,
-              parameters: params,
-            );
-          },
-          borderRadius: BorderRadius.circular(12),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              images.elementAt(index),
-              fit: BoxFit.cover,
-              cacheWidth: 240,
-            ),
-          ),
+      children: List.generate(
+        images.length > 9 ? 9 : images.length,
+        (index) => imageCard(index),
+      ),
+    );
+  }
+
+  Widget imageCard(int index) {
+    return InkWell(
+      onTap: () async {
+        Map<String, String> params = {'p': pid, 'offset': index.toString()};
+        await Get.toNamed(
+          RoutesNamespace.PictureBrowser,
+          parameters: params,
+          arguments: images,
         );
       },
+      borderRadius: BorderRadius.circular(12),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Image.network(
+          images.elementAt(index),
+          fit: BoxFit.cover,
+          cacheWidth: 240,
+        ),
+      ),
     );
   }
 

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import 'package:waterfall_flow/waterfall_flow.dart';
 
 import 'package:uni_party/styles/styles.dart';
 import 'package:uni_party/widgets/button/button.dart';
-import 'package:waterfall_flow/waterfall_flow.dart';
 
 import 'controller.dart';
 
@@ -14,15 +14,15 @@ class PictureBrowserPage extends StatelessWidget {
   PictureBrowserPage({
     Key? key,
   }) : super(key: key);
-
+  final _controller = Get.put(
+    BrowserController(
+      pid: Get.parameters['p'],
+      initialPage: int.parse(Get.parameters['offset'] ?? "0"),
+    ),
+  );
   @override
   Widget build(BuildContext context) {
-    Get.put(
-      BrowserController(
-        pid: Get.parameters['p'],
-        initialPage: int.parse(Get.parameters['offset'] ?? "0"),
-      ),
-    );
+    _controller.images.addAll(Get.arguments);
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -38,11 +38,11 @@ class PictureBrowserPage extends StatelessWidget {
       centerTitle: true,
       actions: [
         IconButton(
-          onPressed: BrowserController.to.onSwitchWatchMode,
+          onPressed: _controller.onSwitchWatchMode,
           icon: Icon(CupertinoIcons.switch_camera_solid),
         ),
         IconButton(
-          onPressed: BrowserController.to.saveImage,
+          onPressed: _controller.saveImage,
           icon: Icon(Icons.cloud_download_rounded),
         ),
       ],
@@ -51,7 +51,7 @@ class PictureBrowserPage extends StatelessWidget {
 
   Widget bodyView() {
     return Obx(
-      () => BrowserController.to.waterMode.value
+      () => _controller.waterMode.value
           ? waterfallView()
           : simpleBigView(),
     );
@@ -61,15 +61,16 @@ class PictureBrowserPage extends StatelessWidget {
     return PhotoViewGallery.builder(
       enableRotation: true,
       scrollPhysics: ScrollX.physics,
-      pageController: BrowserController.to.controller,
-      onPageChanged: BrowserController.to.onPageChanged,
-      itemCount: BrowserController.to.images.length,
+      pageController: _controller.controller,
+      onPageChanged: _controller.onPageChanged,
+      itemCount: _controller.images.length,
       builder: (BuildContext context, int index) {
+        print(_controller.initialPage);
         return PhotoViewGalleryPageOptions(
-          imageProvider: NetworkImage(BrowserController.to.images[index]),
+          imageProvider: NetworkImage(_controller.images[index]),
           initialScale: PhotoViewComputedScale.contained * 0.8,
           heroAttributes: PhotoViewHeroAttributes(
-            tag: BrowserController.to.images[index].hashCode,
+            tag: _controller.images[index].hashCode,
           ),
         );
       },
@@ -98,11 +99,11 @@ class PictureBrowserPage extends StatelessWidget {
         mainAxisSpacing: 12,
         crossAxisSpacing: 12,
       ),
-      itemCount: BrowserController.to.images.length,
+      itemCount: _controller.images.length,
       itemBuilder: (context, index) {
         return ClipRRect(
           borderRadius: BorderRadius.circular(16),
-          child: Image.network(BrowserController.to.images[index]),
+          child: Image.network(_controller.images[index]),
         );
       },
     );
