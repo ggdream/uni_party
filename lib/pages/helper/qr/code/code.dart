@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:suit/suit.dart';
 
 import 'package:uni_party/widgets/button/button.dart';
 import 'package:uni_party/widgets/rounded/rounded.dart';
@@ -62,23 +63,20 @@ class QrCodePage extends StatelessWidget {
   }
 
   Widget qrCodeCardView() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: PhysicalModel(
-        borderRadius: BorderRadius.circular(32),
-        color: ColorsX.bluePurple,
-        elevation: 3,
-        child: ScreenShot(
-          controller: _controller,
-          child: qrcodeView(),
-        ),
+    return PhysicalModel(
+      borderRadius: BorderRadius.circular(32),
+      color: ColorsX.bluePurple,
+      elevation: 3,
+      child: ScreenShot(
+        controller: _controller,
+        child: qrcodeView(),
       ),
     );
   }
 
   Widget qrcodeView() {
     return Container(
-      width: double.infinity,
+      width: 240,
       padding: const EdgeInsets.all(12),
       child: Column(
         mainAxisSize: MainAxisSize.min,

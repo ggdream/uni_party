@@ -4,8 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photo_manager/photo_manager.dart';
-import 'package:uni_party/router/router.dart';
+import 'package:suit/suit.dart';
 
+import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
 import 'package:uni_party/widgets/button/button.dart';
 
@@ -30,18 +31,12 @@ class PicturePickerView extends StatefulWidget {
 
 class _PicturePickerViewState extends State<PicturePickerView> {
   final List<String> _imageList = [];
-  final Set<String> _selectedSet = {};
-  int _currentPages = _pageCounter;
-
-  static const int _pageCounter = 16;
-  final ScrollController _controller = ScrollController();
+  final List<String> _selectedSet = [];
 
   @override
   void initState() {
     super.initState();
-
     this._getAllImagesFromAlbum();
-    _controller.addListener(_scrollListener);
   }
 
   @override
@@ -53,21 +48,9 @@ class _PicturePickerViewState extends State<PicturePickerView> {
         mainAxisSpacing: 16,
         crossAxisSpacing: 16,
       ),
-      controller: _controller,
-      itemCount:
-          _currentPages > _imageList.length ? _imageList.length : _currentPages,
+      itemCount: _imageList.length,
       itemBuilder: _itemBuilder,
     );
-  }
-
-  void _scrollListener() {
-    if (_controller.offset >= _controller.position.maxScrollExtent) {
-      if (_imageList.isEmpty) return;
-
-      setState(() {
-        _currentPages += _pageCounter;
-      });
-    }
   }
 
   Future<void> _getAllImagesFromAlbum() async {
@@ -110,59 +93,92 @@ class _PicturePickerViewState extends State<PicturePickerView> {
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: SizedBox.expand(
-              child: Image.file(File(idx), fit: BoxFit.cover),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    if (_selectedSet.contains(idx)) {
-                      _selectedSet.remove(idx);
-                    } else {
-                      _selectedSet.add(idx);
-                    }
-                  });
-                },
-                child: Icon(
-                  _selectedSet.contains(idx)
-                      ? CupertinoIcons.check_mark_circled_solid
-                      : CupertinoIcons.check_mark_circled,
-                  color:
-                      _selectedSet.contains(idx) ? ColorsX.green : Colors.black,
-                ),
+              child: Image.file(
+                File(idx),
+                fit: BoxFit.cover,
+                cacheWidth: 50.vw.toInt(),
               ),
             ),
           ),
+          _selectMarkWidget(idx),
         ],
+      ),
+    );
+  }
+
+  Widget _selectMarkWidget(String idx) {
+    return Align(
+      alignment: Alignment.topRight,
+      child: IconButton(
+        icon: Icon(
+          _selectedSet.contains(idx)
+              ? CupertinoIcons.check_mark_circled_solid
+              : CupertinoIcons.check_mark_circled,
+          color: _selectedSet.contains(idx) ? ColorsX.green : Colors.black,
+        ),
+        onPressed: () {
+          setState(() {
+            if (_selectedSet.contains(idx)) {
+              _selectedSet.remove(idx);
+              widget.controller.delImage(idx);
+            } else {
+              _selectedSet.add(idx);
+              widget.controller.addImage(idx);
+            }
+          });
+        },
       ),
     );
   }
 }
 
-class PicturePickerController {}
+class PicturePickerController {
+  List<String> _selectedList = [];
 
-class PicturePickerPage extends StatefulWidget {
-  const PicturePickerPage({Key? key}) : super(key: key);
+  void addImage(String image) {
+    if (!(_selectedList.contains(image))) {
+      _selectedList.add(image);
+    }
+  }
 
-  @override
-  _PicturePickerPageState createState() => _PicturePickerPageState();
+  void delImage(String image) {
+    if (_selectedList.contains(image)) {
+      _selectedList.remove(image);
+    }
+  }
+
+  List<String> get images => _selectedList;
 }
 
-class _PicturePickerPageState extends State<PicturePickerPage> {
+class PicturePickerPage extends StatelessWidget {
+  PicturePickerPage({Key? key}) : super(key: key);
+
+  final PicturePickerController _controller = PicturePickerController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        leading: BackBtn(),
-      ),
+      appBar: appBar(context),
       body: PicturePickerView(
-        controller: PicturePickerController(),
+        controller: _controller,
       ),
+    );
+  }
+
+  AppBar appBar(BuildContext context) {
+    return AppBar(
+      leading: BackBtn(),
+      title: Text('选择本地图片'),
+      centerTitle: true,
+      actions: [
+        IconButton(
+          onPressed: () {
+            Navigator.of(context).pop(_controller.images);
+          },
+          icon: Icon(CupertinoIcons.checkmark_seal_fill),
+        ),
+      ],
     );
   }
 }

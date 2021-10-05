@@ -4,6 +4,7 @@ import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:suit/suit.dart';
 
 import 'package:uni_party/router/router.dart';
 import 'package:uni_party/styles/styles.dart';
@@ -279,7 +280,7 @@ class GalleryWidget extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
+        crossAxisCount: 100.vw ~/ 120,
         mainAxisSpacing: 4,
         crossAxisSpacing: 4,
       ),
@@ -295,10 +296,11 @@ class GalleryWidget extends StatelessWidget {
           },
           borderRadius: BorderRadius.circular(12),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(16),
             child: Image.network(
               images.elementAt(index),
               fit: BoxFit.cover,
+              cacheWidth: 240,
             ),
           ),
         );

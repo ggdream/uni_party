@@ -48,7 +48,7 @@ class QrScanPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(bottom: 64),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             /// 打开/关闭手电筒
             GestureDetector(
@@ -57,7 +57,7 @@ class QrScanPage extends StatelessWidget {
                 child: Icon(Icons.light_outlined),
               ),
             ),
-
+            SizedBox(width: 48),
             /// 从本地选择图片
             GestureDetector(
               onTap: () async {
